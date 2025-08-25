@@ -6,12 +6,8 @@ namespace SauceDemoTests.Utils
     {
         public static string CaptureScreenshot(IWebDriver driver, string testName, string data = "")
         {
-
-            var projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-
             // Navigate up from bin to project folder
-            projectRoot = Path.Combine(projectRoot, "..", "..", "..");
-
+            var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\.."));
             string screenshotDirectory = Path.Combine(projectRoot, "Reports", "Screenshots");
 
             // Checks if the folder exists
@@ -26,7 +22,6 @@ namespace SauceDemoTests.Utils
 
             // Get timestamps and filepath
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-
             var fileName = string.IsNullOrEmpty(data)
                 ? $"{testName}_{timeStamp}.png"
                 : $"{testName}_{data}_{timeStamp}.png";
@@ -36,7 +31,7 @@ namespace SauceDemoTests.Utils
             screenshot.SaveAsFile(filePath);
             //Console.WriteLine($"Screenshot saved at: {filePath}");
 
-            return filePath;
+            return Path.Combine("Screenshots", fileName);
         }
     }
 }

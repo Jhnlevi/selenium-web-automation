@@ -12,6 +12,15 @@ namespace SauceDemoTests.Utils
             {
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
+                    // Prevent "Chrome is being controlled by automated test software" infobar
+                    chromeOptions.AddArgument("--disable-infobars");
+
+                    // Disable password manager popups
+                    chromeOptions.AddArgument("--disable-save-password-bubble");
+                    chromeOptions.AddArgument("--disable-password-manager-reauthentication");
+
+                    // Incognito
+                    chromeOptions.AddArgument("--incognito");
                     chromeOptions.AddArgument("start-maximized");
                     return new ChromeDriver(chromeOptions);
 

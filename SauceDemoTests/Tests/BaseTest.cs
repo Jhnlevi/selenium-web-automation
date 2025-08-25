@@ -40,12 +40,19 @@ namespace SauceDemoTests.Tests
             switch (testStatus)
             {
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    // Adding Screenshot to report for every failed test
-                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.Name);
+                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.MethodName);
                     _test.Fail($"Test Failed : {testMessage}\n{stackTrace}").AddScreenCaptureFromPath(screenshotFile);
                     break;
                 case NUnit.Framework.Interfaces.TestStatus.Passed:
-                    _test.Pass("Test Passed");
+                    if (TestContext.CurrentContext.Test.Arguments.Contains("Negative"))
+                    {
+                        string passScreenshot = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.MethodName);
+                        _test.Pass("Test Passed").AddScreenCaptureFromPath(passScreenshot);
+                    }
+                    else
+                    {
+                        _test.Pass("Test Passed");
+                    }
                     break;
                 default:
                     _test.Warning("Test ended with unusual status");
