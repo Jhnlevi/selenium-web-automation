@@ -23,7 +23,7 @@ namespace SauceDemoTests.Tests.Login
         {
             // Act
             _login.LoginAs(username, password);
-            ScreenshotHelper.CaptureScreenshot(_driver, "Login");
+            ScreenshotHelper.CaptureScreenshot(_driver, "Login_WithValidCredentials");
 
             // Assert
             Assert.That(_driver.Url, Is.EqualTo("https://www.saucedemo.com/v1/inventory.html"));
@@ -36,7 +36,7 @@ namespace SauceDemoTests.Tests.Login
         {
             // Act
             _login.LoginAs(username, password);
-            ScreenshotHelper.CaptureScreenshot(_driver, "Login");
+            ScreenshotHelper.CaptureScreenshot(_driver, "InvalidLogin_ShowsErrorMessage");
 
             // Assert
             Assert.That(_login.IsErrorMessageDisplayed, Is.True);
@@ -47,14 +47,14 @@ namespace SauceDemoTests.Tests.Login
         {
             // Act
             _login.LoginAs(username, password);
-            ScreenshotHelper.CaptureScreenshot(_driver, "Login");
+            ScreenshotHelper.CaptureScreenshot(_driver, "InvalidLogin_LockedOutUser", "LockedUserAccount");
 
             // Assert
             Assert.That(_login.GetErrorMessage().Contains("locked out"), Is.True);
         }
 
         [TestCase("standard_user", "secret_sauce")]
-        public void PasswordField_IsMasked(string username, string password)
+        public void Login_PasswordFieldIsMasked(string username, string password)
         {
             var passwordField = _driver.FindElement(By.Id("password"));
             var passwordType = passwordField.GetAttribute("type");
@@ -62,7 +62,7 @@ namespace SauceDemoTests.Tests.Login
             // Act
             _login.EnterUserName(username);
             _login.EnterPassword(password);
-            ScreenshotHelper.CaptureScreenshot(_driver, "Login");
+            ScreenshotHelper.CaptureScreenshot(_driver, "Login_PasswordFieldIsMasked");
 
             // Assert
             Assert.That(passwordType, Is.EqualTo("password"));

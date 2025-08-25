@@ -4,7 +4,7 @@ namespace SauceDemoTests.Utils
 {
     public static class ScreenshotHelper
     {
-        public static void CaptureScreenshot(IWebDriver driver, string fileNamePrefix)
+        public static void CaptureScreenshot(IWebDriver driver, string testName, string data = "")
         {
 
             var projectRoot = AppDomain.CurrentDomain.BaseDirectory;
@@ -25,11 +25,11 @@ namespace SauceDemoTests.Utils
             var screenshot = screenshotDriver.GetScreenshot();
 
             // Get timestamps and filepath
-            string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string filePath = Path.Combine(screenshotDirectory, $"{fileNamePrefix}_{timeStamp}.png");
+            string timeStamp = DateTime.Now.ToString("yyMMdd_HHmmss");
+            var filePath = string.IsNullOrEmpty(data) ? $"{testName}_{timeStamp}.png" : $"{testName}_{data}_{timeStamp}.png";
 
             screenshot.SaveAsFile(filePath);
-            Console.WriteLine($"Screenshot saved: {filePath}");
+            Console.WriteLine($"Screenshot saved at: {filePath}");
         }
     }
 }
