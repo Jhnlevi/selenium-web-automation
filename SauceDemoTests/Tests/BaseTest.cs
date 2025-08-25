@@ -10,20 +10,20 @@ namespace SauceDemoTests.Tests
         protected ExtentTest _test;
         protected IWebDriver _driver;
 
-        // Report
         [OneTimeSetUp]
         public void SetupReport()
         {
+            // Report set up
             _extent = ReportManager.GetInstance();
         }
 
         [SetUp]
         public virtual void SetUp()
         {
-            // Driver setup
+            // Driver set up
             _driver = WebDriverFactory.CreateDriver("chrome");
 
-            // Report test setup
+            // Report test set up
             string reportTestName = TestContext.CurrentContext.Test.Name;
             _test = _extent.CreateTest(reportTestName);
         }
@@ -31,14 +31,34 @@ namespace SauceDemoTests.Tests
         [TearDown]
         public void TearDown()
         {
+            // Get test results
+            var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
+            var testMessage = TestContext.CurrentContext.Result.Message;
+            var stackTrace = TestContext.CurrentContext.Result.StackTrace;
+
+            // Log the results to report
+            switch (testStatus)
+            {
+                case NUnit.Framework.Interfaces.TestStatus.Failed:
+                    _test.Fail("Test Failed : " + testMessage).Fail(stackTrace);
+                    break;
+                case NUnit.Framework.Interfaces.TestStatus.Passed:
+                    _test.Pass("Test Passed");
+                    break;
+                default:
+                    _test.Warning("Test ended with unusual status");
+                    break;
+            }
+
+            // Close driver
             _driver.Quit();
             _driver.Dispose();
         }
 
-        // Report
         [OneTimeTearDown]
         public void CloseReport()
         {
+            // Close report
             _extent.Flush();
         }
     }
