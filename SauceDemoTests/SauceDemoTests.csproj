@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Reports\" />
+    <Folder Include="Reports\Screenshots\" />
     <Folder Include="Screenshots\" />
   </ItemGroup>
 

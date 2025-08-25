@@ -4,7 +4,7 @@ namespace SauceDemoTests.Utils
 {
     public static class ScreenshotHelper
     {
-        public static void CaptureScreenshot(IWebDriver driver, string testName, string data = "")
+        public static string CaptureScreenshot(IWebDriver driver, string testName, string data = "")
         {
 
             var projectRoot = AppDomain.CurrentDomain.BaseDirectory;
@@ -12,7 +12,7 @@ namespace SauceDemoTests.Utils
             // Navigate up from bin to project folder
             projectRoot = Path.Combine(projectRoot, "..", "..", "..");
 
-            string screenshotDirectory = Path.Combine(projectRoot, "Screenshots");
+            string screenshotDirectory = Path.Combine(projectRoot, "Reports", "Screenshots");
 
             // Checks if the folder exists
             if (!Directory.Exists(screenshotDirectory))
@@ -26,12 +26,17 @@ namespace SauceDemoTests.Utils
 
             // Get timestamps and filepath
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            var fileName = string.IsNullOrEmpty(data) ? $"{testName}_{timeStamp}.png" : $"{testName}_{data}_{timeStamp}.png";
+
+            var fileName = string.IsNullOrEmpty(data)
+                ? $"{testName}_{timeStamp}.png"
+                : $"{testName}_{data}_{timeStamp}.png";
 
             var filePath = Path.Combine(screenshotDirectory, fileName);
 
             screenshot.SaveAsFile(filePath);
-            Console.WriteLine($"Screenshot saved at: {filePath}");
+            //Console.WriteLine($"Screenshot saved at: {filePath}");
+
+            return filePath;
         }
     }
 }

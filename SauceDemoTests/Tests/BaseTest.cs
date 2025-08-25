@@ -40,7 +40,9 @@ namespace SauceDemoTests.Tests
             switch (testStatus)
             {
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    _test.Fail("Test Failed : " + testMessage).Fail(stackTrace);
+                    // Adding Screenshot to report for every failed test
+                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.Name);
+                    _test.Fail($"Test Failed : {testMessage}\n{stackTrace}").AddScreenCaptureFromPath(screenshotFile);
                     break;
                 case NUnit.Framework.Interfaces.TestStatus.Passed:
                     _test.Pass("Test Passed");
