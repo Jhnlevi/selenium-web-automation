@@ -41,7 +41,7 @@ namespace SauceDemoTests.Tests.Login
         public void InvalidLogin_LockedOutUser(string username, string password)
         {
             _login.LoginAs(username, password);
-            ScreenshotHelper.CaptureScreenshot(_driver, "InvalidLogin_LockedOutUser", "LockedUserAccount");
+            ScreenshotHelper.CaptureScreenshot(_driver, "InvalidLogin_LockedOutUser", "locked_out_user");
             Assert.That(_login.GetErrorMessage().Contains("locked out"), Is.True);
         }
 
