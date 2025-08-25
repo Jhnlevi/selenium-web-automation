@@ -36,10 +36,10 @@ namespace SauceDemoTests.Tests.Login
         }
 
         // TC_Login_0002; TC_Login_0003, TC_Login_0004
-        [TestCase("123", "secret_sauce", "InvalidUserName")]
-        [TestCase("standard_user", "123", "InvalidPassword")]
-        [TestCase("", "", "NoData")]
-        public void InvalidLogin_ShowsErrorMessage(string username, string password, string message)
+        [TestCase("123", "secret_sauce", "InvalidUserName", "Negative")]
+        [TestCase("standard_user", "123", "InvalidPassword", "Negative")]
+        [TestCase("", "", "NoData", "Negative")]
+        public void InvalidLogin_ShowsErrorMessage(string username, string password, string message, string testType)
         {
             _test.Info("Entering username and password.");
             _login.EnterUserName(username);
@@ -53,8 +53,8 @@ namespace SauceDemoTests.Tests.Login
         }
 
         // TC_Login_0006
-        [TestCase("locked_out_user", "secret_sauce")]
-        public void InvalidLogin_LockedOutUser(string username, string password)
+        [TestCase("locked_out_user", "secret_sauce", "Negative")]
+        public void InvalidLogin_LockedOutUser(string username, string password, string testType)
         {
             _test.Info("Entering username and password.");
             _login.EnterUserName(username);
