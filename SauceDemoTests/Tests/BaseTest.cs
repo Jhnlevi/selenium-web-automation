@@ -8,7 +8,7 @@ namespace SauceDemoTests.Tests
         protected IWebDriver _driver;
 
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
             // Driver setup
             _driver = WebDriverFactory.CreateDriver("chrome");

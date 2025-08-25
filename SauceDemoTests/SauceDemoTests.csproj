@@ -34,8 +34,6 @@
   <ItemGroup>
     <Folder Include="Screenshots\" />
     <Folder Include="TestData\" />
-    <Folder Include="Tests\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>
