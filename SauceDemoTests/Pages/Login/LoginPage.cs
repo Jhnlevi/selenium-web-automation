@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SauceDemoTests.Utils;
 
-namespace SauceDemoTests.Pages
+namespace SauceDemoTests.Pages.Login
 {
     public class LoginPage
     {
