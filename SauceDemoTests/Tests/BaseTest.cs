@@ -31,7 +31,7 @@ namespace SauceDemoTests.Tests
         [TearDown]
         public void TearDown()
         {
-            // Get test results
+            // Get test results, message, and stack trace
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             var testMessage = TestContext.CurrentContext.Result.Message;
             var stackTrace = TestContext.CurrentContext.Result.StackTrace;
