@@ -21,13 +21,20 @@ namespace SauceDemoTests.Utils
 
                     // Incognito
                     chromeOptions.AddArgument("--incognito");
+
+                    // Maximized window
                     chromeOptions.AddArgument("start-maximized");
+
                     return new ChromeDriver(chromeOptions);
 
                 case "edge":
                     var edgeOptions = new EdgeOptions();
+                    // Maximized window
                     edgeOptions.AddArgument("start-maximized");
+
+                    // Headless 
                     edgeOptions.AddArgument("--headless");
+
                     return new EdgeDriver(edgeOptions);
 
                 default:

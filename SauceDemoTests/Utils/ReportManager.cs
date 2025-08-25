@@ -10,8 +10,6 @@ namespace SauceDemoTests.Utils
         {
             if (_extent == null)
             {
-                // 
-
                 // Save to the Reports folder, and navigate up from bin to project folder
                 var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\.."));
 

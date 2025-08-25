@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Screenshots\**" />
+    <EmbeddedResource Remove="Screenshots\**" />
+    <None Remove="Screenshots\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -34,7 +40,6 @@
 
   <ItemGroup>
     <Folder Include="Reports\Screenshots\" />
-    <Folder Include="Screenshots\" />
   </ItemGroup>
 
 </Project>
