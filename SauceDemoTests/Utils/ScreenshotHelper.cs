@@ -4,7 +4,7 @@ namespace SauceDemoTests.Utils
 {
     public static class ScreenshotHelper
     {
-        public static void CaptureScreenshot(IWebDriver driver, string fileNamePrefix = "screenshot")
+        public static void CaptureScreenshot(IWebDriver driver, string fileNamePrefix)
         {
 
             var projectRoot = AppDomain.CurrentDomain.BaseDirectory;
