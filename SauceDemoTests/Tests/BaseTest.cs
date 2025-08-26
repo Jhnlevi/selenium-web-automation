@@ -31,33 +31,13 @@ namespace SauceDemoTests.Tests
         [TearDown]
         public void TearDown()
         {
-            // Get test results, message, and stack trace
+            // Get test results, message, method name, and stack trace
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             var testMessage = TestContext.CurrentContext.Result.Message;
             var stackTrace = TestContext.CurrentContext.Result.StackTrace;
+            var testMethodName = TestContext.CurrentContext.Test.MethodName;
 
-            // Log the results to report
-            switch (testStatus)
-            {
-                case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.MethodName);
-                    _test.Fail($"Test Failed : {testMessage}\n{stackTrace}").AddScreenCaptureFromPath(screenshotFile);
-                    break;
-                case NUnit.Framework.Interfaces.TestStatus.Passed:
-                    if (TestContext.CurrentContext.Test.Arguments.Contains("Negative"))
-                    {
-                        string passScreenshot = ScreenshotHelper.CaptureScreenshot(_driver, TestContext.CurrentContext.Test.MethodName);
-                        _test.Pass("Test Passed").AddScreenCaptureFromPath(passScreenshot);
-                    }
-                    else
-                    {
-                        _test.Pass("Test Passed");
-                    }
-                    break;
-                default:
-                    _test.Warning("Test ended with unusual status");
-                    break;
-            }
+            TestResultHelper.LogTestResults(testStatus, _driver, _test, testMessage, stackTrace, testMethodName);
 
             // Close driver
             _driver.Quit();
