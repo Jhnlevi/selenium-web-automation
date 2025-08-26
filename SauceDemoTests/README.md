@@ -1,4 +1,4 @@
-# SauceDemo Web Automation
+# SauceDemo Project
 
 Web automation project using Selenium WebDriver to perform end-to-end (E2E) testing on the demo Saucedemo website.
 
