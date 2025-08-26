@@ -32,9 +32,11 @@ namespace SauceDemoTests.Pages.Product
         public void ShouldDisplayProductName() => _driver.WaitForElementVisible(ProdName);
         public void ShouldDisplayProductDescription() => _driver.WaitForElementVisible(ProdDesc);
         public void ShouldDisplayProductPrice() => _driver.WaitForElementVisible(ProdPrice);
+        public void ShouldDisplayProductSorter() => _driver.WaitForElementVisible(ProdSort);
+        public void ShouldDisplayProductAddToCart() => _driver.WaitForElementVisible(BtnAddToCart);
         public void ClickProduct()
         {
-            var element = _driver.WaitForElementVisible(ProdCard);
+            var element = _driver.WaitForElementVisible(ProdName);
             element.Click();
         }
         // Select an item from the dropdown
