@@ -17,7 +17,7 @@ namespace SauceDemoTests.Utils
                     var element = driv.FindElement(locator);
                     return (element.Displayed && element.Enabled) ? element : null;
                 }
-                catch (WebDriverTimeoutException)
+                catch (StaleElementReferenceException)
                 {
                     return null;
                 }
