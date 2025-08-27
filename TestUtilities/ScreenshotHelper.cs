@@ -27,19 +27,6 @@ namespace TestUtilities
             screenshot.SaveAsFile(filePath);
 
             return filePath;
-
-            //// Get timestamps and filepath
-            //string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            //var fileName = string.IsNullOrEmpty(data)
-            ////    ? $"{testName}_{timeStamp}.png"
-            ////    : $"{testName}_{data}_{timeStamp}.png";
-
-            //var filePath = Path.Combine(screenshotDirectory, fileName);
-
-            //screenshot.SaveAsFile(filePath);
-            ////Console.WriteLine($"Screenshot saved at: {filePath}");
-
-            //return Path.Combine("Screenshots", fileName);
         }
     }
 }
