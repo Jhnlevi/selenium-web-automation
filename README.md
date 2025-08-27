@@ -4,10 +4,13 @@ Welcome to my Selenium Web Automation portfolio! This repository contains my aut
 
 ## Projects
 
-### [SauceDemo Website - Automation](SauceDemoTests/README.md)
+#### [SauceDemo Website - Automation](SauceDemoTests/README.md)
 - Automates key workflows on the demo Saucedemo website
 - Features: login, product selection, cart management, checkout flow
 - Data-driven tests with JSON and HTML reporting
+
+#### [Utilities](TestUtilities/README.md)
+- provides a set of helper classes to simplify Selenium test automation.
 
 *(Future projects will be added here as I expand my portfolio)*
 
