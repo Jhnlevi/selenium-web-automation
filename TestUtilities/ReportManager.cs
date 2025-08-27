@@ -17,7 +17,7 @@ namespace TestUtilities
             {
                 // Get the current test folder.
                 var projectFolder = TestContext.CurrentContext.TestDirectory;
-                var projectRoot = Path.Combine(projectFolder, "..", "..");
+                var projectRoot = Path.Combine(projectFolder, "..", "..", "..");
                 projectRoot = Path.GetFullPath(projectRoot);
 
                 // Checks if the folder exists. If not, create the screenshots folder inside reports folder.

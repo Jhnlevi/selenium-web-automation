@@ -7,7 +7,7 @@ namespace TestUtilities
         public static string CaptureScreenshot(IWebDriver driver, string testName, string folderName = "")
         {
             // Navigate from bin to the project folder.
-            var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\.."));
+            var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".."));
             var screenshotFolder = Path.Combine(projectRoot, "Reports", "Screenshots");
 
             // Checks if the folder exists. If not, create the screenshots folder inside reports folder.
