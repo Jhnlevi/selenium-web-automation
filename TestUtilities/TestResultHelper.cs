@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace TestUtilities
