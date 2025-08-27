@@ -11,7 +11,7 @@ namespace TestUtilities
         private static ExtentTest _test;
 
         // Create the report
-        public static ExtentReports CreateReport(string rName = "")
+        public static ExtentReports CreateReport()
         {
             if (_extent == null)
             {
@@ -29,7 +29,7 @@ namespace TestUtilities
 
                 // Create the report file name.
                 var timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                var fileName = $"Report_{rName}_{timeStamp}.html";
+                var fileName = $"Test_Report_{timeStamp}.html";
                 var reportFile = Path.Combine(reportFolder, fileName);
 
                 // Generate the report

@@ -17,13 +17,13 @@ namespace TestUtilities
             switch (status)
             {
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(driver, TestContext.CurrentContext.Test.MethodName);
+                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(driver, methodName);
                     extentTest.Fail($"Test Failed : {message}\n{stackTrace}").AddScreenCaptureFromPath(screenshotFile);
                     break;
                 case NUnit.Framework.Interfaces.TestStatus.Passed:
                     if (TestContext.CurrentContext.Test.Arguments.Contains("Negative"))
                     {
-                        string passScreenshot = ScreenshotHelper.CaptureScreenshot(driver, TestContext.CurrentContext.Test.MethodName);
+                        string passScreenshot = ScreenshotHelper.CaptureScreenshot(driver, methodName);
                         extentTest.Pass("Test Passed").AddScreenCaptureFromPath(passScreenshot);
                     }
                     else
