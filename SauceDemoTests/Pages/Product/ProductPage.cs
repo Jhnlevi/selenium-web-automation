@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Pages.Product
 {

@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Pages.Login
 {

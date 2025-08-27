@@ -1,6 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
-using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Tests
 {
