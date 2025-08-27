@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 
-namespace SauceDemoTests.Utils
+namespace TestUtilities
 {
     public static class WebDriverFactory
     {

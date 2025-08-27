@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SauceDemoTests.Utils
+namespace TestUtilities
 {
     public static class ScreenshotHelper
     {

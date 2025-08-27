@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace SauceDemoTests.Utils
+namespace TestUtilities
 {
-    public static class WebDriverExtensions
+    public static class WebDriverExtension
     {
         // Waits for element to be visible
         public static IWebElement WaitForElementVisible(this IWebDriver driver, By locator, int timeoutInSeconds = 10)

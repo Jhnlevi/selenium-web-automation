@@ -1,7 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 
-namespace SauceDemoTests.Utils
+namespace TestUtilities
 {
     public static class ReportManager
     {

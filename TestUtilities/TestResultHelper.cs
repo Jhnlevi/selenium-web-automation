@@ -1,7 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
 
-namespace SauceDemoTests.Utils
+namespace TestUtilities
 {
     public static class TestResultHelper
     {
