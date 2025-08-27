@@ -9,12 +9,14 @@ namespace SauceDemoTests.Tests
         protected ExtentReports _extent;
         protected ExtentTest _test;
         protected IWebDriver _driver;
+        private string reportName = null!;
 
         [OneTimeSetUp]
         public void SetupReport()
         {
             // Report set up
-            _extent = ReportManager.GetInstance();
+            reportName = TestContext.CurrentContext.Test.Name;
+            _extent = ReportManager.CreateReport(reportName);
         }
 
         [SetUp]
@@ -24,8 +26,8 @@ namespace SauceDemoTests.Tests
             _driver = WebDriverFactory.CreateDriver("chrome");
 
             // Report test set up
-            string reportTestName = TestContext.CurrentContext.Test.Name;
-            _test = _extent.CreateTest(reportTestName);
+            reportName = TestContext.CurrentContext.Test.Name;
+            _test = _extent.CreateTest(reportName);
         }
 
         [TearDown]
