@@ -4,34 +4,42 @@ namespace TestUtilities
 {
     public static class ScreenshotHelper
     {
-        public static string CaptureScreenshot(IWebDriver driver, string testName, string data = "")
+        public static string CaptureScreenshot(IWebDriver driver, string testName, string folderName = "")
         {
-            // Navigate up from bin to project folder
+            // Navigate from bin to the project folder.
             var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\.."));
-            string screenshotDirectory = Path.Combine(projectRoot, "Reports", "Screenshots");
+            var screenshotFolder = Path.Combine(projectRoot, "Reports", "Screenshots");
 
-            // Checks if the folder exists
-            if (!Directory.Exists(screenshotDirectory))
+            // Checks if the folder exists. If not, create the screenshots folder inside reports folder.
+            if (!Directory.Exists(screenshotFolder))
             {
-                Directory.CreateDirectory(screenshotDirectory);
+                Directory.CreateDirectory(screenshotFolder);
             }
 
-            // Captures screenshot
+            // Create the file name.
+            var timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var fileName = $"{testName}_{timeStamp}.png";
+            var filePath = Path.Combine(screenshotFolder, fileName);
+
+            // Take screenshot
             ITakesScreenshot screenshotDriver = (ITakesScreenshot)driver;
             var screenshot = screenshotDriver.GetScreenshot();
-
-            // Get timestamps and filepath
-            string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            var fileName = string.IsNullOrEmpty(data)
-                ? $"{testName}_{timeStamp}.png"
-                : $"{testName}_{data}_{timeStamp}.png";
-
-            var filePath = Path.Combine(screenshotDirectory, fileName);
-
             screenshot.SaveAsFile(filePath);
-            //Console.WriteLine($"Screenshot saved at: {filePath}");
 
-            return Path.Combine("Screenshots", fileName);
+            return filePath;
+
+            //// Get timestamps and filepath
+            //string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            //var fileName = string.IsNullOrEmpty(data)
+            ////    ? $"{testName}_{timeStamp}.png"
+            ////    : $"{testName}_{data}_{timeStamp}.png";
+
+            //var filePath = Path.Combine(screenshotDirectory, fileName);
+
+            //screenshot.SaveAsFile(filePath);
+            ////Console.WriteLine($"Screenshot saved at: {filePath}");
+
+            //return Path.Combine("Screenshots", fileName);
         }
     }
 }
