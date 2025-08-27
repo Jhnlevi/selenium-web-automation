@@ -17,7 +17,7 @@ namespace SauceDemoTests.Pages.MenuBar
         private By SMAbout = By.Id("about_sidebar_link");
         private By SMLogout = By.Id("logout_sidebar_link");
         private By SMResetAppState = By.Id("reset_sidebar_link");
-        private By SMBtnClose = By.CssSelector("bm-cross-button");
+        private By SMBtnClose = By.CssSelector(".bm-cross-button");
 
         // Constructor
         public MenuBarPage(IWebDriver driver)
