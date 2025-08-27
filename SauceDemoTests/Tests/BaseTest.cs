@@ -13,14 +13,12 @@ namespace SauceDemoTests.Tests
         protected IWebDriver _driver;
         protected ExtentReports _extent;
         protected ExtentTest _test;
-        private TestContext _context = TestContext.CurrentContext;
 
         [OneTimeSetUp]
         public void SetupReport()
         {
             // Report set up.
-            var reportName = _context.Test.Name;
-            _extent = ReportManager.CreateReport(reportName);
+            _extent = ReportManager.CreateReport();
         }
 
         [SetUp]
@@ -30,13 +28,13 @@ namespace SauceDemoTests.Tests
             _driver = WebDriverFactory.GetDriver("chrome");
 
             // Report test set up.
-            var reportName = _context.Test.Name;
-            _test = _extent.CreateTest(reportName);
+            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
         [TearDown]
         public void TearDown()
         {
+            var _context = TestContext.CurrentContext;
             // Get test results, message, method name, and stack trace.
             var testStatus = _context.Result.Outcome.Status;
             var testMessage = _context.Result.Message;
