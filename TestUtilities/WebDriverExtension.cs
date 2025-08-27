@@ -5,7 +5,7 @@ namespace TestUtilities
 {
     public static class WebDriverExtension
     {
-        // Waits for element to be visible
+        // Custom wait method; Returns element if it is displayed and enabled.
         public static IWebElement WaitForElementVisible(this IWebDriver driver, By locator, int timeoutInSeconds = 10)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
