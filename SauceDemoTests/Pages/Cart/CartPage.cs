@@ -28,22 +28,29 @@ namespace SauceDemoTests.Pages.Cart
         private By CartQuantity = By.CssSelector(".cart_quantity");
         private By CartRmvItemBtn = By.CssSelector(".btn_secondary.cart_button");
         private By CartCheckoutBtn = By.CssSelector(".btn_action.checkout_button");
-        private By CartContinueShoppingBtn = By.LinkText("Continue Shopping");
+        private By CartContinueShoppingBtn = By.CssSelector("div.cart_footer .btn_secondary");
 
         // Actions
 
         public void ShouldDisplayCartProductName() => _product.ShouldDisplayProductName();
         public void ShouldDisplayCartProductDescription() => _product.ShouldDisplayProductDescription();
         public void ShouldDisplayCartProductPrice() => _product.ShouldDisplayProductPrice();
-        public void GetMenuCurrentItemCount()
+        public void ShouldDisplayContinueShoppingButton() => _driver.WaitForElementVisible(CartContinueShoppingBtn);
+        public void ShouldDisplayCheckoutButton() => _driver.WaitForElementVisible(CartCheckoutBtn);
+        public void ShouldDisplayRemoveButton() => _driver.WaitForElementVisible(CartRmvItemBtn);
+        public int GetMenuCurrentItemCount()
         {
-            _menu.GetItemBadgeNumber();
+            var itemCount = _menu.GetItemBadgeNumber();
+            var count = Convert.ToInt32(itemCount);
+
+            return count;
         }
-        public string GetCartCurrentItemCount()
+        public int GetCartCurrentItemCount()
         {
             var element = _driver.WaitForElementVisible(CartQuantity);
+            var currentCount = Convert.ToInt32(element.Text);
 
-            return element.Text.ToString();
+            return currentCount;
         }
         public void ClickRemoveCartItem()
         {
