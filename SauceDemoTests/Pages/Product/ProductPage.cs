@@ -63,5 +63,15 @@ namespace SauceDemoTests.Pages.Product
             var element = _driver.WaitForElementVisible(BtnRmvToCart);
             element.Click();
         }
+        public string GetAddToCartBtnText()
+        {
+            var element = _driver.WaitForElementVisible(BtnAddToCart);
+            return element.Text;
+        }
+        public string GetRemoveFromCartBtnText()
+        {
+            var element = _driver.WaitForElementVisible(BtnRmvToCart);
+            return element.Text;
+        }
     }
 }
