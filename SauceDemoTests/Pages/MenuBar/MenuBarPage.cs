@@ -76,7 +76,7 @@ namespace SauceDemoTests.Pages.MenuBar
             var element = _driver.WaitForElementVisible(SMCartBadge);
             var itemCount = element.Text;
 
-            return itemCount.ToString();
+            return itemCount;
         }
     }
 }
