@@ -18,6 +18,7 @@ namespace SauceDemoTests.Pages.MenuBar
         private By SMLogout = By.Id("logout_sidebar_link");
         private By SMResetAppState = By.Id("reset_sidebar_link");
         private By SMBtnClose = By.CssSelector(".bm-cross-button");
+        private By SMCartBadge = By.CssSelector(".fa-layers-counter.shopping_cart_badge");
 
         // Constructor
         public MenuBarPage(IWebDriver driver)
@@ -69,6 +70,13 @@ namespace SauceDemoTests.Pages.MenuBar
         {
             var element = _driver.WaitForElementVisible(SMBtnClose);
             element.Click();
+        }
+        public string GetItemBadgeNumber()
+        {
+            var element = _driver.WaitForElementVisible(SMCartBadge);
+            var itemCount = element.Text;
+
+            return itemCount.ToString();
         }
     }
 }
