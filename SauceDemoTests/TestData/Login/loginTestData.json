@@ -10,7 +10,7 @@
                 "userName": "standard_user",
                 "password": "secret_sauce"
             },
-            "expected": {
+            "expectedResult": {
                 "result": "Login success."
             }
         },
@@ -22,7 +22,7 @@
                 "userName": "123",
                 "password": "secret_sauce"
             },
-            "expected": {
+            "expectedResult": {
                 "result": "Login failed.",
                 "errorMessage": "Invalid username."
             }
@@ -35,7 +35,7 @@
                 "userName": "standard_user",
                 "password": "123"
             },
-            "expected": {
+            "expectedResult": {
                 "result": "Login failed.",
                 "errorMessage": "Invalid password."
             }
@@ -48,7 +48,7 @@
                 "userName": "",
                 "password": ""
             },
-            "expected": {
+            "expectedResult": {
                 "result": "Login failed.",
                 "errorMessage": "Username and password are missing."
             }
@@ -61,7 +61,7 @@
                 "userName": "locked_out_user",
                 "password": "secret_sauce"
             },
-            "expected": {
+            "expectedResult": {
                 "result": "Login failed.",
                 "errorMessage": "Locked-out user cannot log in."
             }
