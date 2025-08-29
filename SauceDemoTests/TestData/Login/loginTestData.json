@@ -11,7 +11,9 @@
                 "password": "secret_sauce"
             },
             "expectedResult": {
-                "result": "Login success."
+                "result": "Login success.",
+                "message":  "Valid username and password."
+
             }
         },
         {
@@ -24,7 +26,7 @@
             },
             "expectedResult": {
                 "result": "Login failed.",
-                "errorMessage": "Invalid username."
+                "message": "Invalid username."
             }
         },
         {
@@ -37,7 +39,7 @@
             },
             "expectedResult": {
                 "result": "Login failed.",
-                "errorMessage": "Invalid password."
+                "message": "Invalid password."
             }
         },
         {
@@ -50,7 +52,7 @@
             },
             "expectedResult": {
                 "result": "Login failed.",
-                "errorMessage": "Username and password are missing."
+                "message": "Username and password are missing."
             }
         },
         {
@@ -63,7 +65,7 @@
             },
             "expectedResult": {
                 "result": "Login failed.",
-                "errorMessage": "Locked-out user cannot log in."
+                "message": "Locked-out user cannot log in."
             }
         }
     ]
