@@ -56,6 +56,19 @@
             }
         },
         {
+            "testCaseId": "TC_Login_0005",
+            "testCaseDescription": "Password field is masked.",
+            "testType": "Positive",
+            "testData": {
+                "userName": "standard_user",
+                "password": "secret_sauce"
+            },
+            "expectedResult": {
+                "result": "Test successful.",
+                "message": "User's password should be in asterisk form when a password was typed."
+            }
+        },
+        {
             "testCaseId": "TC_Login_0006",
             "testCaseDescription": "Locked-out user cannot log in.",
             "testType": "Negative",
