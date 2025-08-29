@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SauceDemoTests.Models.Login;
 using SauceDemoTests.Pages.Login;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Tests.Login
 {
@@ -10,23 +12,23 @@ namespace SauceDemoTests.Tests.Login
         [SetUp]
         public override void SetUp()
         {
-            // Setup basetest methods first
+            // Setup basetest methods first.
             base.SetUp();
 
             _test.Info("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
 
-            // Initialize LoginPage
+            // Initialize LoginPage.
             _login = new LoginPage(_driver);
         }
 
         // TC_Login_0001
-        [TestCase("standard_user", "secret_sauce")]
-        public void Login_WithValidCredentials(string username, string password)
+        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginPositiveCases))]
+        public void Login_WithValidCredentials(LoginTestCase testCase)
         {
             _test.Info("Entering username and password.");
-            _login.EnterUserName(username);
-            _login.EnterPassword(password);
+            _login.EnterUserName(testCase.testData.userName);
+            _login.EnterPassword(testCase.testData.password);
 
             _test.Info("Clicking 'Login' button.");
             _login.ClickLoginBtn();
@@ -36,14 +38,12 @@ namespace SauceDemoTests.Tests.Login
         }
 
         // TC_Login_0002; TC_Login_0003, TC_Login_0004
-        [TestCase("123", "secret_sauce", "InvalidUserName", "Negative")]
-        [TestCase("standard_user", "123", "InvalidPassword", "Negative")]
-        [TestCase("", "", "NoData", "Negative")]
-        public void InvalidLogin_ShowsErrorMessage(string username, string password, string message, string testType)
+        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginNegativeCases))]
+        public void InvalidLogin_ShowsErrorMessage(LoginTestCase testCase)
         {
             _test.Info("Entering username and password.");
-            _login.EnterUserName(username);
-            _login.EnterPassword(password);
+            _login.EnterUserName(testCase.testData.userName);
+            _login.EnterPassword(testCase.testData.password);
 
             _test.Info("Clicking 'Login' button.");
             _login.ClickLoginBtn();
@@ -71,7 +71,7 @@ namespace SauceDemoTests.Tests.Login
         [TestCase("standard_user", "secret_sauce")]
         public void Login_PasswordFieldIsMasked(string username, string password)
         {
-            // Get password field attribute
+            // Get password field attribute.
             var passwordField = _driver.FindElement(By.Id("password"));
             var passwordType = passwordField.GetAttribute("type");
 
