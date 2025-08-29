@@ -1,0 +1,70 @@
+{
+    "name": "Login Tests",
+    "description": "Test data for positive and negative login scenarios.",
+    "testCases": [
+        {
+            "testCaseId": "TC_Login_0001",
+            "testCaseDescription": "User can log in with valid credentials.",
+            "testType": "Positive",
+            "testData": {
+                "userName": "standard_user",
+                "password": "secret_sauce"
+            },
+            "expected": {
+                "result": "Login success."
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0002",
+            "testCaseDescription": "Error message appears with invalid username.",
+            "testType": "Negative",
+            "testData": {
+                "userName": "123",
+                "password": "secret_sauce"
+            },
+            "expected": {
+                "result": "Login failed.",
+                "errorMessage": "Invalid username."
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0003",
+            "testCaseDescription": "Error message appears with invalid password.",
+            "testType": "Negative",
+            "testData": {
+                "userName": "standard_user",
+                "password": "123"
+            },
+            "expected": {
+                "result": "Login failed.",
+                "errorMessage": "Invalid password."
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0004",
+            "testCaseDescription": "Error message appears when both fields are blank.",
+            "testType": "Negative",
+            "testData": {
+                "userName": "",
+                "password": ""
+            },
+            "expected": {
+                "result": "Login failed.",
+                "errorMessage": "Username and password are missing."
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0006",
+            "testCaseDescription": "Locked-out user cannot log in.",
+            "testType": "Negative",
+            "testData": {
+                "userName": "locked_out_user",
+                "password": "secret_sauce"
+            },
+            "expected": {
+                "result": "Login failed.",
+                "errorMessage": "Locked-out user cannot log in."
+            }
+        }
+    ]
+}
