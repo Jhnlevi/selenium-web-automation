@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using SauceDemoTests.Models.Login;
 
 namespace SauceDemoTests.Utils
 {
@@ -10,7 +10,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
 
             // Call JsonDataReader util.
-            var data = JsonDataReader.ReadJson<List<ModelExtensions>>(path);
+            var data = JsonDataReader.ReadJson<List<LoginTestRoot>>(path);
         }
     }
 }
