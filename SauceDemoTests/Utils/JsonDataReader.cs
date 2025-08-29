@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace TestUtilities
+namespace SauceDemoTests.Utils
 {
     public static class JsonDataReader
     {
