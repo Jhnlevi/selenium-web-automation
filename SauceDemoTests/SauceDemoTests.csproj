@@ -16,10 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="TestData\Checkout\checkoutTestData.json" />
     <None Remove="TestData\Login\loginTestData.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="TestData\Checkout\checkoutTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\Login\loginTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
