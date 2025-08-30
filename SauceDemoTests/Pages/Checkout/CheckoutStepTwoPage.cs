@@ -1,12 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenQA.Selenium;
+using SauceDemoTests.Pages.Cart;
+using SauceDemoTests.Pages.MenuBar;
+using SauceDemoTests.Pages.Product;
+using TestUtilities;
 
 namespace SauceDemoTests.Pages.Checkout
 {
-    internal class CheckoutStepTwoPage
+    public class CheckoutStepTwoPage
     {
+        // Fields
+        private readonly IWebDriver _driver;
+
+        // Properties
+        private MenuBarPage _menu { get; set; }
+        private ProductPage _product { get; set; }
+        private CartPage _cart { get; set; }
+
+        // Constructor
+        public CheckoutStepTwoPage(IWebDriver driver)
+        {
+            _driver = driver;
+            _menu = new MenuBarPage(_driver);
+            _product = new ProductPage(_driver);
+            _cart = new CartPage(_driver);
+        }
+
+        // Locators
+        private By ChkoutCartItem = By.CssSelector(".cart_item");
+        private By ChkoutPaymentInfo = By.XPath("(//div[@class='summary_info_label' and text()='Payment Information:'])[1]");
+        private By ChkoutShippingInfo = By.XPath("(//div[@class='summary_info_label' and text()='Shipping Information:'])[1]");
+        private By ChckoutItemSubTotal = By.CssSelector(".summary_subtotal_label");
+        private By ChkoutItemTax = By.CssSelector(".summary_tax_label");
+        private By ChkoutItemTotal = By.CssSelector(".summary_total_label");
+        private By ChkoutBtnFinish = By.LinkText("FINISH");
+        private By ChkoutBtnCancel = By.LinkText("CANCEL");
+
+        // Actions
+        public void ShouldDisplayFinishButton() => _driver.WaitForElementVisible(ChkoutBtnFinish);
+        public void ShouldDisplayCancelButton() => _driver.WaitForElementVisible(ChkoutBtnCancel);
+        public void ShouldDisplayCartItem() => _driver.WaitForElementVisible(ChkoutCartItem);
+        public void ShouldDisplayPaymentInfo() => _driver.WaitForElementVisible(ChkoutPaymentInfo);
+        public void ShouldDisplayShippingInfo() => _driver.WaitForElementVisible(ChkoutShippingInfo);
+        public void ShouldDisplayItemSubTotal() => _driver.WaitForElementVisible(ChckoutItemSubTotal);
+        public void ShouldDisplayItemTax() => _driver.WaitForElementVisible(ChkoutItemTax);
+        public void ShouldDisplayItemTotal() => _driver.WaitForElementVisible(ChkoutItemTotal);
+        public void ClickFinishButton()
+        {
+            var element = _driver.WaitForElementVisible(ChkoutBtnFinish);
+            element.Click();
+        }
+        public void ClickCancelButton()
+        {
+            var element = _driver.WaitForElementVisible(ChkoutBtnCancel);
+            element.Click();
+        }
     }
 }
