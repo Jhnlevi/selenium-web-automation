@@ -1,0 +1,76 @@
+{
+    "name": "Checkout Tests",
+    "description": "Test data for positive and negative checkout-step-one scenarios.",
+    "testCases": [
+        {
+            "testCaseId": "TC_Checkout_0005",
+            "testCaseDescription": "Checkout step one: User can enter first name, last name, and postal code.",
+            "testType": "Positive",
+            "testData": {
+                "firstName": "Sample First",
+                "lastName": "Sample Last",
+                "postalCode": "1111"
+            },
+            "expectedResult": {
+                "result": "User is able to proceed to next step of checkout process.",
+                "message": "Valid first name, last name, and postal code."
+            }
+        },
+        {
+            "testCaseId": "TC_Checkout_0006",
+            "testCaseDescription": "Checkout step one: Error message appears when both 'Last Name' and 'Postal Code' are empty.",
+            "testType": "Negative",
+            "testData": {
+                "firstName": "Sample First",
+                "lastName": "",
+                "postalCode": ""
+            },
+            "expectedResult": {
+                "result": "Checkout-step-one process failed.",
+                "message": "Invalid last name and postal code."
+            }
+        },
+        {
+            "testCaseId": "TC_Checkout_0007",
+            "testCaseDescription": "Checkout step one: Error message appears when both 'First Name' and 'Postal' are empty.",
+            "testType": "Negative",
+            "testData": {
+                "firstName": "",
+                "lastName": "Sample last",
+                "postalCode": ""
+            },
+            "expectedResult": {
+                "result": "Checkout-step-one process failed.",
+                "message": "Invalid first name and postal code."
+            }
+        },
+        {
+            "testCaseId": "TC_Checkout_0008",
+            "testCaseDescription": "Checkout step one: Error message appears when both 'First Name' and 'Last Name' are empty.",
+            "testType": "Negative",
+            "testData": {
+                "firstName": "",
+                "lastName": "",
+                "postalCode": "1111"
+            },
+            "expectedResult": {
+                "result": "Checkout-step-one process failed.",
+                "message": "Invalid first name and last name."
+            }
+        },
+        {
+            "testCaseId": "TC_Checkout_0009",
+            "testCaseDescription": "Checkout step one: Error message appears all fields are empty.",
+            "testType": "Negative",
+            "testData": {
+                "firstName": "",
+                "lastName": "",
+                "postalCode": ""
+            },
+            "expectedResult": {
+                "result": "Checkout-step-one process failed.",
+                "message": "Invalid first name, last name, and postal code."
+            }
+        },
+    ]
+}
