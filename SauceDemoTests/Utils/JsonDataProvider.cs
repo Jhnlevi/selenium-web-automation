@@ -1,4 +1,5 @@
-﻿using SauceDemoTests.Models.Login;
+﻿using SauceDemoTests.Models.Checkout;
+using SauceDemoTests.Models.Login;
 
 namespace SauceDemoTests.Utils
 {
@@ -42,7 +43,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Checkout", "checkoutTestData.json");
 
             // Call JsonDataReader util.
-            var data = JsonDataReader.ReadJson<LoginTestRoot>(path);
+            var data = JsonDataReader.ReadJson<CheckoutTestRoot>(path);
 
             // Filter test case.
             var filteredTestCase = data.testCases
