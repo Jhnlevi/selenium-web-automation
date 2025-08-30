@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SauceDemoTests.Tests.Checkout
 {
-    internal class CheckoutTests
+    internal class CheckoutStepOneTests
     {
     }
 }
