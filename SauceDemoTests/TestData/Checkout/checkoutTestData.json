@@ -71,6 +71,6 @@
                 "result": "Checkout-step-one process failed.",
                 "message": "Invalid first name, last name, and postal code."
             }
-        },
+        }
     ]
 }
