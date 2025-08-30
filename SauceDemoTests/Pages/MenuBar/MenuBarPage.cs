@@ -36,6 +36,7 @@ namespace SauceDemoTests.Pages.MenuBar
         public void ShouldDisplayLogoutLink() => _driver.WaitForElementVisible(SMLogout);
         public void ShouldDisplayAppStateLink() => _driver.WaitForElementVisible(SMResetAppState);
         public void ShouldDisplaySMCloseButton() => _driver.WaitForElementVisible(SMBtnClose);
+        public void ShouldDisplayShoppingCartbadge() => _driver.WaitForElementVisible(SMCartBadge);
         public void ClickHmbgrMenu()
         {
             var element = _driver.WaitForElementVisible(BtnMenuHmbgr);
@@ -78,5 +79,6 @@ namespace SauceDemoTests.Pages.MenuBar
 
             return itemCount;
         }
+        public bool IsCartBadgePresent() => _driver.FindElements(SMCartBadge).Count > 0;
     }
 }
