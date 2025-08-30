@@ -4,6 +4,18 @@ namespace SauceDemoTests.Utils
 {
     public static class JsonDataProvider
     {
+        // Method for calling positive login test cases.
+        public static IEnumerable<TestCaseData> LoginPositiveCases => GetLoginTestData("positive");
+
+        // Method for calling negative login test cases.
+        public static IEnumerable<TestCaseData> LoginNegativeCases => GetLoginTestData("negative");
+
+        // Method for calling positive checkout test cases.
+        public static IEnumerable<TestCaseData> CheckoutPositiveCases => GetCheckoutTestData("positive");
+
+        // Method for calling positive checkout test cases.
+        public static IEnumerable<TestCaseData> CheckoutNegativeCases => GetCheckoutTestData("negative");
+
         public static IEnumerable<TestCaseData> GetLoginTestData(string testType)
         {
             // Path for the login test data.
@@ -22,13 +34,26 @@ namespace SauceDemoTests.Utils
                 // return a single test case.
                 yield return new TestCaseData(testCase).SetName($"{testCase.testCaseId} - {testCase.testCaseDescription}"); ;
             }
-
         }
 
-        // Method for calling positive login test cases.
-        public static IEnumerable<TestCaseData> LoginPositiveCases => GetLoginTestData("positive");
+        public static IEnumerable<TestCaseData> GetCheckoutTestData(string testType)
+        {
+            // Path for the checkout test data.
+            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Checkout", "checkoutTestData.json");
 
-        // Method for calling positive negative test cases.
-        public static IEnumerable<TestCaseData> LoginNegativeCases => GetLoginTestData("negative");
+            // Call JsonDataReader util.
+            var data = JsonDataReader.ReadJson<LoginTestRoot>(path);
+
+            // Filter test case.
+            var filteredTestCase = data.testCases
+                .Where(tc => tc.testType.Equals(testType, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var testCase in filteredTestCase)
+            {
+                // return a single test case.
+                yield return new TestCaseData(testCase).SetName($"{testCase.testCaseId} - {testCase.testCaseDescription}"); ;
+            }
+        }
     }
 }
