@@ -44,6 +44,12 @@ namespace SauceDemoTests.Pages.Checkout
             element.Clear();
             element.SendKeys(lastName);
         }
+        public void ChkoutPostalCode(string postalCode)
+        {
+            var element = _driver.WaitForElementVisible(ChkoutInfoPostalCode);
+            element.Clear();
+            element.SendKeys(postalCode);
+        }
         public void ClickCancelButton()
         {
             var element = _driver.WaitForElementVisible(ChkoutBtnCancel);
