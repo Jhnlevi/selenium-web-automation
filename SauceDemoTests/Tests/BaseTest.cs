@@ -11,14 +11,13 @@ namespace SauceDemoTests.Tests
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
         protected IWebDriver _driver;
-        protected ExtentReports _extent;
         protected ExtentTest _test;
 
         [OneTimeSetUp]
         public void SetupReport()
         {
             // Report set up.
-            _extent = ReportManager.CreateReport();
+            ReportManager.CreateExtentReport();
         }
 
         [SetUp]
@@ -28,7 +27,7 @@ namespace SauceDemoTests.Tests
             _driver = WebDriverFactory.GetDriver("chrome");
 
             // Report test set up.
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            ReportManager.CreateExtentTest(TestContext.CurrentContext.Test.Name);
         }
 
         [TearDown]
@@ -41,7 +40,12 @@ namespace SauceDemoTests.Tests
             var stackTrace = _context.Result.StackTrace;
             var testMethodName = _context.Test.MethodName;
 
-            TestResultHelper.LogTestResults(testStatus, _driver, _test, testMessage, stackTrace, testMethodName);
+            TestResultHelper.LogTestResults(
+                testStatus,
+                _driver,
+                testMessage,
+                stackTrace,
+                testMethodName);
 
             // Close driver.
 
@@ -56,7 +60,7 @@ namespace SauceDemoTests.Tests
         public void CloseReport()
         {
             // Close report.
-            _extent.Flush();
+            ReportManager.CloseExtentReport();
         }
     }
 }
