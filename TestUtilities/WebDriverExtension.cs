@@ -27,5 +27,25 @@ namespace TestUtilities
                 }
             });
         }
+        public static IReadOnlyCollection<IWebElement> WaitForElementsToBeVisible(
+            this IWebDriver driver,
+            By locator,
+            int timeoutInSeconds = 10)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+
+            return wait.Until(driv =>
+            {
+                try
+                {
+                    var elements = driv.FindElements(locator);
+                    return elements.Count > 0 ? elements : null;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return null;
+                }
+            });
+        }
     }
 }
