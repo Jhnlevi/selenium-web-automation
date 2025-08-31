@@ -2,7 +2,7 @@
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.Product
+namespace SauceDemoTests.Tests.UI.Product
 {
     public class ProductTests : BaseTest
     {

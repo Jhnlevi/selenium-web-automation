@@ -6,7 +6,7 @@ using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.Checkout
+namespace SauceDemoTests.Tests.UI.Checkout
 {
     public class CheckoutStepTwoTests : BaseTest
     {

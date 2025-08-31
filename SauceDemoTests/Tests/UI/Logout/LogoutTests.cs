@@ -3,7 +3,7 @@ using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.Logout
+namespace SauceDemoTests.Tests.UI.Logout
 {
     public class LogoutTests : BaseTest
     {

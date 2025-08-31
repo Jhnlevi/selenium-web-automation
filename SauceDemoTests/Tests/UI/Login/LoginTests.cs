@@ -4,7 +4,7 @@ using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.Login
+namespace SauceDemoTests.Tests.UI.Login
 {
     public class LoginTests : BaseTest
     {

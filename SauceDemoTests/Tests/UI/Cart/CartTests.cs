@@ -3,7 +3,7 @@ using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.Cart
+namespace SauceDemoTests.Tests.UI.Cart
 {
     public class CartTests : BaseTest
     {

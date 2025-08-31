@@ -3,7 +3,7 @@ using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
-namespace SauceDemoTests.Tests.MenuBar
+namespace SauceDemoTests.Tests.UI.MenuBar
 {
     public class MenuBarTests : BaseTest
     {
