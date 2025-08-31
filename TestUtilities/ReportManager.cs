@@ -11,7 +11,7 @@ namespace TestUtilities
         private static ExtentTest _test;
 
         // Create the report
-        public static ExtentReports CreateReport()
+        public static void CreateExtentReport()
         {
             if (_extent == null)
             {
@@ -37,7 +37,30 @@ namespace TestUtilities
                 _extent = new ExtentReports();
                 _extent.AttachReporter(htmlReporter);
             }
-            return _extent;
         }
+
+        // Create test to use in report.
+        public static void CreateExtentTest(string testName)
+        {
+            _test = _extent.CreateTest(testName);
+        }
+
+        // Log test info.
+        public static void LogInfo(string testMessage) => _test.Info(testMessage);
+
+        // Log if pass.
+        public static void LogPass(string testMessage) => _test.Pass(testMessage);
+
+        // Log if fail.
+        public static void LogFail(string testMessage) => _test.Fail(testMessage);
+
+        // Log warnings.
+        public static void LogWarn(string testMessage) => _test.Warning(testMessage);
+
+        // Attach screenshot to report.
+        public static void ReportAttachScreenshot(string filePath) => _test.AddScreenCaptureFromPath(filePath);
+
+        // Close the report.
+        public static void CloseExtentReport() => _extent.Flush();
     }
 }
