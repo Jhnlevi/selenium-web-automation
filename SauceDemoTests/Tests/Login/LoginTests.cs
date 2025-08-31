@@ -2,6 +2,7 @@
 using SauceDemoTests.Models.Login;
 using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Tests.Login
 {
@@ -15,7 +16,7 @@ namespace SauceDemoTests.Tests.Login
             // Setup basetest methods first.
             base.SetUp();
 
-            _test.Info("Navigating to SauceDemo website.");
+            ReportManager.LogInfo("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
 
             // Initialize LoginPage.
@@ -26,14 +27,14 @@ namespace SauceDemoTests.Tests.Login
         [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginPositiveCases))]
         public void Login_WithValidCredentials(LoginTestCase testCase)
         {
-            _test.Info("Entering username and password.");
+            ReportManager.LogInfo("Entering username and password.");
             _login.EnterUserName(testCase.testData.userName);
             _login.EnterPassword(testCase.testData.password);
 
-            _test.Info("Clicking 'Login' button.");
+            ReportManager.LogInfo("Clicking 'Login' button.");
             _login.ClickLoginBtn();
 
-            _test.Info("Verifying dashboard is displayed.");
+            ReportManager.LogInfo("Verifying dashboard is displayed.");
             Assert.That(_driver.Url, Is.EqualTo("https://www.saucedemo.com/v1/inventory.html"));
         }
 
@@ -41,14 +42,14 @@ namespace SauceDemoTests.Tests.Login
         [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginNegativeCases))]
         public void InvalidLogin_ShowsErrorMessage(LoginTestCase testCase)
         {
-            _test.Info("Entering username and password.");
+            ReportManager.LogInfo("Entering username and password.");
             _login.EnterUserName(testCase.testData.userName);
             _login.EnterPassword(testCase.testData.password);
 
-            _test.Info("Clicking 'Login' button.");
+            ReportManager.LogInfo("Clicking 'Login' button.");
             _login.ClickLoginBtn();
 
-            _test.Info("Verifying that the user shouldn't be able to login; An error message is displayed.");
+            ReportManager.LogInfo("Verifying that the user shouldn't be able to login; An error message is displayed.");
             Assert.That(_login.IsErrorMessageDisplayed, Is.True);
         }
 
@@ -56,14 +57,14 @@ namespace SauceDemoTests.Tests.Login
         [TestCase("locked_out_user", "secret_sauce", "Negative")]
         public void InvalidLogin_LockedOutUser(string username, string password, string testType)
         {
-            _test.Info("Entering username and password.");
+            ReportManager.LogInfo("Entering username and password.");
             _login.EnterUserName(username);
             _login.EnterPassword(password);
 
-            _test.Info("Clicking 'Login' button.");
+            ReportManager.LogInfo("Clicking 'Login' button.");
             _login.ClickLoginBtn();
 
-            _test.Info("Verifying that the locked-out user shouldn't be able to login; An error message is displayed.");
+            ReportManager.LogInfo("Verifying that the locked-out user shouldn't be able to login; An error message is displayed.");
             Assert.That(_login.GetErrorMessage().Contains("locked out"), Is.True);
         }
 
@@ -75,11 +76,11 @@ namespace SauceDemoTests.Tests.Login
             var passwordField = _driver.FindElement(By.Id("password"));
             var passwordType = passwordField.GetAttribute("type");
 
-            _test.Info("Entering username and password.");
+            ReportManager.LogInfo("Entering username and password.");
             _login.EnterUserName(username);
             _login.EnterPassword(password);
 
-            _test.Info("Verifying password field is masked.");
+            ReportManager.LogInfo("Verifying password field is masked.");
             Assert.That(passwordType, Is.EqualTo("password"));
         }
     }

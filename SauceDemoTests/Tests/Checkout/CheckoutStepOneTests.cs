@@ -5,6 +5,7 @@ using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Tests.Checkout
 {
@@ -31,19 +32,19 @@ namespace SauceDemoTests.Tests.Checkout
             _stepOne = new CheckoutStepOnePage(_driver);
 
             // Navigate to SauceDemo Website.
-            _test.Info("Navigating to SauceDemo website.");
+            ReportManager.LogInfo("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
 
             // Log in to the website.
-            _test.Info("Log in as standard user.");
+            ReportManager.LogInfo("Log in as standard user.");
             PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
 
             // Adding item to cart.
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             PreconditionFlow.AddProductToCart(_driver);
 
             // Navigating to cart page.
-            _test.Info("Clicking shopping cart icon in the menu bar.");
+            ReportManager.LogInfo("Clicking shopping cart icon in the menu bar.");
             PreconditionFlow.NavigateToCart(_driver);
         }
 
@@ -51,7 +52,7 @@ namespace SauceDemoTests.Tests.Checkout
         [Test]
         public void Checkout_StepOne_NavigateToCheckout()
         {
-            _test.Info("Clicking 'Checkout' button.");
+            ReportManager.LogInfo("Clicking 'Checkout' button.");
             _cart.ClickCheckoutCartItem();
             Assert.That(_driver.Url.Contains("checkout-step-one"), Is.True);
         }
@@ -61,7 +62,7 @@ namespace SauceDemoTests.Tests.Checkout
         public void Checkout_StepOne_VerifyCancelIsDisplayed()
         {
             Checkout_StepOne_NavigateToCheckout();
-            _test.Info("Verifying that the user can see the cancel button.");
+            ReportManager.LogInfo("Verifying that the user can see the cancel button.");
             _stepOne.ShouldDisplayCancelButton();
         }
 
@@ -70,7 +71,7 @@ namespace SauceDemoTests.Tests.Checkout
         public void Checkout_StepOne_VerifyContinueIsDisplayed()
         {
             Checkout_StepOne_NavigateToCheckout();
-            _test.Info("Verifying that the user can see the 'continue' button.");
+            ReportManager.LogInfo("Verifying that the user can see the 'continue' button.");
             _stepOne.ShouldDisplayContinueButton();
         }
 
@@ -79,11 +80,11 @@ namespace SauceDemoTests.Tests.Checkout
         public void Checkout_StepOne_VerifyFieldsAreDisplayed()
         {
             Checkout_StepOne_NavigateToCheckout();
-            _test.Info("Verify that user can see 'First Name' field.");
+            ReportManager.LogInfo("Verify that user can see 'First Name' field.");
             _stepOne.ShouldDisplayFirstName();
-            _test.Info("Verify that user can see 'Last Name' field.");
+            ReportManager.LogInfo("Verify that user can see 'Last Name' field.");
             _stepOne.ShouldDisplayLastName();
-            _test.Info("Verify that user can see 'Postal Code' field.");
+            ReportManager.LogInfo("Verify that user can see 'Postal Code' field.");
             _stepOne.ShouldDisplayPostalCode();
         }
 
@@ -93,13 +94,13 @@ namespace SauceDemoTests.Tests.Checkout
         public void Checkout_StepOne_ValidUserInputs(CheckoutTestCase testCase)
         {
             Checkout_StepOne_NavigateToCheckout();
-            _test.Info("Entering user first name.");
+            ReportManager.LogInfo("Entering user first name.");
             _stepOne.ChkoutEnterFirstName(testCase.testData.firstName);
-            _test.Info("Entering user last name.");
+            ReportManager.LogInfo("Entering user last name.");
             _stepOne.ChkoutEnterLastName(testCase.testData.lastName);
-            _test.Info("Entering user postal code.");
+            ReportManager.LogInfo("Entering user postal code.");
             _stepOne.ChkoutPostalCode(testCase.testData.postalCode);
-            _test.Info("Clicking 'continue' button.");
+            ReportManager.LogInfo("Clicking 'continue' button.");
             _stepOne.ClickContinueButton();
             Assert.That(_driver.Url.Contains("checkout-step-two"), Is.True);
         }
@@ -110,13 +111,13 @@ namespace SauceDemoTests.Tests.Checkout
         public void Checkout_StepOne_InvalidUserInputs(CheckoutTestCase testCase)
         {
             Checkout_StepOne_NavigateToCheckout();
-            _test.Info("Entering user first name.");
+            ReportManager.LogInfo("Entering user first name.");
             _stepOne.ChkoutEnterFirstName(testCase.testData.firstName);
-            _test.Info("Entering user last name.");
+            ReportManager.LogInfo("Entering user last name.");
             _stepOne.ChkoutEnterLastName(testCase.testData.lastName);
-            _test.Info("Entering user postal code.");
+            ReportManager.LogInfo("Entering user postal code.");
             _stepOne.ChkoutPostalCode(testCase.testData.postalCode);
-            _test.Info("Clicking 'continue' button.");
+            ReportManager.LogInfo("Clicking 'continue' button.");
             _stepOne.ClickContinueButton();
             Assert.That(_stepOne.IsErrorMessageDisplayed(), Is.True);
         }

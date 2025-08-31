@@ -1,6 +1,7 @@
 ﻿using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Tests.Cart
 {
@@ -20,11 +21,11 @@ namespace SauceDemoTests.Tests.Cart
             _cart = new CartPage(_driver);
 
             // Navigate to SauceDemo Website.
-            _test.Info("Navigating to SauceDemo website.");
+            ReportManager.LogInfo("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
 
             // Log in to the website
-            _test.Info("Log in as standard user.");
+            ReportManager.LogInfo("Log in as standard user.");
             PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
         }
 
@@ -32,10 +33,10 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_AddProductToCart()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Verifying that an item is added to cart.");
+            ReportManager.LogInfo("Verifying that an item is added to cart.");
             Assert.That(_product.GetRemoveFromCartBtnText, Is.EqualTo("REMOVE"));
         }
 
@@ -43,13 +44,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_RemoveProductFromCart()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking 'Remove' button to remove product.");
+            ReportManager.LogInfo("Clicking 'Remove' button to remove product.");
             _product.ClickRemoveToCart();
 
-            _test.Info("Verifying that an item is removed from cart.");
+            ReportManager.LogInfo("Verifying that an item is removed from cart.");
             Assert.That(_product.GetAddToCartBtnText, Is.EqualTo("ADD TO CART"));
         }
 
@@ -58,10 +59,10 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyCartIconUpdate()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Verifying that cart icon counter is updated with the correct item count.");
+            ReportManager.LogInfo("Verifying that cart icon counter is updated with the correct item count.");
             Assert.That(_cart.GetMenuCurrentItemCount, Is.GreaterThan(0));
         }
 
@@ -69,13 +70,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyItemCountPersists()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking product to open product details page.");
+            ReportManager.LogInfo("Clicking product to open product details page.");
             _product.ClickProduct();
 
-            _test.Info("Verifying that cart icon counter remains when changing a page.");
+            ReportManager.LogInfo("Verifying that cart icon counter remains when changing a page.");
             Assert.That(_cart.GetMenuCurrentItemCount, Is.GreaterThan(0));
 
         }
@@ -84,13 +85,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyProductQuantityInCartPage()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the quantity of product added to cart.");
+            ReportManager.LogInfo("Verifying that user can see the quantity of product added to cart.");
             Assert.That(_cart.GetCartCurrentItemCount, Is.GreaterThan(0));
         }
 
@@ -98,13 +99,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyProductNameInCartPage()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the name of product added to cart.");
+            ReportManager.LogInfo("Verifying that user can see the name of product added to cart.");
             _product.ShouldDisplayProductName();
         }
 
@@ -112,13 +113,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyProductPriceInCartPage()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the price of product added to cart.");
+            ReportManager.LogInfo("Verifying that user can see the price of product added to cart.");
             _product.ShouldDisplayProductPrice();
         }
 
@@ -126,13 +127,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyProductDescriptionInCartPage()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the description of product added to cart.");
+            ReportManager.LogInfo("Verifying that user can see the description of product added to cart.");
             _product.ShouldDisplayProductDescription();
         }
 
@@ -140,13 +141,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyContinueShoppingIsDisplayed()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the 'Continue Shopping' button.");
+            ReportManager.LogInfo("Verifying that user can see the 'Continue Shopping' button.");
             _cart.ShouldDisplayContinueShoppingButton();
         }
 
@@ -154,13 +155,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyCheckoutIsDisplayed()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the 'Checkout' button.");
+            ReportManager.LogInfo("Verifying that user can see the 'Checkout' button.");
             _cart.ShouldDisplayCheckoutButton();
         }
 
@@ -168,13 +169,13 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyRemoveItemButtonIsDisplayed()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Verifying that user can see the 'Remove' button.");
+            ReportManager.LogInfo("Verifying that user can see the 'Remove' button.");
             _cart.ShouldDisplayRemoveButton();
         }
 
@@ -182,16 +183,16 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_VerifyContinueShoppingFunctionality()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Clicking 'Continue shopping' button.");
+            ReportManager.LogInfo("Clicking 'Continue shopping' button.");
             _cart.ClickContinueShoppingItem();
 
-            _test.Info("Verifying that the user is redirected to product list page.");
+            ReportManager.LogInfo("Verifying that the user is redirected to product list page.");
             Assert.That(_driver.Url.Contains("inventory"), Is.True);
         }
 
@@ -199,16 +200,16 @@ namespace SauceDemoTests.Tests.Cart
         [Test]
         public void Cart_CheckoutFunctionality()
         {
-            _test.Info("Clicking 'Add to Cart' button to add product.");
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
             _product.ClickAddToCart();
 
-            _test.Info("Clicking shopping cart button to open cart page.");
+            ReportManager.LogInfo("Clicking shopping cart button to open cart page.");
             _cart._menu.ClickCart();
 
-            _test.Info("Clicking 'Continu shopping' button.");
+            ReportManager.LogInfo("Clicking 'Continu shopping' button.");
             _cart.ClickCheckoutCartItem();
 
-            _test.Info("Verifying that the user is redirected to checkout step one page.");
+            ReportManager.LogInfo("Verifying that the user is redirected to checkout step one page.");
             Assert.That(_driver.Url.Contains("checkout-step-one"), Is.True);
         }
     }

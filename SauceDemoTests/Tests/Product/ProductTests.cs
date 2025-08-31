@@ -1,5 +1,6 @@
 ﻿using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
+using TestUtilities;
 
 namespace SauceDemoTests.Tests.Product
 {
@@ -17,11 +18,11 @@ namespace SauceDemoTests.Tests.Product
             _product = new ProductPage(_driver);
 
             // Navigate to SauceDemo Website
-            _test.Info("Navigating to SauceDemo website.");
+            ReportManager.LogInfo("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
 
             // Log in to the website
-            _test.Info("Log in as standard user.");
+            ReportManager.LogInfo("Log in as standard user.");
             PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
         }
 
@@ -29,7 +30,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductList()
         {
-            _test.Info("Verify that user can see product lists.");
+            ReportManager.LogInfo("Verify that user can see product lists.");
             _product.ShouldDisplayProductList();
         }
 
@@ -37,7 +38,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductImage()
         {
-            _test.Info("Verify that user can see the product's image.");
+            ReportManager.LogInfo("Verify that user can see the product's image.");
             _product.ShouldDisplayProductImage();
         }
 
@@ -45,7 +46,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductName()
         {
-            _test.Info("Verify that user can see the product's name.");
+            ReportManager.LogInfo("Verify that user can see the product's name.");
             _product.ShouldDisplayProductName();
         }
 
@@ -53,7 +54,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductDescription()
         {
-            _test.Info("Verify that user can see the product's description.");
+            ReportManager.LogInfo("Verify that user can see the product's description.");
             _product.ShouldDisplayProductDescription();
         }
 
@@ -61,7 +62,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductPrice()
         {
-            _test.Info("Verify that user can see the product's price.");
+            ReportManager.LogInfo("Verify that user can see the product's price.");
             _product.ShouldDisplayProductDescription();
         }
 
@@ -72,10 +73,10 @@ namespace SauceDemoTests.Tests.Product
         [TestCase("Price (high to low)")]
         public void Product_SortProductLists(string options)
         {
-            _test.Info("Verify that user can see the sort menu.");
+            ReportManager.LogInfo("Verify that user can see the sort menu.");
             _product.ShouldDisplayProductSorter();
 
-            _test.Info($"Verify that user can select '{options}' from the dropdown menu.");
+            ReportManager.LogInfo($"Verify that user can select '{options}' from the dropdown menu.");
             _product.SelectFromDropdown(options);
 
             Assert.That(_product.GetSelectedItem(), Is.EqualTo(options));
@@ -85,7 +86,7 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyAddToCartButton()
         {
-            _test.Info("Verify that user can see the add-to-cart button.");
+            ReportManager.LogInfo("Verify that user can see the add-to-cart button.");
             _product.ShouldDisplayProductAddToCart();
         }
 
@@ -93,10 +94,10 @@ namespace SauceDemoTests.Tests.Product
         [Test]
         public void Product_VerifyProductClickable()
         {
-            _test.Info("Verify that user can click a product card to open product details.");
+            ReportManager.LogInfo("Verify that user can click a product card to open product details.");
             _product.ClickProduct();
 
-            _test.Info("Verify that user can see the product details page.");
+            ReportManager.LogInfo("Verify that user can see the product details page.");
             Assert.That(_driver.Url.Contains("inventory-item.html?id"));
         }
     }
