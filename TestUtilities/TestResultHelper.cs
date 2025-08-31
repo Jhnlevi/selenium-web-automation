@@ -1,6 +1,4 @@
-﻿using AventStack.ExtentReports;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace TestUtilities
 {
@@ -9,7 +7,6 @@ namespace TestUtilities
         public static void LogTestResults(
             NUnit.Framework.Interfaces.TestStatus status,
             IWebDriver driver,
-            ExtentTest extentTest,
             string message,
             string stackTrace,
             string methodName)
@@ -18,21 +15,14 @@ namespace TestUtilities
             {
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
                     string screenshotFile = ScreenshotHelper.CaptureScreenshot(driver, methodName);
-                    extentTest.Fail($"Test Failed : {message}\n{stackTrace}").AddScreenCaptureFromPath(screenshotFile);
+                    ReportManager.LogFail($"Test Failed : {message} \n {stackTrace}");
+                    ReportManager.ReportAttachScreenshot(screenshotFile);
                     break;
                 case NUnit.Framework.Interfaces.TestStatus.Passed:
-                    if (TestContext.CurrentContext.Test.Arguments.Contains("Negative"))
-                    {
-                        string passScreenshot = ScreenshotHelper.CaptureScreenshot(driver, methodName);
-                        extentTest.Pass("Test Passed").AddScreenCaptureFromPath(passScreenshot);
-                    }
-                    else
-                    {
-                        extentTest.Pass("Test Passed");
-                    }
+                    ReportManager.LogPass("Test Passed!");
                     break;
                 default:
-                    extentTest.Warning("Test ended with unusual status");
+                    ReportManager.LogWarn("Test ended with unusual status");
                     break;
             }
         }
