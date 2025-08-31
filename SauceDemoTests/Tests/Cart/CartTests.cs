@@ -1,12 +1,11 @@
 ﻿using SauceDemoTests.Pages.Cart;
-using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.Product;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Tests.Cart
 {
     public class CartTests : BaseTest
     {
-        private LoginPage _login;
         private ProductPage _product;
         private CartPage _cart;
 
@@ -16,8 +15,7 @@ namespace SauceDemoTests.Tests.Cart
             // Setup basetest methods first
             base.SetUp();
 
-            // Initialize LoginPage, and ProductPage.
-            _login = new LoginPage(_driver);
+            // Initialize CartPage, and ProductPage.
             _product = new ProductPage(_driver);
             _cart = new CartPage(_driver);
 
@@ -27,7 +25,7 @@ namespace SauceDemoTests.Tests.Cart
 
             // Log in to the website
             _test.Info("Log in as standard user.");
-            _login.LoginAs("standard_user", "secret_sauce");
+            PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
         }
 
         // TC_Cart_0001

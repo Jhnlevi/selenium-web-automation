@@ -1,12 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.MenuBar;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Tests.MenuBar
 {
     public class MenuBarTests : BaseTest
     {
-        private LoginPage _login;
         private MenuBarPage _menuBar;
 
         [SetUp]
@@ -15,8 +14,7 @@ namespace SauceDemoTests.Tests.MenuBar
             // Setup basetest methods first.
             base.SetUp();
 
-            // Initialize LoginPage, and ProductPage.
-            _login = new LoginPage(_driver);
+            // Initialize ProductPage.
             _menuBar = new MenuBarPage(_driver);
 
             // Navigate to SauceDemo Website.
@@ -25,7 +23,7 @@ namespace SauceDemoTests.Tests.MenuBar
 
             // Log in to the website.
             _test.Info("Log in as standard user.");
-            _login.LoginAs("standard_user", "secret_sauce");
+            PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
         }
 
         //TC_Menu-Bar_0001

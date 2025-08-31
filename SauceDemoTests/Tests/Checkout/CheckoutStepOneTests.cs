@@ -36,15 +36,15 @@ namespace SauceDemoTests.Tests.Checkout
 
             // Log in to the website.
             _test.Info("Log in as standard user.");
-            _login.LoginAs("standard_user", "secret_sauce");
+            PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
 
             // Adding item to cart.
             _test.Info("Clicking 'Add to Cart' button to add product.");
-            _product.ClickAddToCart();
+            PreconditionFlow.AddProductToCart(_driver);
 
             // Navigating to cart page.
             _test.Info("Clicking shopping cart icon in the menu bar.");
-            _menu.ClickCart();
+            PreconditionFlow.NavigateToCart(_driver);
         }
 
         // TC_Checkout_0001

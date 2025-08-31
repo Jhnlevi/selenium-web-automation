@@ -1,11 +1,10 @@
-﻿using SauceDemoTests.Pages.Login;
-using SauceDemoTests.Pages.Product;
+﻿using SauceDemoTests.Pages.Product;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Tests.Product
 {
     public class ProductTests : BaseTest
     {
-        private LoginPage _login;
         private ProductPage _product;
 
         [SetUp]
@@ -14,8 +13,7 @@ namespace SauceDemoTests.Tests.Product
             // Setup basetest methods first
             base.SetUp();
 
-            // Initialize LoginPage, and ProductPage.
-            _login = new LoginPage(_driver);
+            // Initialize ProductPage.
             _product = new ProductPage(_driver);
 
             // Navigate to SauceDemo Website
@@ -24,7 +22,7 @@ namespace SauceDemoTests.Tests.Product
 
             // Log in to the website
             _test.Info("Log in as standard user.");
-            _login.LoginAs("standard_user", "secret_sauce");
+            PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
         }
 
         //TC_Product_0001
