@@ -73,5 +73,24 @@ namespace SauceDemoTests.Pages.Product
             var element = _driver.WaitForElementVisible(BtnRmvToCart);
             return element.Text;
         }
+        public void AddItemsToCart(int numberOfItems)
+        {
+            var elements = _driver.WaitForElementsToBeVisible(BtnAddToCart);
+
+            for (int i = 0; i < numberOfItems; i++)
+            {
+                ReportManager.LogInfo("Clicking 'Add to Cart' button.");
+                elements.ElementAt(i).Click();
+            }
+        }
+        public void RemoveItemsToCart(int currentItemCount, int numberOfItems)
+        {
+            var elements = _driver.WaitForElementsToBeVisible(BtnRmvToCart);
+            for (int i = currentItemCount - 1; i > numberOfItems; i--)
+            {
+                ReportManager.LogInfo("Clicking 'Remove' button.");
+                elements.ElementAt(i).Click();
+            }
+        }
     }
 }
