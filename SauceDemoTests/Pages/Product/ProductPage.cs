@@ -92,5 +92,20 @@ namespace SauceDemoTests.Pages.Product
                 elements.ElementAt(i).Click();
             }
         }
+        public bool VerifyAllImagesAreLoaded()
+        {
+            var element = _driver.WaitForElementsToBeVisible(ProdImg);
+
+            foreach (var image in element)
+            {
+                var result = ((IJavaScriptExecutor)_driver).ExecuteScript("return arguments[0].naturalWidth;", image);
+                Console.WriteLine(result);
+                var width = Convert.ToInt64(result);
+
+                if (width == 0)
+                    return false;
+            }
+            return true;
+        }
     }
 }
