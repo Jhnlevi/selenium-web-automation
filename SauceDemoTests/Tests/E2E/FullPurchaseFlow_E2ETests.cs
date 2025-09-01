@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SauceDemoTests.Pages.Cart;
+﻿using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.Checkout;
 using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.MenuBar;
@@ -40,28 +39,31 @@ namespace SauceDemoTests.Tests.E2E
         private void AssertUrlContains(string url) => Assert.That(_driver.Url.Contains(url), Is.True);
 
         [Test]
-        public void E2E_FullPurchaseFlow()
+        [TestCase(
+            "standard_user",
+            "secret_sauce",
+            "Sample First",
+            "Sample Last",
+            "111"
+        )]
+        public void E2E_FullPurchaseFlow(string username, string password, string fname, string lname, string pcode)
         {
+            int addItems = 4;
+
             // Login
             ReportManager.LogInfo("Entering username.");
-            _login.EnterUserName("standard_user");
+            _login.EnterUserName(username);
             ReportManager.LogInfo("Entering password.");
-            _login.EnterPassword("secret_sauce");
+            _login.EnterPassword(password);
             ReportManager.LogInfo("Clicking 'login' button.");
             _login.ClickLoginBtn();
             ReportManager.LogInfo("Verifying that the user reaches the homepage (inventory).");
             AssertUrlContains("inventory");
 
             // Product
-            var addToCartButtons = _driver.WaitForElementsToBeVisible(By.CssSelector("div.pricebar .btn_primary.btn_inventory"));
-
-            for (int i = 0; i < 3; i++)
-            {
-                ReportManager.LogInfo("Clicking 'Add to Cart' button.");
-                addToCartButtons.ElementAt(i).Click();
-                ReportManager.LogInfo("Verifying that items are added to cart.");
-                Assert.That(_cart.GetMenuCurrentItemCount, Is.GreaterThan(i));
-            }
+            _product.AddItemsToCart(addItems);
+            ReportManager.LogInfo($"Verifying that there are {_cart.GetMenuCurrentItemCount()} item/s are added to cart.");
+            Assert.That(_cart.GetMenuCurrentItemCount(), Is.GreaterThan(0));
 
             // Cart
             ReportManager.LogInfo("Clicking 'cart' icon.");
