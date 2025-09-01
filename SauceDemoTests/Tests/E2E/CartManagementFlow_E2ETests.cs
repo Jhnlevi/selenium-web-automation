@@ -7,7 +7,7 @@ using TestUtilities;
 
 namespace SauceDemoTests.Tests.E2E
 {
-    public class CartManagement_E2ETests : BaseTest
+    public class CartManagementFlow_E2ETests : BaseTest
     {
         private CartPage _cart;
         private CheckoutStepOnePage _checkoutStepOne;
