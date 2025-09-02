@@ -24,7 +24,7 @@ namespace SauceDemoTests.Tests.E2E
 
             // Navigate to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
+            _driver.Navigate().GoToUrl(_config.BaseUrl);
 
             // Initialize all POMs.
             _cart = new CartPage(_driver);
