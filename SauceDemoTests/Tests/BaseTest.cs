@@ -1,5 +1,5 @@
-﻿using AventStack.ExtentReports;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SauceDemoTests.Models;
 using TestUtilities;
 
 namespace SauceDemoTests.Tests
@@ -11,7 +11,8 @@ namespace SauceDemoTests.Tests
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
         protected IWebDriver _driver;
-        protected ExtentTest _test;
+        protected AppConfig _config;
+        // protected ExtentTest _test;
 
         [OneTimeSetUp]
         public void SetupReport()
@@ -23,8 +24,11 @@ namespace SauceDemoTests.Tests
         [SetUp]
         public virtual void SetUp()
         {
+            // Config set up.
+            _config = TestConfigReader.GetAppSettings<AppConfig>();
+
             // Driver set up.
-            _driver = WebDriverFactory.GetDriver("chrome");
+            _driver = WebDriverFactory.GetDriver(_config.Browser);
 
             // Report test set up.
             ReportManager.CreateExtentTest(TestContext.CurrentContext.Test.Name);
