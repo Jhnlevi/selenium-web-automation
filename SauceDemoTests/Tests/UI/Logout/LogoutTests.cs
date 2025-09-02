@@ -1,5 +1,4 @@
 ﻿using SauceDemoTests.Pages.MenuBar;
-using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
@@ -7,7 +6,6 @@ namespace SauceDemoTests.Tests.UI.Logout
 {
     public class LogoutTests : BaseTest
     {
-        private ProductPage _product;
         private MenuBarPage _menu;
 
         [SetUp]
@@ -16,13 +14,12 @@ namespace SauceDemoTests.Tests.UI.Logout
             // Setup basetest methods first.
             base.SetUp();
 
-            // Initialize ProductPage.
-            _product = new ProductPage(_driver);
+            // Initialize MenuPage.
             _menu = new MenuBarPage(_driver);
 
             // Navigate to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
+            _driver.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the system as standard user.
             ReportManager.LogInfo("Log in as standard user.");

@@ -16,8 +16,9 @@ namespace SauceDemoTests.Tests.UI.Login
             // Setup basetest methods first.
             base.SetUp();
 
+            // Navigating to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
+            _driver.Navigate().GoToUrl(_config.BaseUrl);
 
             // Initialize LoginPage.
             _login = new LoginPage(_driver);

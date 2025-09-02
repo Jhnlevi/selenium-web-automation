@@ -1,9 +1,6 @@
 ﻿using SauceDemoTests.Models.Checkout;
 using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.Checkout;
-using SauceDemoTests.Pages.Login;
-using SauceDemoTests.Pages.MenuBar;
-using SauceDemoTests.Pages.Product;
 using SauceDemoTests.Utils;
 using TestUtilities;
 
@@ -12,10 +9,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
     public class CheckoutStepOneTests : BaseTest
     {
         // Fields.
-        private LoginPage _login;
-        private ProductPage _product;
         private CartPage _cart;
-        private MenuBarPage _menu;
         private CheckoutStepOnePage _stepOne;
 
         [SetUp]
@@ -24,16 +18,13 @@ namespace SauceDemoTests.Tests.UI.Checkout
             // Setup basetest methods first.
             base.SetUp();
 
-            // Initialize LoginPage, ProductPage, CartPage, MenuBarPage, and CheckoutStepOnePage.
-            _login = new LoginPage(_driver);
-            _product = new ProductPage(_driver);
+            // Initialize CartPage and CheckoutStepOnePage.
             _cart = new CartPage(_driver);
-            _menu = new MenuBarPage(_driver);
             _stepOne = new CheckoutStepOnePage(_driver);
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
+            _driver.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the website.
             ReportManager.LogInfo("Log in as standard user.");

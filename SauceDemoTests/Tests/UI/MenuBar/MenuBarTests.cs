@@ -20,7 +20,7 @@ namespace SauceDemoTests.Tests.UI.MenuBar
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/");
+            _driver.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the website.
             ReportManager.LogInfo("Log in as standard user.");
