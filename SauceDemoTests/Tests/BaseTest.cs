@@ -12,7 +12,6 @@ namespace SauceDemoTests.Tests
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
         protected IWebDriver _driver;
         protected AppConfig _config;
-        // protected ExtentTest _test;
 
         [OneTimeSetUp]
         public void SetupReport()
@@ -37,13 +36,16 @@ namespace SauceDemoTests.Tests
         [TearDown]
         public void TearDown()
         {
+            // Get current context.
             var _context = TestContext.CurrentContext;
+
             // Get test results, message, method name, and stack trace.
             var testStatus = _context.Result.Outcome.Status;
             var testMessage = _context.Result.Message;
             var stackTrace = _context.Result.StackTrace;
             var testMethodName = _context.Test.MethodName;
 
+            // Needed for logging test results in report.
             TestResultHelper.LogTestResults(
                 testStatus,
                 _driver,
@@ -52,7 +54,6 @@ namespace SauceDemoTests.Tests
                 testMethodName);
 
             // Close driver.
-
             if (_driver != null)
             {
                 WebDriverFactory.CloseDriver();
