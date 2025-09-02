@@ -16,16 +16,12 @@ namespace TestUtilities
             if (_extent == null)
             {
                 // Get the current test folder.
-                var projectFolder = TestContext.CurrentContext.TestDirectory;
-                var projectRoot = Path.Combine(projectFolder, "..", "..", "..");
-                projectRoot = Path.GetFullPath(projectRoot);
+                var projectRoot = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", ".."));
 
                 // Checks if the folder exists. If not, create the screenshots folder inside reports folder.
                 var reportFolder = Path.Combine(projectRoot, "Reports");
                 if (!Directory.Exists(reportFolder))
-                {
                     Directory.CreateDirectory(reportFolder);
-                }
 
                 // Create the report file name.
                 var timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
@@ -40,10 +36,7 @@ namespace TestUtilities
         }
 
         // Create test to use in report.
-        public static void CreateExtentTest(string testName)
-        {
-            _test = _extent.CreateTest(testName);
-        }
+        public static void CreateExtentTest(string testName) => _test = _extent.CreateTest(testName);
 
         // Log test info.
         public static void LogInfo(string testMessage) => _test.Info(testMessage);

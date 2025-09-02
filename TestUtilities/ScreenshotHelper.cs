@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace TestUtilities
 {
@@ -7,14 +8,12 @@ namespace TestUtilities
         public static string CaptureScreenshot(IWebDriver driver, string testName, string folderName = "")
         {
             // Navigate from bin to the project folder.
-            var projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".."));
+            var projectRoot = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", ".."));
             var screenshotFolder = Path.Combine(projectRoot, "Reports", "Screenshots");
 
             // Checks if the folder exists. If not, create the screenshots folder inside reports folder.
             if (!Directory.Exists(screenshotFolder))
-            {
                 Directory.CreateDirectory(screenshotFolder);
-            }
 
             // Create the file name.
             var timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
