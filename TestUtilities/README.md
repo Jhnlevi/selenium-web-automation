@@ -1,8 +1,8 @@
-# Test Utilities
+## Test Utilities
 
-This project contains reusable helper utilities for test projects using Selenium and .NET.
+Reusable helper utilities for my Selenium test projects using .NET, designed to simplify automation and promote code reuse and maintainability.
 
-# Description
+## Description
 
 This project provides a set of helper classes to simplify Selenium test automation, including:
 
@@ -11,18 +11,20 @@ This project provides a set of helper classes to simplify Selenium test automati
 - Screenshot capturing
 - Report generation (using ExtentReports)
 - Test result logging
+- Configuration management via appsettings.json
 
 These utilities are designed to be shared across multiple test projects, promoting code reuse and maintainability.
 
-# Features
+## Features
 
 - 'WebDriverFactory' - Create, get, and close WebDriver instance easily.
 - 'WebDriverExtension' - Centralized custom wait methods.
 - 'ScreenshotHelper' - Capture screenshots for reports. 
 - 'ReportManager' - Generate, and log test reports.
 - 'TestResultHelper' - Log test results and status.
+- 'ConfigReader' – Load configuration settings from appsettings.json
 
-# Getting Started
+## Getting Started
 
 To use these utility helper class:
 
@@ -32,7 +34,7 @@ To use these utility helper class:
 4. In the reference manager window, select TestUtilities project
 5. Click 'Ok'
 
-# Tech Stack
+## Tech Stack
 
 - Selenium WebDriver
 - C# (.Net)
@@ -40,6 +42,6 @@ To use these utility helper class:
 - JSON
 - Git/Github
 
-# Author
+## Author
 
 - John Levi P. Barcenas - [@Jhnlevi](https://github.com/Jhnlevi)
