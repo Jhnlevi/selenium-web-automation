@@ -7,7 +7,7 @@ using TestUtilities;
 
 namespace SauceDemoTests.Tests.E2E
 {
-    public class FullPurchaseFlow_E2ETests : BaseTest
+    public class FullPurchaseFlow_GlitchUser_E2ETests : BaseTest
     {
         private CartPage _cart;
         private CheckoutStepOnePage _checkoutStepOne;
@@ -40,13 +40,13 @@ namespace SauceDemoTests.Tests.E2E
 
         [Test]
         [TestCase(
-            "standard_user",
+            "performance_glitch_user",
             "secret_sauce",
             "Sample First",
             "Sample Last",
             "111"
         )]
-        public void E2E_FullPurchaseFlow(
+        public void E2E_FullPurchaseFlow_PerformanceGlitchUser(
             string username,
             string password,
             string fname,
