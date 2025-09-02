@@ -84,11 +84,11 @@ namespace SauceDemoTests.Tests.E2E
 
             // Checkout
             ReportManager.LogInfo("Entering first name.");
-            _checkoutStepOne.ChkoutEnterFirstName("Sample First Name");
+            _checkoutStepOne.ChkoutEnterFirstName(fname);
             ReportManager.LogInfo("Entering last name.");
-            _checkoutStepOne.ChkoutEnterLastName("Sample Last Name");
+            _checkoutStepOne.ChkoutEnterLastName(lname);
             ReportManager.LogInfo("Entering postal code.");
-            _checkoutStepOne.ChkoutPostalCode("Sample1111");
+            _checkoutStepOne.ChkoutPostalCode(pcode);
             ReportManager.LogInfo("Clicking 'continue' icon.");
             _checkoutStepOne.ClickContinueButton();
             ReportManager.LogInfo("Verifying that the user reaches checkout overview page (checkout-step-two).");
