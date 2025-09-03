@@ -2,7 +2,7 @@
 
 namespace TestUtilities
 {
-    public static class JsonDataReader
+    public static class TestDataReader
     {
         public static T ReadJson<T>(string filePath)
         {
