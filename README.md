@@ -1,6 +1,7 @@
-## Selenium Web Automation Repository
+## Selenium Web Automation
 
 Welcome to my Selenium Web Automation portfolio! This repository contains my automation projects demonstrating end-to-end (E2E) testing using Selenium WebDriver, C#, and NUnit. Each project follows best practices like the Page Object Model (POM) structure, data-driven testing, and detailed reporting.
+
 
 ## Projects:
 
@@ -28,6 +29,7 @@ Includes:
 
 *(Future projects will be added here as I expand my portfolio)*
 
+
 ## Technologies Used:
 
 - Selenium WebDriver
@@ -42,6 +44,7 @@ Includes:
 1. Click on a project link above to view its dedicated README.
 2. Follow the instructions in each project README to run tests locally.
 3. Explore the code and reports to see automated workflows in action.
+
 
 ## Author:
 
