@@ -3,7 +3,7 @@ using SauceDemoTests.Models.Login;
 
 namespace SauceDemoTests.Utils
 {
-    public static class JsonDataProvider
+    public static class TestDataProvider
     {
         // Method for calling positive login test cases.
         public static IEnumerable<TestCaseData> LoginPositiveCases => GetLoginTestData("positive");
@@ -23,7 +23,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
 
             // Call JsonDataReader util.
-            var data = TestUtilities.JsonDataReader.ReadJson<LoginTestRoot>(path);
+            var data = TestUtilities.TestDataReader.ReadJson<LoginTestRoot>(path);
 
             // Filter test case.
             var filteredTestCase = data.testCases
@@ -43,7 +43,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Checkout", "checkoutTestData.json");
 
             // Call JsonDataReader util.
-            var data = TestUtilities.JsonDataReader.ReadJson<CheckoutTestRoot>(path);
+            var data = TestUtilities.TestDataReader.ReadJson<CheckoutTestRoot>(path);
 
             // Filter test case.
             var filteredTestCase = data.testCases
