@@ -1,4 +1,4 @@
-## Levi's Selenium Automation Portfolio
+## Selenium Web Automation Repository
 
 Welcome to my Selenium Web Automation portfolio! This repository contains my automation projects demonstrating end-to-end (E2E) testing using Selenium WebDriver, C#, and NUnit. Each project follows best practices like the Page Object Model (POM) structure, data-driven testing, and detailed reporting.
 
