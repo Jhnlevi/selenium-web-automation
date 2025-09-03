@@ -26,17 +26,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
             ReportManager.LogInfo("Navigating to SauceDemo website.");
             _driver.Navigate().GoToUrl(_config.BaseUrl);
 
-            // Log in to the website.
-            ReportManager.LogInfo("Log in as standard user.");
-            PreconditionFlow.LoginAsStandardUser(_driver, "standard_user", "secret_sauce");
-
-            // Adding item to cart.
-            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
-            PreconditionFlow.AddProductToCart(_driver);
-
-            // Navigating to cart page.
-            ReportManager.LogInfo("Clicking shopping cart icon in the menu bar.");
-            PreconditionFlow.NavigateToCart(_driver);
+            PreconditionFlow.FromLoginToCartFlow(_driver, "standard_user", "secret_sauce");
         }
 
         // TC_Checkout_0001
