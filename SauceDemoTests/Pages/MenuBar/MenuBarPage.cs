@@ -27,54 +27,54 @@ namespace SauceDemoTests.Pages.MenuBar
         }
 
         // Actions
-        public void ShouldDisplayMenuHmbgr() => _driver.WaitForElementVisible(BtnMenuHmbgr);
-        public void ShouldDisplayMenuShpngCart() => _driver.WaitForElementVisible(BtnMenuCart);
-        public void ShouldDisplayMenuLogo() => _driver.WaitForElementVisible(MenuAppLogo);
-        public void ShouldDisplaySideMenu() => _driver.WaitForElementVisible(SideMenu);
-        public void ShouldDisplayAllItemsLink() => _driver.WaitForElementVisible(SMAllItems);
-        public void ShouldDisplayAboutLink() => _driver.WaitForElementVisible(SMAbout);
-        public void ShouldDisplayLogoutLink() => _driver.WaitForElementVisible(SMLogout);
-        public void ShouldDisplayAppStateLink() => _driver.WaitForElementVisible(SMResetAppState);
-        public void ShouldDisplaySMCloseButton() => _driver.WaitForElementVisible(SMBtnClose);
-        public void ShouldDisplayShoppingCartbadge() => _driver.WaitForElementVisible(SMCartBadge);
+        public void ShouldDisplayMenuHmbgr() => _driver.WaitForElementToBeVisible(BtnMenuHmbgr);
+        public void ShouldDisplayMenuShpngCart() => _driver.WaitForElementToBeVisible(BtnMenuCart);
+        public void ShouldDisplayMenuLogo() => _driver.WaitForElementToBeVisible(MenuAppLogo);
+        public void ShouldDisplaySideMenu() => _driver.WaitForElementToBeVisible(SideMenu);
+        public void ShouldDisplayAllItemsLink() => _driver.WaitForElementToBeVisible(SMAllItems);
+        public void ShouldDisplayAboutLink() => _driver.WaitForElementToBeVisible(SMAbout);
+        public void ShouldDisplayLogoutLink() => _driver.WaitForElementToBeVisible(SMLogout);
+        public void ShouldDisplayAppStateLink() => _driver.WaitForElementToBeVisible(SMResetAppState);
+        public void ShouldDisplaySMCloseButton() => _driver.WaitForElementToBeVisible(SMBtnClose);
+        public void ShouldDisplayShoppingCartbadge() => _driver.WaitForElementToBeVisible(SMCartBadge);
         public void ClickHmbgrMenu()
         {
-            var element = _driver.WaitForElementVisible(BtnMenuHmbgr);
+            var element = _driver.WaitForElementToBeVisible(BtnMenuHmbgr);
             element.Click();
         }
         public void ClickCart()
         {
-            var element = _driver.WaitForElementVisible(BtnMenuCart);
+            var element = _driver.WaitForElementToBeVisible(BtnMenuCart);
             element.Click();
         }
         public void ClickSMItemsLink()
         {
-            var element = _driver.WaitForElementVisible(SMAllItems);
+            var element = _driver.WaitForElementToBeVisible(SMAllItems);
             element.Click();
         }
         public void ClickSMAboutLink()
         {
-            var element = _driver.WaitForElementVisible(SMAbout);
+            var element = _driver.WaitForElementToBeVisible(SMAbout);
             element.Click();
         }
         public void ClickSMLogoutLink()
         {
-            var element = _driver.WaitForElementVisible(SMLogout);
+            var element = _driver.WaitForElementToBeVisible(SMLogout);
             element.Click();
         }
         public void ClickSMRASLink()
         {
-            var element = _driver.WaitForElementVisible(SMResetAppState);
+            var element = _driver.WaitForElementToBeVisible(SMResetAppState);
             element.Click();
         }
         public void ClickSMCloseBtn()
         {
-            var element = _driver.WaitForElementVisible(SMBtnClose);
+            var element = _driver.WaitForElementToBeVisible(SMBtnClose);
             element.Click();
         }
         public string GetItemBadgeNumber()
         {
-            var element = _driver.WaitForElementVisible(SMCartBadge);
+            var element = _driver.WaitForElementToBeVisible(SMCartBadge);
             var itemCount = element.Text;
 
             return itemCount;

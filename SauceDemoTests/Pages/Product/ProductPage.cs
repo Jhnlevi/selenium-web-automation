@@ -27,50 +27,50 @@ namespace SauceDemoTests.Pages.Product
         }
 
         // Actions
-        public void ShouldDisplayProductList() => _driver.WaitForElementVisible(ListProducts);
-        public void ShouldDisplayProductImage() => _driver.WaitForElementVisible(ProdImg);
-        public void ShouldDisplayProductName() => _driver.WaitForElementVisible(ProdName);
-        public void ShouldDisplayProductDescription() => _driver.WaitForElementVisible(ProdDesc);
-        public void ShouldDisplayProductPrice() => _driver.WaitForElementVisible(ProdPrice);
-        public void ShouldDisplayProductSorter() => _driver.WaitForElementVisible(ProdSort);
-        public void ShouldDisplayProductAddToCart() => _driver.WaitForElementVisible(BtnAddToCart);
+        public void ShouldDisplayProductList() => _driver.WaitForElementToBeVisible(ListProducts);
+        public void ShouldDisplayProductImage() => _driver.WaitForElementToBeVisible(ProdImg);
+        public void ShouldDisplayProductName() => _driver.WaitForElementToBeVisible(ProdName);
+        public void ShouldDisplayProductDescription() => _driver.WaitForElementToBeVisible(ProdDesc);
+        public void ShouldDisplayProductPrice() => _driver.WaitForElementToBeVisible(ProdPrice);
+        public void ShouldDisplayProductSorter() => _driver.WaitForElementToBeVisible(ProdSort);
+        public void ShouldDisplayProductAddToCart() => _driver.WaitForElementToBeVisible(BtnAddToCart);
         public void ClickProduct()
         {
-            var element = _driver.WaitForElementVisible(ProdName);
+            var element = _driver.WaitForElementToBeVisible(ProdName);
             element.Click();
         }
         // Select an item from the dropdown
         public void SelectFromDropdown(string itemName)
         {
-            var element = _driver.WaitForElementVisible(ProdSort);
+            var element = _driver.WaitForElementToBeVisible(ProdSort);
             var select = new SelectElement(element);
             select.SelectByText(itemName);
         }
         // Get the current item from the dropdown
         public string GetSelectedItem()
         {
-            var element = _driver.WaitForElementVisible(ProdSort);
+            var element = _driver.WaitForElementToBeVisible(ProdSort);
             var select = new SelectElement(element);
             return select.SelectedOption.Text;
         }
         public void ClickAddToCart()
         {
-            var element = _driver.WaitForElementVisible(BtnAddToCart);
+            var element = _driver.WaitForElementToBeVisible(BtnAddToCart);
             element.Click();
         }
         public void ClickRemoveToCart()
         {
-            var element = _driver.WaitForElementVisible(BtnRmvToCart);
+            var element = _driver.WaitForElementToBeVisible(BtnRmvToCart);
             element.Click();
         }
         public string GetAddToCartBtnText()
         {
-            var element = _driver.WaitForElementVisible(BtnAddToCart);
+            var element = _driver.WaitForElementToBeVisible(BtnAddToCart);
             return element.Text;
         }
         public string GetRemoveFromCartBtnText()
         {
-            var element = _driver.WaitForElementVisible(BtnRmvToCart);
+            var element = _driver.WaitForElementToBeVisible(BtnRmvToCart);
             return element.Text;
         }
         public void AddItemsToCart(int numberOfItems)

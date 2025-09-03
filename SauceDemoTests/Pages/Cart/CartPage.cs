@@ -35,9 +35,9 @@ namespace SauceDemoTests.Pages.Cart
         public void ShouldDisplayCartProductName() => _product.ShouldDisplayProductName();
         public void ShouldDisplayCartProductDescription() => _product.ShouldDisplayProductDescription();
         public void ShouldDisplayCartProductPrice() => _product.ShouldDisplayProductPrice();
-        public void ShouldDisplayContinueShoppingButton() => _driver.WaitForElementVisible(CartContinueShoppingBtn);
-        public void ShouldDisplayCheckoutButton() => _driver.WaitForElementVisible(CartCheckoutBtn);
-        public void ShouldDisplayRemoveButton() => _driver.WaitForElementVisible(CartRmvItemBtn);
+        public void ShouldDisplayContinueShoppingButton() => _driver.WaitForElementToBeVisible(CartContinueShoppingBtn);
+        public void ShouldDisplayCheckoutButton() => _driver.WaitForElementToBeVisible(CartCheckoutBtn);
+        public void ShouldDisplayRemoveButton() => _driver.WaitForElementToBeVisible(CartRmvItemBtn);
         public int GetMenuCurrentItemCount()
         {
             var itemCount = _menu.GetItemBadgeNumber();
@@ -47,24 +47,24 @@ namespace SauceDemoTests.Pages.Cart
         }
         public int GetCartCurrentItemCount()
         {
-            var element = _driver.WaitForElementVisible(CartQuantity);
+            var element = _driver.WaitForElementToBeVisible(CartQuantity);
             var currentCount = Convert.ToInt32(element.Text);
 
             return currentCount;
         }
         public void ClickRemoveCartItem()
         {
-            var element = _driver.WaitForElementVisible(CartRmvItemBtn);
+            var element = _driver.WaitForElementToBeVisible(CartRmvItemBtn);
             element.Click();
         }
         public void ClickCheckoutCartItem()
         {
-            var element = _driver.WaitForElementVisible(CartCheckoutBtn);
+            var element = _driver.WaitForElementToBeVisible(CartCheckoutBtn);
             element.Click();
         }
         public void ClickContinueShoppingItem()
         {
-            var element = _driver.WaitForElementVisible(CartContinueShoppingBtn);
+            var element = _driver.WaitForElementToBeVisible(CartContinueShoppingBtn);
             element.Click();
         }
     }
