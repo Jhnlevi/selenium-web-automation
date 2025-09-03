@@ -23,7 +23,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
 
             // Call JsonDataReader util.
-            var data = JsonDataReader.ReadJson<LoginTestRoot>(path);
+            var data = TestUtilities.JsonDataReader.ReadJson<LoginTestRoot>(path);
 
             // Filter test case.
             var filteredTestCase = data.testCases
@@ -43,7 +43,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Checkout", "checkoutTestData.json");
 
             // Call JsonDataReader util.
-            var data = JsonDataReader.ReadJson<CheckoutTestRoot>(path);
+            var data = TestUtilities.JsonDataReader.ReadJson<CheckoutTestRoot>(path);
 
             // Filter test case.
             var filteredTestCase = data.testCases
