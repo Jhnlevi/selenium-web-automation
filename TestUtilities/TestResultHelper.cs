@@ -13,14 +13,24 @@ namespace TestUtilities
         {
             switch (status)
             {
+                // Failed test result.
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    string screenshotFile = ScreenshotHelper.CaptureScreenshot(driver, methodName);
+
+                    // Get screenshot path.
+                    string screenshotFilePath = ScreenshotHelper.CaptureScreenshot(driver, methodName);
+
+                    // Log to Report.
                     ReportManager.LogFail($"Test Failed : {message} \n {stackTrace}");
-                    ReportManager.ReportAttachScreenshot(screenshotFile);
+
+                    // Attach screenshot to report.
+                    ReportManager.ReportAttachScreenshot(screenshotFilePath);
                     break;
+
+                // Pass test result.
                 case NUnit.Framework.Interfaces.TestStatus.Passed:
                     ReportManager.LogPass("Test Passed!");
                     break;
+
                 default:
                     ReportManager.LogWarn("Test ended with unusual status");
                     break;
