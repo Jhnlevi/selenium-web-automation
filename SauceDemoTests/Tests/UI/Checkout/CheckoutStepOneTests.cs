@@ -81,7 +81,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
 
         // TC_Checkout_0005
         [Test]
-        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.CheckoutPositiveCases))]
+        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.CheckoutPositiveCases))]
         public void Checkout_StepOne_ValidUserInputs(CheckoutTestCase testCase)
         {
             Checkout_StepOne_NavigateToCheckout();
@@ -98,7 +98,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
 
         // TC_Checkout_0006; TC_Checkout_0007; TC_Checkout_0008; TC_Checkout_0009; TC_Checkout_0010; TC_Checkout_0011
         [Test]
-        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.CheckoutNegativeCases))]
+        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.CheckoutNegativeCases))]
         public void Checkout_StepOne_InvalidUserInputs(CheckoutTestCase testCase)
         {
             Checkout_StepOne_NavigateToCheckout();

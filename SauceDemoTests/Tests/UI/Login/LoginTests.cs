@@ -25,7 +25,7 @@ namespace SauceDemoTests.Tests.UI.Login
         }
 
         // TC_Login_0001
-        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginPositiveCases))]
+        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.LoginPositiveCases))]
         public void Login_WithValidCredentials(LoginTestCase testCase)
         {
             ReportManager.LogInfo("Entering username and password.");
@@ -40,7 +40,7 @@ namespace SauceDemoTests.Tests.UI.Login
         }
 
         // TC_Login_0002; TC_Login_0003, TC_Login_0004
-        [TestCaseSource(typeof(JsonDataProvider), nameof(JsonDataProvider.LoginNegativeCases))]
+        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.LoginNegativeCases))]
         public void InvalidLogin_ShowsErrorMessage(LoginTestCase testCase)
         {
             ReportManager.LogInfo("Entering username and password.");
