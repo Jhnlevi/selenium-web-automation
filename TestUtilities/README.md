@@ -18,7 +18,7 @@ These utilities are designed to be shared across multiple test projects, promoti
 ## Features
 
 - 'WebDriverFactory' - Create, get, and close WebDriver instance easily.
-- 'WebDriverExtension' - Centralized custom wait methods.
+- 'WebDriverWaitHelper' - Centralized custom wait methods.
 - 'ScreenshotHelper' - Capture screenshots for reports. 
 - 'ReportManager' - Generate, and log test reports.
 - 'TestResultHelper' - Log test results and status.
