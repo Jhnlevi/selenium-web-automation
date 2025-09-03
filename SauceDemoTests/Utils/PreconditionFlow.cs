@@ -3,6 +3,7 @@ using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Pages.Product;
+using TestUtilities;
 
 namespace SauceDemoTests.Utils
 {
@@ -29,6 +30,28 @@ namespace SauceDemoTests.Utils
         {
             var _cart = new CartPage(driver);
             _cart.ClickCheckoutCartItem();
+        }
+
+        public static void FromLoginToCartFlow(IWebDriver driver, string username, string password)
+        {
+            ReportManager.LogInfo("Log in as standard user.");
+            LoginAsStandardUser(driver, username, password);
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
+            AddProductToCart(driver);
+            ReportManager.LogInfo("Clicking shopping cart icon in the menu bar.");
+            NavigateToCart(driver);
+        }
+
+        public static void FromLoginToCheckoutFlow(IWebDriver driver, string username, string password)
+        {
+            ReportManager.LogInfo("Log in as standard user.");
+            LoginAsStandardUser(driver, username, password);
+            ReportManager.LogInfo("Clicking 'Add to Cart' button to add product.");
+            AddProductToCart(driver);
+            ReportManager.LogInfo("Clicking shopping cart icon in the menu bar.");
+            NavigateToCart(driver);
+            ReportManager.LogInfo("Clicking 'Checkout' button.");
+            NavigateToCheckout(driver);
         }
     }
 }
