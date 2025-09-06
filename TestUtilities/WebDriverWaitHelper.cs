@@ -39,7 +39,8 @@ namespace TestUtilities
                 try
                 {
                     var elements = driv.FindElements(locator);
-                    return elements.Count > 0 ? elements : null;
+                    var displayedElements = elements.Where(e => e.Displayed).ToList();
+                    return displayedElements.Count > 0 ? elements : null;
                 }
                 catch (StaleElementReferenceException)
                 {
