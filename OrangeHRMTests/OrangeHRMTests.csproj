@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,35 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Screenshots\**" />
-    <EmbeddedResource Remove="Screenshots\**" />
-    <None Remove="Screenshots\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="appsettings.json" />
-    <None Remove="TestData\Checkout\checkoutTestData.json" />
-    <None Remove="TestData\Login\loginTestData.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Checkout\checkoutTestData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Login\loginTestData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ExtentReports" Version="5.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
@@ -52,7 +27,10 @@
     <PackageReference Include="Selenium.Support" Version="4.35.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.35.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="140.0.7339.8000" />
-    <PackageReference Include="Selenium.WebDriver.IEDriver" Version="4.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,11 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Reports\Screenshots\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
+    <Folder Include="Utils\" />
+    <Folder Include="Reports\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
 
 </Project>
