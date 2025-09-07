@@ -6,19 +6,19 @@ namespace OrangeHRMTests.Utils
     internal class TestDataProvider
     {
         // Get single login data.
-        public static TestCaseData GetSingleLoginRecord(string testId)
+        public static LoginTestCase GetSingleLoginRecord(string testId, string fileName)
         {
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
+            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", fileName);
             var data = TestDataReader.ReadJson<LoginTestModel>(path);
             var testCase = data?.TestCases?.FirstOrDefault(tc => tc.TestCaseId == testId);
 
-            return new TestCaseData(testCase);
+            return testCase;
         }
 
         // Get multiple login data.
-        public static IEnumerable<TestCaseData> GetMultipleLoginRecord(string type)
+        public static IEnumerable<LoginTestCase> GetMultipleLoginRecord(string type, string fileName)
         {
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
+            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", fileName);
             var data = TestDataReader.ReadJson<LoginTestModel>(path);
 
             var filteredTestCase = data?.TestCases?
@@ -27,11 +27,12 @@ namespace OrangeHRMTests.Utils
 
             foreach (var testCase in filteredTestCase)
             {
-                yield return new TestCaseData(testCase);
+                yield return testCase;
             }
         }
 
         // For negative tests of login.
-        public static IEnumerable<TestCaseData> LoginNegativeCases => GetMultipleLoginRecord("negative");
+        public static IEnumerable<LoginTestCase> GetNegativeFunctional => GetMultipleLoginRecord("negative", "loginFunctional.json");
+        public static IEnumerable<LoginTestCase> GetNegativeValidation => GetMultipleLoginRecord("negative", "loginValidation.json");
     }
 }
