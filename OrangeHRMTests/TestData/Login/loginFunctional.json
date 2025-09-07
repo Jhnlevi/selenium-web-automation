@@ -1,0 +1,45 @@
+{
+    "name": "Login Test Data",
+    "description": "Test data for positive and negative login scenarios.",
+    "testCases": [
+        {
+            "testCaseId": "TC_Login_0003",
+            "testCaseDescription": "Verify login succeeds with valid credentials.",
+            "testType": "Positive",
+            "testData": {
+                "userName": "Admin",
+                "password": "admin123"
+            },
+            "expectedResult": {
+                "result": "User is redirected to dashboard.",
+                "message": "Valid username and password."
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0004_1",
+            "testCaseDescription": "Verify login fails with invalid username",
+            "testType": "Negative",
+            "testData": {
+                "userName": "Invalid Admin",
+                "password": "admin123"
+            },
+            "expectedResult": {
+                "result": "User should not be logged in. An appropriate error message should appear.",
+                "message": "Invalid credentials"
+            }
+        },
+        {
+            "testCaseId": "TC_Login_0004_2",
+            "testCaseDescription": "Verify login fails with invalid password",
+            "testType": "Negative",
+            "testData": {
+                "userName": "Admin",
+                "password": "Invalid password"
+            },
+            "expectedResult": {
+                "result": "User should not be logged in. An appropriate error message should appear.",
+                "message": "Invalid credentials"
+            }
+        }
+    ]
+}

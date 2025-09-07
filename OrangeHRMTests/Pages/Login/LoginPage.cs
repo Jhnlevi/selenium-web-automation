@@ -10,12 +10,14 @@ namespace OrangeHRMTests.Pages.Login
         private By InptPassword = By.Name("password");
         private By BtnLogin = By.CssSelector(".orangehrm-login-button");
         private By ErrAlertMessage = By.CssSelector(".oxd-alert-content-text");
+        private By InptErrMessage = By.CssSelector(".oxd-input-field-error-message");
         private By ErrAlert = By.CssSelector(".oxd-alert--error");
 
         public bool UsernameDisplayed => IsElementDisplayed(InptUsername);
         public bool PasswordDisplayed => IsElementDisplayed(InptPassword);
         public bool LoginButtonDisplayed => IsElementDisplayed(BtnLogin);
         public bool ErrorMessageDisplayed => IsElementDisplayed(ErrAlert);
+        public bool InputErrorMessageDisplayed => IsElementDisplayed(InptErrMessage);
 
         public void EnterUsername(string username) => EnterText(InptUsername, username);
         public void EnterPassword(string password) => EnterText(InptPassword, password);
