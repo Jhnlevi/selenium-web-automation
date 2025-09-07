@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.json">
+    <Page Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Page>
     <Content Include="TestData\Checkout\checkoutTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
