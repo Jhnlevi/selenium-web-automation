@@ -8,10 +8,7 @@ namespace OrangeHRMTests.Pages
     {
         protected IWebDriver _driver;
 
-        public BasePage(IWebDriver driver)
-        {
-            _driver = driver;
-        }
+        public BasePage(IWebDriver driver) => _driver = driver;
 
         // Button actions.
         public void Click(By locator) => _driver.WaitForElementToBeVisible(locator).Click();
