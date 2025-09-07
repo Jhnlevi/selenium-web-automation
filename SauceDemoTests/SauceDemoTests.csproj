@@ -16,15 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json" />
     <None Remove="TestData\Checkout\checkoutTestData.json" />
     <None Remove="TestData\Login\loginTestData.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
     <Content Include="TestData\Checkout\checkoutTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -65,6 +61,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
