@@ -389,8 +389,8 @@ Reports/
 *.log
 
 # Sensitive configuration files (if you use any credentials)
-appsettings.json
-appsettings.Development.json
+appsettings.*.json
+!appsettings.json
 *.secret.json
 
 # OS generated files
