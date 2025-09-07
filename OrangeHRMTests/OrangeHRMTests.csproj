@@ -48,9 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="TestData\Login\" />
     <Folder Include="Utils\" />
     <Folder Include="Reports\" />
-    <Folder Include="TestData\" />
   </ItemGroup>
 
 </Project>
