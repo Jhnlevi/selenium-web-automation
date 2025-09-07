@@ -6,18 +6,18 @@ namespace OrangeHRMTests.Tests
 {
     internal class BaseTest
     {
-        private AppConfig _config;
+        protected AppConfig _config;
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Structure",
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
-        private IWebDriver _driver;
+        protected IWebDriver _driver;
 
         [OneTimeSetUp]
         public void ReportSetup() => ReportManager.CreateExtentReport();
 
         [SetUp]
-        public void Setup()
+        public virtual void Setup()
         {
             _config = TestConfigReader.GetAppSettings<AppConfig>();
             _driver = WebDriverFactory.GetDriver("chrome");
