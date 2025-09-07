@@ -1,0 +1,36 @@
+name: OrangeHRM Automation CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore SeleniumWebAutomation.sln
+
+    - name: Build solution
+      run: dotnet build SeleniumWebAutomation.sln --configuration Release
+
+    - name: Run OrangeHRMTests
+      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=orangehrm_test_results.trx"
+
+    - name: Upload test report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: orangehrm-test-report
+        path: OrangeHRMTests/Reports/
