@@ -12,10 +12,14 @@ namespace OrangeHRMTests.Pages.Login
         private By ErrAlertMessage = By.CssSelector(".oxd-alert-content-text");
         private By ErrAlert = By.CssSelector(".oxd-alert--error");
 
+        public bool UsernameDisplayed => IsElementDisplayed(InptUsername);
+        public bool PasswordDisplayed => IsElementDisplayed(InptPassword);
+        public bool LoginButtonDisplayed => IsElementDisplayed(BtnLogin);
+        public bool ErrorMessageDisplayed => IsElementDisplayed(ErrAlert);
+
         public void EnterUsername(string username) => EnterText(InptUsername, username);
         public void EnterPassword(string password) => EnterText(InptPassword, password);
         public void ClickLoginButton() => Click(BtnLogin);
         public string GetErrorMessage() => GetText(ErrAlertMessage);
-        public bool IsErrorMessageDisplayed() => IsElementDisplayed(ErrAlert);
     }
 }
