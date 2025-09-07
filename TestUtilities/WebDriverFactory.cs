@@ -22,6 +22,15 @@ namespace TestUtilities
                     chromeOptions.AddArgument("start-maximized");
                     // Start tests in incognito mode.
                     chromeOptions.AddArgument("--incognito");
+
+                    // For CI.
+                    if (Environment.GetEnvironmentVariable("CI") == "true")
+                    {
+                        chromeOptions.AddArgument("--headless");
+                        chromeOptions.AddArgument("--disable-gpu");
+                        chromeOptions.AddArgument("--window-size=1920,1080");
+                    }
+
                     return new ChromeDriver(chromeOptions);
 
                 case "edge":
