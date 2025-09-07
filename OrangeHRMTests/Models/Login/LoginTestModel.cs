@@ -9,9 +9,9 @@ namespace OrangeHRMTests.Models.Login
         [JsonPropertyName("description")]
         public string Description { get; set; } = null!;
         [JsonPropertyName("testCases")]
-        public List<TestCase>? TestCases { get; set; }
+        public List<LoginTestCase>? TestCases { get; set; }
     }
-    internal class TestCase
+    internal class LoginTestCase
     {
         [JsonPropertyName("testCaseId")]
         public string TestCaseId { get; set; } = null!;
@@ -19,19 +19,19 @@ namespace OrangeHRMTests.Models.Login
         public string TestCaseDescription { get; set; } = null!;
         [JsonPropertyName("testType")]
         public string TestType { get; set; } = null!;
-        [JsonPropertyName("TestData")]
-        public TestData? testData { get; set; }
+        [JsonPropertyName("testData")]
+        public LoginTestData? TestData { get; set; }
         [JsonPropertyName("expectedResult")]
-        public ExpectedResult? ExpectedResult { get; set; }
+        public LoginExpectedResult? ExpectedResult { get; set; }
     }
-    internal class TestData
+    internal class LoginTestData
     {
         [JsonPropertyName("userName")]
         public string UserName { get; set; } = null!;
         [JsonPropertyName("password")]
         public string Password { get; set; } = null!;
     }
-    internal class ExpectedResult
+    internal class LoginExpectedResult
     {
         [JsonPropertyName("result")]
         public string Result { get; set; } = null!;
