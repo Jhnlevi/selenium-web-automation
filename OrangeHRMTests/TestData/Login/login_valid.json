@@ -1,0 +1,19 @@
+{
+    "name": "Login Test Data",
+    "description": "Test data(s) for positive login scenarios.",
+    "testCases": [
+        {
+            "testCaseId": "TC_Login_0003",
+            "testCaseDescription": "Verify login succeeds with valid credentials.",
+            "testType": "Positive",
+            "testData": {
+                "userName": "Admin",
+                "password": "admin123"
+            },
+            "expectedResult": {
+                "result": "User is redirected to dashboard.",
+                "message": "Valid username and password."
+            }
+        }
+    ]
+}

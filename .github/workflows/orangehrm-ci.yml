@@ -26,7 +26,13 @@ jobs:
       run: dotnet build SeleniumWebAutomation.sln --configuration Release
 
     - name: Run OrangeHRMTests
-      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=orangehrm_test_results.trx"
+      env:
+        AppSettings__BaseUrl: ${{ secrets.BASE_URL }}
+        AppSettings__Browser: ${{ secrets.BROWSER }}
+      run: |
+          dotnet test OrangeHRMTests/OrangeHRMTests.csproj \
+            --configuration Release \
+            --logger "trx;LogFileName=orangehrm_test_results.trx"
 
     - name: Upload test report
       if: always()
