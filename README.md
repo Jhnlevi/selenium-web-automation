@@ -1,18 +1,30 @@
 ## Selenium Web Automation
 
-Welcome to my Selenium Web Automation portfolio! This repository contains my automation projects demonstrating end-to-end (E2E) testing using Selenium WebDriver, C#, and NUnit. Each project follows best practices like the Page Object Model (POM) structure, data-driven testing, and detailed reporting.
+Welcome to my Selenium Web Automation portfolio! This repository contains my automation projects demonstrating end to end (E2E) testing using Selenium WebDriver, C#, and NUnit. Each project follows best practices like the Page Object Model (POM) structure, data driven testing, and detailed reporting.
 
 
 ## Projects:
 
-### [SauceDemo Website - Automation](SauceDemoTests/README.md)
+### [OrangeHRM Demo - Automation](OrangeHRMTests/README.md)
+
+Automates core workflows on the [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/) website. Beginner project practicing Selenium automation, data driven testing (DDT), and test reporting.
+
+Highlights:
+
+- Automated UI tests using Selenium & Page Object Model.
+- Data driven tests with JSON for multiple scenarios.
+- Reliable automation with custom waits for stable tests.
+- Screenshots & HTML reports for easy debugging.
+- CI ready setup for automated test execution.
+
+### [SauceDemo - Automation](SauceDemoTests/README.md)
 
 Automates key workflows on [SauceDemo](https://www.saucedemo.com/v1/) website.
 
 Highlights:
 
-- End-to-end (E2E) flows: login, product selection, cart management, and checkout.
-- Data-driven tests with JSON.
+- End to end (E2E) flows: login, product selection, cart management, and checkout.
+- Data driven tests with JSON.
 - Detailed HTML reporting and screenshots.
 
 ### [Test Utilities](TestUtilities/README.md)
@@ -28,7 +40,6 @@ Includes:
 - ConfigReader for appsettings.json
 
 *(Future projects will be added here as I expand my portfolio)*
-
 
 ## Technologies Used:
 
