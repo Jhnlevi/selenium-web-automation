@@ -27,7 +27,8 @@ jobs:
 
     - name: Run OrangeHRMTests
       env:
-        BASE_URL: ${{ secrets.BASE_URL }}
+        AppSettings__BaseUrl: ${{ secrets.BASE_URL }}
+        AppSettings__Browser: ${{ secrets.BROWSER }}
       run: |
           dotnet test OrangeHRMTests/OrangeHRMTests.csproj \
             --configuration Release \
