@@ -29,11 +29,8 @@ jobs:
       env:
         AppSettings__BaseUrl: ${{ secrets.BASE_URL }}
         AppSettings__Browser: ${{ secrets.BROWSER }}
-      run: |
-          dotnet test OrangeHRMTests/OrangeHRMTests.csproj \
-            --configuration Release \
-            --logger "trx;LogFileName=orangehrm_test_results.trx"
-
+      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=orangehrm_test_results.trx"
+          
     - name: Upload test report
       if: always()
       uses: actions/upload-artifact@v4
