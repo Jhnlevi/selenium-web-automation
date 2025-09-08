@@ -14,7 +14,7 @@ namespace OrangeHRMTests.Tests
         protected IWebDriver _driver;
 
         [OneTimeSetUp]
-        public void ReportSetup() => ReportManager.CreateExtentReport();
+        public void ReportSetup() => ReportManager.CreateExtentReport("OrangeHRM");
 
         [SetUp]
         public virtual void Setup()

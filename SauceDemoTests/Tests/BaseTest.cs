@@ -17,7 +17,7 @@ namespace SauceDemoTests.Tests
         public void SetupReport()
         {
             // Report set up.
-            ReportManager.CreateExtentReport();
+            ReportManager.CreateExtentReport("SauceDemo");
         }
 
         [SetUp]
