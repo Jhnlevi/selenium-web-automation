@@ -1,6 +1,6 @@
 {
     "name": "Login Test Data",
-    "description": "Test data for positive and negative login scenarios.",
+    "description": "Test cases for scenarios that include missing test data(s).",
     "testCases": [
         {
             "testCaseId": "TC_Login_0004_3",

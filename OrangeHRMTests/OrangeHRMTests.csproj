@@ -11,17 +11,20 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="TestData\Login\loginValidation.json" />
+    <None Remove="TestData\Login\login_valid.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Login\loginFunctional.json">
+    <Content Include="TestData\Login\login_invalid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Login\loginValidation.json">
+    <Content Include="TestData\Login\login_missing.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Login\login_valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
