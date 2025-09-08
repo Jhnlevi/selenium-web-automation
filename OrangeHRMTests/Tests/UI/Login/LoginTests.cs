@@ -1,6 +1,6 @@
 ﻿using OrangeHRMTests.Models.Login;
 using OrangeHRMTests.Pages.Login;
-using OrangeHRMTests.Utils;
+using OrangeHRMTests.Utils.Providers;
 using TestUtilities;
 
 namespace OrangeHRMTests.Tests.UI.Login
@@ -31,12 +31,12 @@ namespace OrangeHRMTests.Tests.UI.Login
         [Test]
         public void Login_WithValidCredentials()
         {
-            var data = TestDataProvider.GetSingleLoginRecord("TC_Login_0003", "loginFunctional.json");
+            var data = LoginProvider.GetValidCaseRecord("TC_Login_0003");
 
             ReportManager.LogInfo("Entering username.");
-            _login.EnterUsername(data.TestData.UserName);
+            _login.EnterUsername(data.TestData!.UserName);
             ReportManager.LogInfo("Entering password.");
-            _login.EnterPassword(data.TestData.Password);
+            _login.EnterPassword(data.TestData!.Password);
             ReportManager.LogInfo("Clicking login button.");
             _login.ClickLoginButton();
             ReportManager.LogInfo("Verifying that user is redirected to dashboard.");
@@ -44,8 +44,8 @@ namespace OrangeHRMTests.Tests.UI.Login
 
         }
 
-        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.GetNegativeFunctional))]
-        public void Login_WithInvalidCredentials(LoginTestCase data)
+        [TestCaseSource(typeof(LoginProvider), nameof(LoginProvider.GetInvalidCaseRecords))]
+        public void Login_WithInvalidCredentials(LoginCase data)
         {
             ReportManager.LogInfo("Entering username.");
             _login.EnterUsername(data.TestData.UserName);
@@ -57,8 +57,8 @@ namespace OrangeHRMTests.Tests.UI.Login
             Assert.That(_login.ErrorMessageDisplayed, Is.True);
         }
 
-        [TestCaseSource(typeof(TestDataProvider), nameof(TestDataProvider.GetNegativeValidation))]
-        public void Login_WithMissingCredentials(LoginTestCase data)
+        [TestCaseSource(typeof(LoginProvider), nameof(LoginProvider.GetMissingCaseRecords))]
+        public void Login_WithMissingInput(LoginCase data)
         {
             ReportManager.LogInfo("Entering username.");
             _login.EnterUsername(data.TestData.UserName);
