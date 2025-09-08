@@ -5,9 +5,9 @@ Welcome to my Selenium Web Automation portfolio! This repository contains my aut
 
 ## Projects:
 
-### [OrangeHRM Demo - Automation](OrangeHRMTests/README.md)
+### [OrangeHRM Demo - Automation project](OrangeHRMTests/README.md):
 
-Automates core workflows on the [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/) website. Beginner project practicing Selenium automation, data driven testing (DDT), and test reporting.
+Automates core workflows on the [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/) website. Beginner project no. 2 practicing Selenium automation, data driven testing (DDT), and test reporting.
 
 Highlights:
 
@@ -17,9 +17,9 @@ Highlights:
 - Screenshots & HTML reports for easy debugging.
 - CI ready setup for automated test execution.
 
-### [SauceDemo - Automation](SauceDemoTests/README.md)
+### [SauceDemo - Automation project](SauceDemoTests/README.md):
 
-Automates key workflows on [SauceDemo](https://www.saucedemo.com/v1/) website.
+Automates workflows on [SauceDemo](https://www.saucedemo.com/v1/) website. Beginner project no. 1 for Selenium automation, data-driven testing, and reporting.
 
 Highlights:
 
@@ -27,17 +27,18 @@ Highlights:
 - Data driven tests with JSON.
 - Detailed HTML reporting and screenshots.
 
-### [Test Utilities](TestUtilities/README.md)
+### [Test Utilities - Class library project](TestUtilities/README.md):
 
-Reusable helper classes to simplify Selenium test automation.
+A beginner library project of reusable helpers for Selenium automation, including WebDriver management, custom waits, JSON data handling, screenshots, and test reporting.
 
 Includes:
 
-- WebDriver management and factory
-- Custom waits
-- Screenshots and report generation
-- Test result logging
-- ConfigReader for appsettings.json
+- WebDriverFactory: Easily create, get, and close WebDriver instances.
+- Custom Waits: Centralized wait methods for stable tests.
+- ScreenshotHelper: Capture screenshots automatically during tests.
+- ReportManager: Generate simple HTML reports with test results.
+- TestDataLoader / Reader: Load and read JSON test data for multiple scenarios.
+- TestConfigReader: Manage environment URLs, credentials, and settings via appsettings.json
 
 *(Future projects will be added here as I expand my portfolio)*
 
