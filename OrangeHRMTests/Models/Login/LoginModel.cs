@@ -51,5 +51,17 @@ namespace OrangeHRMTests.Models.Login
 
         [JsonPropertyName("message")]
         public string Message { get; set; } = null!;
+
+        [JsonPropertyName("fieldErrors")]
+        public List<FieldError>? FieldErrors { get; set; }
+    }
+
+    internal class FieldError
+    {
+        [JsonPropertyName("field")]
+        public string Field { get; set; } = null!;
+
+        [JsonPropertyName("message")]
+        public string Message { get; set; } = null!;
     }
 }
