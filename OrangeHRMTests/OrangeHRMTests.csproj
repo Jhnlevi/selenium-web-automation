@@ -13,6 +13,7 @@
     <None Remove="appsettings.json" />
     <None Remove="TestData\Login\login_valid.json" />
     <None Remove="TestData\Profile\profile_pd_invalid.json" />
+    <None Remove="TestData\Profile\profile_pd_missing.json" />
     <None Remove="TestData\Profile\profile_pd_valid.json" />
   </ItemGroup>
 
@@ -30,6 +31,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\Profile\profile_pd_invalid.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Profile\profile_pd_missing.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\Profile\profile_pd_valid.json">
