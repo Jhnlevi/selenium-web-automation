@@ -71,7 +71,6 @@
 
   <ItemGroup>
     <Folder Include="Reports\" />
-    <Folder Include="Tests\UI\Profile\" />
   </ItemGroup>
 
 </Project>
