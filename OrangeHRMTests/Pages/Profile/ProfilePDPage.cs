@@ -7,6 +7,7 @@ namespace OrangeHRMTests.Pages.Profile
     internal class ProfilePDPage : BasePage
     {
         public NavigationMenuPage _menu { get; }
+        public ProfileTabsPage _profileTab { get; }
 
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
@@ -14,6 +15,7 @@ namespace OrangeHRMTests.Pages.Profile
         public ProfilePDPage(IWebDriver driver) : base(driver)
         {
             _menu = new NavigationMenuPage(driver);
+            _profileTab = new ProfileTabsPage(driver);
 
             _elements = new Dictionary<string, By>
             {
