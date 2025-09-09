@@ -64,8 +64,16 @@ namespace OrangeHRMTests.Tests.UI.Login
             _login.EnterPassword(testCase.TestData!.Password);
             ReportManager.LogInfo("Clicking login button.");
             _login.ClickLoginButton();
-            ReportManager.LogInfo("Verifying that user cannot login with invalid credentials.");
-            Assert.That(_login.InputErrorMessageDisplayed, Is.True);
+            if (testCase.ExpectedResult.FieldErrors != null && testCase.ExpectedResult.FieldErrors.Any())
+            {
+                // To loop on all fields.
+                foreach (var expected in testCase.ExpectedResult.FieldErrors)
+                {
+                    var actualMessage = _login.GetFieldError(expected.Field);
+                    ReportManager.LogInfo($"Verifying that user cannot login with missing {expected.Field}.");
+                    Assert.That(actualMessage, Is.EqualTo(expected.Message));
+                }
+            }
         }
 
         [Test]
