@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OrangeHRMTests.Constants;
 using OrangeHRMTests.Pages.Menu;
 
 namespace OrangeHRMTests.Pages.Profile
@@ -7,7 +8,7 @@ namespace OrangeHRMTests.Pages.Profile
     {
         public NavigationMenuPage _menu { get; }
 
-        // Dictionary
+        // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
 
         public ProfilePDPage(IWebDriver driver) : base(driver)
@@ -16,19 +17,19 @@ namespace OrangeHRMTests.Pages.Profile
 
             _elements = new Dictionary<string, By>
             {
-                {"FirstName", FldFirstName},
-                {"MiddleName", FldMiddleName},
-                {"LastName", FldLastName},
-                {"EmployeeId", FldEmployeeId},
-                {"OtherId", FldOtherId},
-                {"DriverLicenseNumber", FldDriversNumber},
-                {"LicenseExpiry", DateLED},
-                {"Nationality", DrpdwnNationality},
-                {"MaritalStatus", DrpdwnMarital},
-                {"DateOfBirth", DateDOB},
-                {"MaleRadio", RadioMale},
-                {"FemaleRadio", RadioFemale},
-                {"SaveButton", BtnSave},
+                {PDFields.FirstName, FldFirstName},
+                {PDFields.MiddleName, FldMiddleName},
+                {PDFields.LastName, FldLastName},
+                {PDFields.EmployeeId, FldEmployeeId},
+                {PDFields.OtherId, FldOtherId},
+                {PDFields.DriverLicenseNumber, FldDriversNumber},
+                {PDFields.LicenseExpiryDate, DateLED},
+                {PDFields.Nationality, DrpdwnNationality},
+                {PDFields.MaritalStatus, DrpdwnMarital},
+                {PDFields.DateOfBirth, DateDOB},
+                {PDFields.MaleRadio, RadioMale},
+                {PDFields.FemaleRadio, RadioFemale},
+                {PDFields.SaveButton, BtnSave},
             };
         }
 
