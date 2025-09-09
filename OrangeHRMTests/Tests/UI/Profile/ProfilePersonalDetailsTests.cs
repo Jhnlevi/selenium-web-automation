@@ -22,8 +22,12 @@ namespace OrangeHRMTests.Tests.UI.Profile
         [Test]
         public void Profile_VerifyPersonalDetailsIsAccessible()
         {
-            ReportManager.LogInfo("Navigating to MyInfo page");
+            ReportManager.LogInfo("Navigating to MyInfo page.");
             _profilePD._menu.ClickElement(MenuFields.MyInfo);
+            ReportManager.LogInfo("Navigating to 'Personal Details' tab.");
+            _profilePD._profileTab.ClickElement(ProfileTabs.PersonalDetails);
+            ReportManager.LogInfo("Verify that 'Personal Details' tab loads successfully.");
+            Assert.That(_profilePD._profileTab.IsDisplayed(ProfileTabs.PersonalDetails), Is.True);
         }
     }
 }
