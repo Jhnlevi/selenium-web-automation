@@ -24,7 +24,7 @@ namespace SauceDemoTests.Tests.E2E
 
             // Navigate to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Initialize all POMs.
             _cart = new CartPage(_driver);
@@ -36,7 +36,7 @@ namespace SauceDemoTests.Tests.E2E
         }
 
         // For assertions that verify the url.
-        private void AssertUrlContains(string url) => Assert.That(_driver.Url.Contains(url), Is.True);
+        private void AssertUrlContains(string url) => Assert.That(_driver!.Url.Contains(url), Is.True);
 
         [Test]
         [TestCase(

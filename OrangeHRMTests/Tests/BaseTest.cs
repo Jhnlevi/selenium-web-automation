@@ -4,14 +4,14 @@ using TestUtilities;
 
 namespace OrangeHRMTests.Tests
 {
-    internal class BaseTest
+    internal abstract class BaseTest
     {
         protected AppConfig _config;
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Structure",
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
-        protected IWebDriver _driver;
+        protected IWebDriver? _driver;
 
         [OneTimeSetUp]
         public void ReportSetup() => ReportManager.CreateExtentReport("OrangeHRM");
@@ -35,10 +35,10 @@ namespace OrangeHRMTests.Tests
 
             TestResultHelper.LogTestResults(
                 testStatus,
-                _driver,
+                _driver!,
                 testMessage,
-                stackTrace,
-                testMethodName);
+                stackTrace!,
+                testMethodName!);
 
             if (_driver != null)
             {

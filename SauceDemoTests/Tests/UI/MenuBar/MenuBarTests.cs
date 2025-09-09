@@ -16,11 +16,11 @@ namespace SauceDemoTests.Tests.UI.MenuBar
             base.SetUp();
 
             // Initialize MenuBarPage.
-            _menuBar = new MenuBarPage(_driver);
+            _menuBar = new MenuBarPage(_driver!);
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the website.
             ReportManager.LogInfo("Log in as standard user.");
@@ -128,8 +128,8 @@ namespace SauceDemoTests.Tests.UI.MenuBar
             _menuBar.ClickSMCloseBtn();
 
             // Getting the X-axis of side menu
-            var sideMenu = _driver.FindElement(By.CssSelector(".bm-menu-wrap"));
-            string style = sideMenu.GetAttribute("style");
+            var sideMenu = _driver!.FindElement(By.CssSelector(".bm-menu-wrap"));
+            string style = sideMenu.GetAttribute("style")!;
 
             Assert.That(style.Contains("translate3d(-100%, 0px, 0px)"), "The side menu should be hidden off screen.");
         }
@@ -144,7 +144,7 @@ namespace SauceDemoTests.Tests.UI.MenuBar
             ReportManager.LogInfo("Clicking the side menu 'All Items' link.");
             _menuBar.ClickSMItemsLink();
 
-            Assert.That(_driver.Url.Contains("inventory"), Is.True);
+            Assert.That(_driver!.Url.Contains("inventory"), Is.True);
         }
 
         // No test case created to for this.
@@ -157,7 +157,7 @@ namespace SauceDemoTests.Tests.UI.MenuBar
             ReportManager.LogInfo("Clicking the side menu 'About' link.");
             _menuBar.ClickSMAboutLink();
 
-            Assert.That(_driver.Url.Contains("saucelabs"), Is.True);
+            Assert.That(_driver!.Url.Contains("saucelabs"), Is.True);
         }
 
         // No test case created to for this.
@@ -170,7 +170,7 @@ namespace SauceDemoTests.Tests.UI.MenuBar
             ReportManager.LogInfo("Clicking the side menu 'Logout' link.");
             _menuBar.ClickSMLogoutLink();
 
-            Assert.That(_driver.Url.Contains("index"), Is.True);
+            Assert.That(_driver!.Url.Contains("index"), Is.True);
         }
 
         // No test case created to for this.

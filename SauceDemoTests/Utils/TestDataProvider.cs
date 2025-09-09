@@ -26,7 +26,7 @@ namespace SauceDemoTests.Utils
             var data = TestUtilities.TestDataReader.ReadJson<LoginTestRoot>(path);
 
             // Filter test case.
-            var filteredTestCase = data.testCases
+            var filteredTestCase = data.testCases!
                 .Where(tc => tc.testType.Equals(testType, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
@@ -46,7 +46,7 @@ namespace SauceDemoTests.Utils
             var data = TestUtilities.TestDataReader.ReadJson<CheckoutTestRoot>(path);
 
             // Filter test case.
-            var filteredTestCase = data.testCases
+            var filteredTestCase = data.testCases!
                 .Where(tc => tc.testType.Equals(testType, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 

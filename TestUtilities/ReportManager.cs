@@ -6,9 +6,9 @@ namespace TestUtilities
 {
     public static class ReportManager
     {
-        private static ExtentReports _extent;
+        private static ExtentReports _extent = null!;
         [ThreadStatic]
-        private static ExtentTest _test;
+        private static ExtentTest _test = null!;
 
         // Create the report
         public static void CreateExtentReport(string projectName)

@@ -15,11 +15,11 @@ namespace SauceDemoTests.Tests.UI.Logout
             base.SetUp();
 
             // Initialize MenuPage.
-            _menu = new MenuBarPage(_driver);
+            _menu = new MenuBarPage(_driver!);
 
             // Navigate to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the system as standard user.
             ReportManager.LogInfo("Log in as standard user.");
@@ -35,7 +35,7 @@ namespace SauceDemoTests.Tests.UI.Logout
             ReportManager.LogInfo("Clicking 'Logout' link.");
             _menu.ClickSMLogoutLink();
             ReportManager.LogInfo("Verifying that user is in the login page.");
-            Assert.That(_driver.Url.Contains("index.html"), Is.True);
+            Assert.That(_driver!.Url.Contains("index.html"), Is.True);
         }
 
         // TC_Logout_0002
@@ -47,7 +47,7 @@ namespace SauceDemoTests.Tests.UI.Logout
             ReportManager.LogInfo("Clicking 'Logout' link.");
             _menu.ClickSMLogoutLink();
             ReportManager.LogInfo("Verifying that the user cannot access pages after logging out.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/cart.html");
+            _driver!.Navigate().GoToUrl("https://www.saucedemo.com/v1/cart.html");
             ReportManager.LogInfo("SauceDemo issue: After logout, user can still access /cart.html via URL.");
             // Assert.That(_driver.Url.Contains("cart"), Is.False);
             Assert.That(_driver.Url.Contains("cart"), Is.True);

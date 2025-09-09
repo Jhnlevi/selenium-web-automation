@@ -18,7 +18,7 @@ namespace SauceDemoTests.Tests.UI.Login
 
             // Navigating to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Initialize LoginPage.
             _login = new LoginPage(_driver);
@@ -29,14 +29,14 @@ namespace SauceDemoTests.Tests.UI.Login
         public void Login_WithValidCredentials(LoginTestCase testCase)
         {
             ReportManager.LogInfo("Entering username and password.");
-            _login.EnterUserName(testCase.testData.userName);
+            _login.EnterUserName(testCase.testData!.userName);
             _login.EnterPassword(testCase.testData.password);
 
             ReportManager.LogInfo("Clicking 'Login' button.");
             _login.ClickLoginBtn();
 
             ReportManager.LogInfo("Verifying dashboard is displayed.");
-            Assert.That(_driver.Url, Is.EqualTo("https://www.saucedemo.com/v1/inventory.html"));
+            Assert.That(_driver!.Url, Is.EqualTo("https://www.saucedemo.com/v1/inventory.html"));
         }
 
         // TC_Login_0002; TC_Login_0003, TC_Login_0004
@@ -44,8 +44,8 @@ namespace SauceDemoTests.Tests.UI.Login
         public void InvalidLogin_ShowsErrorMessage(LoginTestCase testCase)
         {
             ReportManager.LogInfo("Entering username and password.");
-            _login.EnterUserName(testCase.testData.userName);
-            _login.EnterPassword(testCase.testData.password);
+            _login.EnterUserName(testCase.testData!.userName);
+            _login.EnterPassword(testCase.testData!.password);
 
             ReportManager.LogInfo("Clicking 'Login' button.");
             _login.ClickLoginBtn();
@@ -74,7 +74,7 @@ namespace SauceDemoTests.Tests.UI.Login
         public void Login_PasswordFieldIsMasked(string username, string password)
         {
             // Get password field attribute.
-            var passwordField = _driver.FindElement(By.Id("password"));
+            var passwordField = _driver!.FindElement(By.Id("password"));
             var passwordType = passwordField.GetAttribute("type");
 
             ReportManager.LogInfo("Entering username and password.");

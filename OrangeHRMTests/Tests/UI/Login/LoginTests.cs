@@ -13,7 +13,7 @@ namespace OrangeHRMTests.Tests.UI.Login
         public override void Setup()
         {
             base.Setup();
-            _login = new LoginPage(_driver);
+            _login = new LoginPage(_driver!);
             ReportManager.LogInfo("Navigating to OrangeHRM demo website.");
             _login.NavigateToUrl(_config.BaseUrl);
         }
@@ -64,7 +64,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             _login.EnterPassword(testCase.TestData!.Password);
             ReportManager.LogInfo("Clicking login button.");
             _login.ClickLoginButton();
-            if (testCase.ExpectedResult.FieldErrors != null && testCase.ExpectedResult.FieldErrors.Any())
+            if (testCase.ExpectedResult!.FieldErrors != null && testCase.ExpectedResult.FieldErrors.Any())
             {
                 // To loop on all fields.
                 foreach (var expected in testCase.ExpectedResult.FieldErrors)
@@ -90,7 +90,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             ReportManager.LogInfo("Clicking logout button.");
             _login._topbar.ClickLogoutButton();
             ReportManager.LogInfo("Verifying that user is redirected to login page");
-            Assert.That(_driver.Url.Contains("login"), Is.True);
+            Assert.That(_driver!.Url.Contains("login"), Is.True);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace TestUtilities
     public static class WebDriverFactory
     {
         [ThreadStatic]
-        private static IWebDriver _driver;
+        private static IWebDriver? _driver;
 
         // Creating the driver base on the browser; To be used base test file.
         public static IWebDriver CreateDriver(string browser)
