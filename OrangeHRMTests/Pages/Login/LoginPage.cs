@@ -1,10 +1,16 @@
 ﻿using OpenQA.Selenium;
+using OrangeHRMTests.Pages.TopBar;
 
 namespace OrangeHRMTests.Pages.Login
 {
     internal class LoginPage : BasePage
     {
-        public LoginPage(IWebDriver driver) : base(driver) { }
+        public TopBarPage _topbar { get; }
+
+        public LoginPage(IWebDriver driver) : base(driver)
+        {
+            _topbar = new TopBarPage(driver);
+        }
 
         private By InptUsername = By.Name("username");
         private By InptPassword = By.Name("password");
