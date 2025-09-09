@@ -67,5 +67,22 @@ namespace OrangeHRMTests.Tests.UI.Login
             ReportManager.LogInfo("Verifying that user cannot login with invalid credentials.");
             Assert.That(_login.InputErrorMessageDisplayed, Is.True);
         }
+
+        [Test]
+        public void Login_RedirectToLoginPageOnLogout()
+        {
+            ReportManager.LogInfo("Entering username.");
+            _login.EnterUsername("Admin");
+            ReportManager.LogInfo("Entering password.");
+            _login.EnterPassword("admin123");
+            ReportManager.LogInfo("Clicking login button.");
+            _login.ClickLoginButton();
+            ReportManager.LogInfo("Clicking user dropdown menu in topbar.");
+            _login._topbar.ClickUserDropdown();
+            ReportManager.LogInfo("Clicking logout button.");
+            _login._topbar.ClickLogoutButton();
+            ReportManager.LogInfo("Verifying that user is redirected to login page");
+            Assert.That(_driver.Url.Contains("login"), Is.True);
+        }
     }
 }
