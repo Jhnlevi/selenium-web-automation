@@ -12,7 +12,13 @@
             },
             "expectedResult": {
                 "result": "User should not be logged in. An appropriate error message should appear.",
-                "message": "Invalid credentials"
+                "message": "Missing username",
+                "fieldErrors": [
+                    {
+                        "field": "username",
+                        "message": "Required"
+                    }
+                ]
             }
         },
         {
@@ -25,7 +31,13 @@
             },
             "expectedResult": {
                 "result": "User should not be logged in. An appropriate error message should appear.",
-                "message": "Invalid credentials"
+                "message": "Missing password",
+                "fieldErrors": [
+                    {
+                        "field": "password",
+                        "message": "Required"
+                    }
+                ]
             }
         },
         {
@@ -38,7 +50,17 @@
             },
             "expectedResult": {
                 "result": "User should not be logged in. An appropriate error message should appear.",
-                "message": "Invalid credentials"
+                "message": "Missing username and password",
+                "fieldErrors": [
+                    {
+                        "field": "username",
+                        "message": "Required"
+                    },
+                    {
+                        "field": "password",
+                        "message": "Required"
+                    }
+                ]
             }
         }
     ]
