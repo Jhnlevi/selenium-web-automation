@@ -28,9 +28,9 @@ namespace OrangeHRMTests.Utils.Providers
         }
 
         // Get single record
-        public static PDCase GetValidCaseRecord(string id) => GetRecordById(id, PDValid);
-        public static PDCase GetInvalidCaseRecord(string id) => GetRecordById(id, PDInvalid);
-        public static PDCase GetMissingCaseRecord(string id) => GetRecordById(id, PDMissing);
+        public static PDCase GetValidPDCaseRecord(string id) => GetRecordById(id, PDValid);
+        public static PDCase GetInvalidPDCaseRecord(string id) => GetRecordById(id, PDInvalid);
+        public static PDCase GetMissingPDCaseRecord(string id) => GetRecordById(id, PDMissing);
 
         // Get multiple records
         public static IEnumerable<PDCase> GetValidPDCaseRecords() => GetRecords(PDValid);
