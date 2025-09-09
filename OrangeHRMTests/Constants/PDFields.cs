@@ -7,7 +7,7 @@
         public const string LastName = "LastName";
         public const string EmployeeId = "EmployeeId";
         public const string OtherId = "OtherId";
-        public const string DriversNumber = "DriverLicenseNumber";
+        public const string DriverLicenseNumber = "DriverLicenseNumber";
         public const string LicenseExpiryDate = "LicenseExpiryDate";
         public const string Nationality = "Nationality";
         public const string MaritalStatus = "MaritalStatus";
