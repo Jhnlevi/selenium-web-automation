@@ -19,12 +19,12 @@ namespace SauceDemoTests.Tests.UI.Checkout
             base.SetUp();
 
             // Initialize CartPage and CheckoutStepOnePage.
-            _cart = new CartPage(_driver);
-            _stepOne = new CheckoutStepOnePage(_driver);
+            _cart = new CartPage(_driver!);
+            _stepOne = new CheckoutStepOnePage(_driver!);
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             PreconditionFlow.FromLoginToCartFlow(_driver, "standard_user", "secret_sauce");
         }
@@ -35,7 +35,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
         {
             ReportManager.LogInfo("Clicking 'Checkout' button.");
             _cart.ClickCheckoutCartItem();
-            Assert.That(_driver.Url.Contains("checkout-step-one"), Is.True);
+            Assert.That(_driver!.Url.Contains("checkout-step-one"), Is.True);
         }
 
         // TC_Checkout_0002
@@ -76,14 +76,14 @@ namespace SauceDemoTests.Tests.UI.Checkout
         {
             Checkout_StepOne_NavigateToCheckout();
             ReportManager.LogInfo("Entering user first name.");
-            _stepOne.ChkoutEnterFirstName(testCase.testData.firstName);
+            _stepOne.ChkoutEnterFirstName(testCase.testData!.firstName);
             ReportManager.LogInfo("Entering user last name.");
-            _stepOne.ChkoutEnterLastName(testCase.testData.lastName);
+            _stepOne.ChkoutEnterLastName(testCase.testData!.lastName);
             ReportManager.LogInfo("Entering user postal code.");
-            _stepOne.ChkoutPostalCode(testCase.testData.postalCode);
+            _stepOne.ChkoutPostalCode(testCase.testData!.postalCode);
             ReportManager.LogInfo("Clicking 'continue' button.");
             _stepOne.ClickContinueButton();
-            Assert.That(_driver.Url.Contains("checkout-step-two"), Is.True);
+            Assert.That(_driver!.Url.Contains("checkout-step-two"), Is.True);
         }
 
         // TC_Checkout_0006; TC_Checkout_0007; TC_Checkout_0008; TC_Checkout_0009; TC_Checkout_0010; TC_Checkout_0011
@@ -93,11 +93,11 @@ namespace SauceDemoTests.Tests.UI.Checkout
         {
             Checkout_StepOne_NavigateToCheckout();
             ReportManager.LogInfo("Entering user first name.");
-            _stepOne.ChkoutEnterFirstName(testCase.testData.firstName);
+            _stepOne.ChkoutEnterFirstName(testCase.testData!.firstName);
             ReportManager.LogInfo("Entering user last name.");
-            _stepOne.ChkoutEnterLastName(testCase.testData.lastName);
+            _stepOne.ChkoutEnterLastName(testCase.testData!.lastName);
             ReportManager.LogInfo("Entering user postal code.");
-            _stepOne.ChkoutPostalCode(testCase.testData.postalCode);
+            _stepOne.ChkoutPostalCode(testCase.testData!.postalCode);
             ReportManager.LogInfo("Clicking 'continue' button.");
             _stepOne.ClickContinueButton();
             Assert.That(_stepOne.IsErrorMessageDisplayed(), Is.True);

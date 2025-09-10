@@ -4,13 +4,13 @@ using TestUtilities;
 
 namespace SauceDemoTests.Tests
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Structure",
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
             Justification = "Dispose and Quit are handled by CloseDriver method.")]
-        protected IWebDriver _driver;
+        protected IWebDriver? _driver;
         protected AppConfig _config;
 
         [OneTimeSetUp]
@@ -48,10 +48,10 @@ namespace SauceDemoTests.Tests
             // Needed for logging test results in report.
             TestResultHelper.LogTestResults(
                 testStatus,
-                _driver,
+                _driver!,
                 testMessage,
-                stackTrace,
-                testMethodName);
+                stackTrace!,
+                testMethodName!);
 
             // Close driver.
             if (_driver != null)

@@ -24,7 +24,7 @@ namespace SauceDemoTests.Tests.E2E
 
             // Navigate to SauceDemo website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Initialize all POMs.
             _cart = new CartPage(_driver);
@@ -36,7 +36,7 @@ namespace SauceDemoTests.Tests.E2E
         }
 
         // For assertions that verify the url.
-        private void AssertUrlContains(string url) => Assert.That(_driver.Url.Contains(url), Is.True);
+        private void AssertUrlContains(string url) => Assert.That(_driver!.Url.Contains(url), Is.True);
 
         [Test]
         [TestCase(
@@ -72,7 +72,7 @@ namespace SauceDemoTests.Tests.E2E
 
             // Go to cart page without logging in.
             ReportManager.LogInfo("Navigating to cart page of SauceDemo.");
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/v1/cart.html");
+            _driver!.Navigate().GoToUrl("https://www.saucedemo.com/v1/cart.html");
             // Known issue with SauceDem - User can still access other pages such as /cart or /inventory.
             ReportManager.LogInfo("SauceDemo issue: After logout, user can still access /cart.html via URL.");
             // Assert.That(_driver.Url.Contains("cart"), Is.False);

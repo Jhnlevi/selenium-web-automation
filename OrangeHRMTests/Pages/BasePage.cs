@@ -4,7 +4,7 @@ using TestUtilities;
 
 namespace OrangeHRMTests.Pages
 {
-    internal class BasePage
+    internal abstract class BasePage
     {
         protected IWebDriver _driver;
 

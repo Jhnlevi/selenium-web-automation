@@ -19,13 +19,13 @@ namespace SauceDemoTests.Tests.UI.Checkout
             base.SetUp();
 
             // Initialize MenuBarPage, CheckoutStepOnePage, and CheckoutStepTwoPage.
-            _menu = new MenuBarPage(_driver);
-            _stepOne = new CheckoutStepOnePage(_driver);
-            _stepTwo = new CheckoutStepTwoPage(_driver);
+            _menu = new MenuBarPage(_driver!);
+            _stepOne = new CheckoutStepOnePage(_driver!);
+            _stepTwo = new CheckoutStepTwoPage(_driver!);
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             PreconditionFlow.FromLoginToCheckoutFlow(_driver, "standard_user", "secret_sauce");
         }
@@ -41,7 +41,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
             _stepOne.ChkoutPostalCode("1111");
             ReportManager.LogInfo("Clicking 'continue' button.");
             _stepOne.ClickContinueButton();
-            Assert.That(_driver.Url.Contains("checkout-step-two"), Is.True);
+            Assert.That(_driver!.Url.Contains("checkout-step-two"), Is.True);
         }
 
         // TC_Checkout_0013
@@ -115,7 +115,7 @@ namespace SauceDemoTests.Tests.UI.Checkout
             ReportManager.LogInfo("Clicking 'Finish' button.");
             _stepTwo.ClickFinishButton();
             ReportManager.LogInfo("Verifying that the user completes the order.");
-            Assert.That(_driver.Url.Contains("checkout-complete"), Is.True);
+            Assert.That(_driver!.Url.Contains("checkout-complete"), Is.True);
         }
 
         // TC_Checkout_0021

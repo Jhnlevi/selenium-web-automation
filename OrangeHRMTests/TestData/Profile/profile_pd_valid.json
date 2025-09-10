@@ -1,0 +1,28 @@
+{
+    "name": "Profile Test Data",
+    "description": "Test data(s) for positive profile - personal details scenarios.",
+    "testCases": [
+        {
+            "testCaseId": "TC_Profile_0013_1",
+            "testCaseDescription": "Verify that data entered in ‘Personal Details’ is saved successfully.",
+            "testType": "Positive",
+            "testData": {
+                "firstName": "Johnny",
+                "middleName": "Apple",
+                "lastName": "Seed",
+                "employeeId": "123456",
+                "otherId": "789012",
+                "driverLicense": "DRV1122333",
+                "nationality": "American",
+                "maritalStatus": "Single",
+                "licenseExpiry": "2030-01-10",
+                "dateOfBirth": "1995-01-08",
+                "gender": "Male"
+            },
+            "expectedResult": {
+                "result": "Data entered is saved.",
+                "message": "Data entered is saved."
+            }
+        }
+    ]
+}

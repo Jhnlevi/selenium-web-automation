@@ -17,12 +17,12 @@ namespace SauceDemoTests.Tests.UI.Cart
             base.SetUp();
 
             // Initialize CartPage, and ProductPage.
-            _product = new ProductPage(_driver);
-            _cart = new CartPage(_driver);
+            _product = new ProductPage(_driver!);
+            _cart = new CartPage(_driver!);
 
             // Navigate to SauceDemo Website.
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the website
             ReportManager.LogInfo("Log in as standard user.");
@@ -193,7 +193,7 @@ namespace SauceDemoTests.Tests.UI.Cart
             _cart.ClickContinueShoppingItem();
 
             ReportManager.LogInfo("Verifying that the user is redirected to product list page.");
-            Assert.That(_driver.Url.Contains("inventory"), Is.True);
+            Assert.That(_driver!.Url.Contains("inventory"), Is.True);
         }
 
         // No test case available.
@@ -210,7 +210,7 @@ namespace SauceDemoTests.Tests.UI.Cart
             _cart.ClickCheckoutCartItem();
 
             ReportManager.LogInfo("Verifying that the user is redirected to checkout step one page.");
-            Assert.That(_driver.Url.Contains("checkout-step-one"), Is.True);
+            Assert.That(_driver!.Url.Contains("checkout-step-one"), Is.True);
         }
     }
 }

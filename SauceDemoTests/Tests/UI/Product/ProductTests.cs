@@ -15,11 +15,11 @@ namespace SauceDemoTests.Tests.UI.Product
             base.SetUp();
 
             // Initialize ProductPage.
-            _product = new ProductPage(_driver);
+            _product = new ProductPage(_driver!);
 
             // Navigate to SauceDemo Website
             ReportManager.LogInfo("Navigating to SauceDemo website.");
-            _driver.Navigate().GoToUrl(_config.BaseUrl);
+            _driver!.Navigate().GoToUrl(_config.BaseUrl);
 
             // Log in to the website
             ReportManager.LogInfo("Log in as standard user.");
@@ -98,7 +98,7 @@ namespace SauceDemoTests.Tests.UI.Product
             _product.ClickProduct();
 
             ReportManager.LogInfo("Verify that user can see the product details page.");
-            Assert.That(_driver.Url.Contains("inventory-item.html?id"));
+            Assert.That(_driver!.Url.Contains("inventory-item.html?id"));
         }
     }
 }
