@@ -12,9 +12,9 @@ namespace OrangeHRMTests.Pages.Profile
         {
             _elements = new Dictionary<string, By>
             {
-                { ProfileTabs.PersonalDetails, PersonalDetailsTab },
-                { ProfileTabs.ContactDetails, ContactDetailsTab },
-                { ProfileTabs.EmergencyContacts, EmergencyContactsTab }
+                { Fields_Profile.PersonalDetails, PersonalDetailsTab },
+                { Fields_Profile.ContactDetails, ContactDetailsTab },
+                { Fields_Profile.EmergencyContacts, EmergencyContactsTab }
             };
         }
 

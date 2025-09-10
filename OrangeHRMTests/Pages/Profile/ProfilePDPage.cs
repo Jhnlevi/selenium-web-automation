@@ -19,19 +19,19 @@ namespace OrangeHRMTests.Pages.Profile
 
             _elements = new Dictionary<string, By>
             {
-                {PDFields.FirstName, FldFirstName},
-                {PDFields.MiddleName, FldMiddleName},
-                {PDFields.LastName, FldLastName},
-                {PDFields.EmployeeId, FldEmployeeId},
-                {PDFields.OtherId, FldOtherId},
-                {PDFields.DriverLicenseNumber, FldDriversNumber},
-                {PDFields.LicenseExpiryDate, DateLED},
-                {PDFields.Nationality, DrpdwnNationality},
-                {PDFields.MaritalStatus, DrpdwnMarital},
-                {PDFields.DateOfBirth, DateDOB},
-                {PDFields.MaleRadio, RadioMale},
-                {PDFields.FemaleRadio, RadioFemale},
-                {PDFields.SaveButton, BtnSave},
+                {Fields_Profile_PD.FirstName, FldFirstName},
+                {Fields_Profile_PD.MiddleName, FldMiddleName},
+                {Fields_Profile_PD.LastName, FldLastName},
+                {Fields_Profile_PD.EmployeeId, FldEmployeeId},
+                {Fields_Profile_PD.OtherId, FldOtherId},
+                {Fields_Profile_PD.DriverLicenseNumber, FldDriversNumber},
+                {Fields_Profile_PD.LicenseExpiryDate, DateLED},
+                {Fields_Profile_PD.Nationality, DrpdwnNationality},
+                {Fields_Profile_PD.MaritalStatus, DrpdwnMarital},
+                {Fields_Profile_PD.DateOfBirth, DateDOB},
+                {Fields_Profile_PD.MaleRadio, RadioMale},
+                {Fields_Profile_PD.FemaleRadio, RadioFemale},
+                {Fields_Profile_PD.SaveButton, BtnSave},
             };
         }
 

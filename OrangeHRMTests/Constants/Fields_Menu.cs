@@ -1,6 +1,6 @@
 ﻿namespace OrangeHRMTests.Constants
 {
-    internal static class MenuFields
+    internal static class Fields_Menu
     {
         public const string Admin = "Admin";
         public const string PIM = "PIM";

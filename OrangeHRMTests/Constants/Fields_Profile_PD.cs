@@ -1,6 +1,6 @@
 ﻿namespace OrangeHRMTests.Constants
 {
-    internal static class PDFields
+    internal static class Fields_Profile_PD
     {
         public const string FirstName = "FirstName";
         public const string MiddleName = "MiddleName";

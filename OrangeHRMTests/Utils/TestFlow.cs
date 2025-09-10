@@ -12,8 +12,8 @@ namespace OrangeHRMTests.Utils
             var login = new LoginPage(driver);
 
             login.NavigateToUrl(url);
-            login.EnterUsername(TestAccount.Username);
-            login.EnterPassword(TestAccount.Password);
+            login.EnterUsername(Account_Admin.Username);
+            login.EnterPassword(Account_Admin.Password);
             login.ClickLoginButton();
         }
 
@@ -23,10 +23,10 @@ namespace OrangeHRMTests.Utils
             var menu = new NavigationMenuPage(driver);
 
             login.NavigateToUrl(url);
-            login.EnterUsername(TestAccount.Username);
-            login.EnterPassword(TestAccount.Password);
+            login.EnterUsername(Account_Admin.Username);
+            login.EnterPassword(Account_Admin.Password);
             login.ClickLoginButton();
-            menu.ClickElement(MenuFields.MyInfo);
+            menu.ClickElement(Fields_Menu.MyInfo);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace OrangeHRMTests.Pages.Menu
         {
             _elements = new Dictionary<string, By>
             {
-                { MenuFields.Admin, AdminMenuItem },
-                { MenuFields.PIM, PIMMenuItem },
-                { MenuFields.Leave, LeaveMenuItem },
-                { MenuFields.MyInfo, MyInfoMenuItem },
-                { MenuFields.Dashboard, DashboardMenuItem }
+                { Fields_Menu.Admin, AdminMenuItem },
+                { Fields_Menu.PIM, PIMMenuItem },
+                { Fields_Menu.Leave, LeaveMenuItem },
+                { Fields_Menu.MyInfo, MyInfoMenuItem },
+                { Fields_Menu.Dashboard, DashboardMenuItem }
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace OrangeHRMTests.Constants
 {
-    internal static class ProfileTabs
+    internal static class Fields_Profile
     {
         public const string PersonalDetails = "PersonalDetails";
         public const string ContactDetails = "ContactDetails";
