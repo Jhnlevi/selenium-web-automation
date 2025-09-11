@@ -2,6 +2,7 @@
 using OrangeHRMTests.Constants;
 using OrangeHRMTests.Pages.Login;
 using OrangeHRMTests.Pages.Menu;
+using OrangeHRMTests.Pages.Profile;
 
 namespace OrangeHRMTests.Utils
 {
@@ -17,16 +18,20 @@ namespace OrangeHRMTests.Utils
             login.ClickLoginButton();
         }
 
-        public void NavigateToMyInfo(IWebDriver driver, string url)
+        public static void NavigateToMyInfo(IWebDriver driver, string url)
         {
-            var login = new LoginPage(driver);
             var menu = new NavigationMenuPage(driver);
 
-            login.NavigateToUrl(url);
-            login.EnterUsername(Account_Admin.Username);
-            login.EnterPassword(Account_Admin.Password);
-            login.ClickLoginButton();
             menu.ClickElement(Fields_Menu.MyInfo);
+        }
+
+        public static void NavigateToPDTab(IWebDriver driver)
+        {
+            var menu = new NavigationMenuPage(driver);
+            var profile = new ProfilePage(driver);
+
+            menu.ClickElement(Fields_Menu.MyInfo);
+            profile.ClickElement(Fields_Profile.PersonalDetails);
         }
     }
 }
