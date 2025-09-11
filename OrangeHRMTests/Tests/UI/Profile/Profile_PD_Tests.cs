@@ -4,7 +4,7 @@ using TestUtilities;
 
 namespace OrangeHRMTests.Tests.UI.Profile
 {
-    internal class ProfilePDTests : BaseTest
+    internal class Profile_PD_Tests : BaseTest
     {
         private ProfilePDPage _profilePD;
 
