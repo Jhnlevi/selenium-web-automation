@@ -2,7 +2,7 @@
 
 namespace OrangeHRMTests.Models.Profile
 {
-    internal class ProfilePDModel
+    internal class Profile_PD_Model
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = null!;

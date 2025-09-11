@@ -2,7 +2,7 @@
 
 namespace OrangeHRMTests.Models.Login
 {
-    internal class LoginModel
+    internal class Login_Model
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = null!;

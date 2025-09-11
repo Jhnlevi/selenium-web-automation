@@ -14,14 +14,14 @@ namespace OrangeHRMTests.Utils.Providers
 
         public static LoginCase GetRecordById(string id, string fileName)
         {
-            var data = TestDataLoader.Load<LoginModel>(folderName, moduleName, fileName);
+            var data = TestDataLoader.Load<Login_Model>(folderName, moduleName, fileName);
             var record = data?.TestCases?.FirstOrDefault(tc => tc.TestCaseId == id);
             return record!;
         }
 
         public static IEnumerable<LoginCase> GetRecords(string fileName)
         {
-            var data = TestDataLoader.Load<LoginModel>(folderName, moduleName, fileName);
+            var data = TestDataLoader.Load<Login_Model>(folderName, moduleName, fileName);
             return data?.TestCases ?? Enumerable.Empty<LoginCase>();
         }
 
