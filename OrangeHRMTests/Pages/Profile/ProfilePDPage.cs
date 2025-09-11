@@ -61,6 +61,9 @@ namespace OrangeHRMTests.Pages.Profile
         // Enter text in input fields.
         public void InputText(string fieldName, string value) => EnterText(_elements[fieldName], value);
 
+        // Enter text in date fields.
+        public void InputDate(string fieldName, string value) => EnterDate(_elements[fieldName], value);
+
         // Select from dropdown.
         public void SelectDropdownByText(string fieldName, string option) => SelectByText(_elements[fieldName], option);
 

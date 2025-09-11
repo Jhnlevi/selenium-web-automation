@@ -31,6 +31,15 @@ namespace OrangeHRMTests.Pages
 
         public bool IsElementSelected(By locator) => _driver.WaitForElementToBeVisible(locator).Selected;
 
+        // Date Actions
+        public void EnterDate(By locator, string text)
+        {
+            var element = _driver.WaitForElementToBeVisible(locator);
+            element.SendKeys(Keys.Control + "a");
+            element.SendKeys(Keys.Delete);
+            element.SendKeys(text);
+        }
+
         // Dropdown Actions
         public void SelectByText(By locator, string text)
         {
