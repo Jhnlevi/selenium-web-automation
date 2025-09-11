@@ -1,15 +1,20 @@
 ﻿using OpenQA.Selenium;
 using OrangeHRMTests.Constants;
+using OrangeHRMTests.Pages.Menu;
 
 namespace OrangeHRMTests.Pages.Profile
 {
     internal class ProfilePage : BasePage
     {
+        public NavigationMenuPage _menu { get; }
+
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
 
         public ProfilePage(IWebDriver driver) : base(driver)
         {
+            _menu = new NavigationMenuPage(driver);
+
             _elements = new Dictionary<string, By>
             {
                 { Fields_Profile.PersonalDetails, PersonalDetailsTab },
