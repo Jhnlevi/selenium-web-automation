@@ -47,7 +47,7 @@ namespace OrangeHRMTests.Pages.Profile
         private By DateDOB = By.XPath("//label[text()='Date of Birth']/following::input[1]");
         private By RadioMale = By.XPath("//label[normalize-space()='Male']");
         private By RadioFemale = By.XPath("//label[normalize-space()='Female']");
-        private By BtnSave = By.XPath("//button[text()='Save']");
+        private By BtnSave = By.XPath("//button[normalize-space()='Save']");
 
         // Checking if element is displayed
         public bool IsDisplayed(string fieldName)
