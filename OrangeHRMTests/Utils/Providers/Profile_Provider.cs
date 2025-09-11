@@ -3,7 +3,7 @@ using TestUtilities;
 
 namespace OrangeHRMTests.Utils.Providers
 {
-    internal class ProfileProvider
+    internal class Profile_Provider
     {
         // Always return the case level.
         private const string folderName = "TestData";

@@ -28,7 +28,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             Assert.That(_login.LoginButtonDisplayed, Is.True);
         }
 
-        [TestCaseSource(typeof(LoginProvider), nameof(LoginProvider.GetValidCaseRecords))]
+        [TestCaseSource(typeof(Login_Provider), nameof(Login_Provider.GetValidCaseRecords))]
         public void Login_WithValidCredentials(LoginCase testCase)
         {
             ReportManager.LogInfo("Entering username.");
@@ -42,7 +42,7 @@ namespace OrangeHRMTests.Tests.UI.Login
 
         }
 
-        [TestCaseSource(typeof(LoginProvider), nameof(LoginProvider.GetInvalidCaseRecords))]
+        [TestCaseSource(typeof(Login_Provider), nameof(Login_Provider.GetInvalidCaseRecords))]
         public void Login_WithInvalidCredentials(LoginCase testCase)
         {
             ReportManager.LogInfo("Entering username.");
@@ -55,7 +55,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             Assert.That(_login.ErrorMessageDisplayed, Is.True);
         }
 
-        [TestCaseSource(typeof(LoginProvider), nameof(LoginProvider.GetMissingCaseRecords))]
+        [TestCaseSource(typeof(Login_Provider), nameof(Login_Provider.GetMissingCaseRecords))]
         public void Login_WithMissingInput(LoginCase testCase)
         {
             ReportManager.LogInfo("Entering username.");

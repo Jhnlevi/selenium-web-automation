@@ -104,7 +104,7 @@ namespace OrangeHRMTests.Tests.UI.Profile
             });
         }
 
-        [TestCaseSource(typeof(ProfileProvider), nameof(ProfileProvider.GetValidPDCaseRecords))]
+        [TestCaseSource(typeof(Profile_Provider), nameof(Profile_Provider.GetValidPDCaseRecords))]
         public void Profile_PersonalDetails_WithValidData(PDCase testCase)
         {
             var mappings = new List<FieldMapping>
