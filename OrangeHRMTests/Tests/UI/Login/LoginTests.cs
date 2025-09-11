@@ -7,13 +7,13 @@ namespace OrangeHRMTests.Tests.UI.Login
 {
     internal class LoginTests : BaseTest
     {
-        private LoginPage _login;
+        private Login_Page _login;
 
         [SetUp]
         public override void Setup()
         {
             base.Setup();
-            _login = new LoginPage(_driver!);
+            _login = new Login_Page(_driver!);
             ReportManager.LogInfo("Navigating to OrangeHRM demo website.");
             _login.NavigateToUrl(_config.BaseUrl);
         }

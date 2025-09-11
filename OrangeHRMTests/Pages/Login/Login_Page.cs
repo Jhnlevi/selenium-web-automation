@@ -3,13 +3,13 @@ using OrangeHRMTests.Pages.TopBar;
 
 namespace OrangeHRMTests.Pages.Login
 {
-    internal class LoginPage : BasePage
+    internal class Login_Page : BasePage
     {
-        public TopBarPage _topbar { get; }
+        public Header_Page _topbar { get; }
 
-        public LoginPage(IWebDriver driver) : base(driver)
+        public Login_Page(IWebDriver driver) : base(driver)
         {
-            _topbar = new TopBarPage(driver);
+            _topbar = new Header_Page(driver);
         }
 
         private By InptUsername = By.Name("username");

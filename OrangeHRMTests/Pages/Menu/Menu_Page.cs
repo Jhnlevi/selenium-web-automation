@@ -3,11 +3,11 @@ using OrangeHRMTests.Constants;
 
 namespace OrangeHRMTests.Pages.Menu
 {
-    internal class NavigationMenuPage : BasePage
+    internal class Menu_Page : BasePage
     {
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
-        public NavigationMenuPage(IWebDriver driver) : base(driver)
+        public Menu_Page(IWebDriver driver) : base(driver)
         {
             _elements = new Dictionary<string, By>
             {

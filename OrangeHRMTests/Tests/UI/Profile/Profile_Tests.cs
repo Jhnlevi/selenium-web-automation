@@ -7,13 +7,13 @@ namespace OrangeHRMTests.Tests.UI.Profile
 {
     internal class Profile_Tests : BaseTest
     {
-        private ProfilePage _profile;
+        private Profile_Page _profile;
 
         [SetUp]
         public override void Setup()
         {
             base.Setup();
-            _profile = new ProfilePage(_driver!);
+            _profile = new Profile_Page(_driver!);
 
             ReportManager.LogInfo("Logging in to OrangeHRM demo website as Admin.");
             TestFlow.Login_Admin(_driver!, _config.BaseUrl);

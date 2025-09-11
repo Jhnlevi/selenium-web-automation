@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrangeHRMTests.Pages.Profile
 {
-    internal class ProfileCDPage
+    internal class Profile_CD_Page
     {
     }
 }

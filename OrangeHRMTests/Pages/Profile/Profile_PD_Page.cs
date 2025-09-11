@@ -5,18 +5,18 @@ using OrangeHRMTests.Pages.Menu;
 
 namespace OrangeHRMTests.Pages.Profile
 {
-    internal class ProfilePDPage : BasePage
+    internal class Profile_PD_Page : BasePage
     {
-        public NavigationMenuPage _menu { get; }
-        public ProfilePage _profileTab { get; }
+        public Menu_Page _menu { get; }
+        public Profile_Page _profileTab { get; }
 
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
 
-        public ProfilePDPage(IWebDriver driver) : base(driver)
+        public Profile_PD_Page(IWebDriver driver) : base(driver)
         {
-            _menu = new NavigationMenuPage(driver);
-            _profileTab = new ProfilePage(driver);
+            _menu = new Menu_Page(driver);
+            _profileTab = new Profile_Page(driver);
 
             _elements = new Dictionary<string, By>
             {

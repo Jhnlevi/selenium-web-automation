@@ -10,7 +10,7 @@ namespace OrangeHRMTests.Utils
     {
         public static void Login_Admin(IWebDriver driver, string url)
         {
-            var login = new LoginPage(driver);
+            var login = new Login_Page(driver);
 
             login.NavigateToUrl(url);
             login.EnterUsername(Account_Admin.Username);
@@ -20,20 +20,20 @@ namespace OrangeHRMTests.Utils
 
         public static void Navigate_MyInfoPage(IWebDriver driver)
         {
-            var menu = new NavigationMenuPage(driver);
+            var menu = new Menu_Page(driver);
             menu.ClickElement(Fields_Menu.MyInfo);
         }
 
         public static void Navigate_MyInfo_PersonalDetailsTab(IWebDriver driver)
         {
-            var profile = new ProfilePage(driver);
+            var profile = new Profile_Page(driver);
 
             profile.ClickElement(Fields_Profile.PersonalDetails);
         }
 
         public static void Navigate_MyInfo_ContactDetailsTab(IWebDriver driver)
         {
-            var profile = new ProfilePage(driver);
+            var profile = new Profile_Page(driver);
 
             profile.ClickElement(Fields_Profile.ContactDetails);
         }
