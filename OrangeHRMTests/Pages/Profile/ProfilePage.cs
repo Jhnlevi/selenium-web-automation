@@ -3,12 +3,12 @@ using OrangeHRMTests.Constants;
 
 namespace OrangeHRMTests.Pages.Profile
 {
-    internal class ProfileTabsPage : BasePage
+    internal class ProfilePage : BasePage
     {
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
 
-        public ProfileTabsPage(IWebDriver driver) : base(driver)
+        public ProfilePage(IWebDriver driver) : base(driver)
         {
             _elements = new Dictionary<string, By>
             {

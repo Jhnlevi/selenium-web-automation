@@ -7,7 +7,7 @@ namespace OrangeHRMTests.Pages.Profile
     internal class ProfilePDPage : BasePage
     {
         public NavigationMenuPage _menu { get; }
-        public ProfileTabsPage _profileTab { get; }
+        public ProfilePage _profileTab { get; }
 
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
@@ -15,7 +15,7 @@ namespace OrangeHRMTests.Pages.Profile
         public ProfilePDPage(IWebDriver driver) : base(driver)
         {
             _menu = new NavigationMenuPage(driver);
-            _profileTab = new ProfileTabsPage(driver);
+            _profileTab = new ProfilePage(driver);
 
             _elements = new Dictionary<string, By>
             {
@@ -40,7 +40,7 @@ namespace OrangeHRMTests.Pages.Profile
         private By FldLastName = By.Name("lastName");
         private By FldEmployeeId = By.XPath("//label[text()='Employee Id']/following::input[1]");
         private By FldOtherId = By.XPath("//label[text()='Other Id']/following::input[1]");
-        private By FldDriversNumber = By.XPath("//label[text()='Driver's License Number']/following::input[1]");
+        private By FldDriversNumber = By.XPath("//label[text()=\"Driver's License Number\"]/following::input[1]");
         private By DateLED = By.XPath("//label[text()='License Expiry Date']/following::input[1]");
         private By DrpdwnNationality = By.XPath("//label[text()='Nationality']/following::input[1]");
         private By DrpdwnMarital = By.XPath("//label[text()='Marital Status']/following::input[1]");
