@@ -7,18 +7,18 @@ namespace OrangeHRMTests.Tests.UI.Profile
 {
     internal class Profile_Tests : BaseTest
     {
-        private ProfilePDPage _profilePD;
         private ProfilePage _profile;
 
         [SetUp]
         public override void Setup()
         {
             base.Setup();
-            _profilePD = new ProfilePDPage(_driver!);
             _profile = new ProfilePage(_driver!);
 
-            ReportManager.LogInfo("Logging in to OrangeHRM website, and navigating to 'My Info' Page.");
-            TestFlow.Login_MyInfo_Flow(_driver!, _config.BaseUrl);
+            ReportManager.LogInfo("Logging in to OrangeHRM demo website as Admin.");
+            TestFlow.Login_Admin(_driver!, _config.BaseUrl);
+            ReportManager.LogInfo("Navigating to 'My Info' page.");
+            TestFlow.Navigate_MyInfoPage(_driver!);
         }
 
         [Test]
