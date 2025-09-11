@@ -8,7 +8,7 @@ namespace OrangeHRMTests.Utils
 {
     internal class TestFlow
     {
-        public static void LoginAsAdmin(IWebDriver driver, string url)
+        public static void Login_Admin(IWebDriver driver, string url)
         {
             var login = new LoginPage(driver);
 
@@ -18,14 +18,14 @@ namespace OrangeHRMTests.Utils
             login.ClickLoginButton();
         }
 
-        public static void NavigateToMyInfo(IWebDriver driver, string url)
+        public static void Login_MyInfo_Flow(IWebDriver driver, string url)
         {
             var menu = new NavigationMenuPage(driver);
-
+            Login_Admin(driver, url);
             menu.ClickElement(Fields_Menu.MyInfo);
         }
 
-        public static void NavigateToPDTab(IWebDriver driver)
+        public static void Navigate_To_PersonalDetails(IWebDriver driver)
         {
             var menu = new NavigationMenuPage(driver);
             var profile = new ProfilePage(driver);
