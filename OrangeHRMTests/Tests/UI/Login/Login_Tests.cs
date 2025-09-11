@@ -5,7 +5,7 @@ using TestUtilities;
 
 namespace OrangeHRMTests.Tests.UI.Login
 {
-    internal class LoginTests : BaseTest
+    internal class Login_Tests : BaseTest
     {
         private Login_Page _login;
 
