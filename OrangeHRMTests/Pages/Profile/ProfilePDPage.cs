@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using OrangeHRMTests.Constants;
 using OrangeHRMTests.Pages.Menu;
 
@@ -59,15 +60,45 @@ namespace OrangeHRMTests.Pages.Profile
         }
 
         // Enter text in input fields.
-        public void InputText(string fieldName, string value) => EnterText(_elements[fieldName], value);
+        public void PD_EnterText(string fieldName, string value) => EnterText(_elements[fieldName], value);
 
         // Enter text in date fields.
-        public void InputDate(string fieldName, string value) => EnterDate(_elements[fieldName], value);
+        public void PD_EnterDate(string fieldName, string value) => EnterDate(_elements[fieldName], value);
 
         // Select from dropdown.
-        public void SelectDropdownByText(string fieldName, string option) => SelectByText(_elements[fieldName], option);
+        public void PD_SelectDropdownByText(string fieldName, string option) => SelectByText(_elements[fieldName], option);
 
         // Click elements.
-        public void ClickElement(string fieldName) => Click(_elements[fieldName]);
+        public void PD_Click(string fieldName) => Click(_elements[fieldName]);
+
+        // Get current input text
+        public string PD_GetFieldValue(string fieldName)
+        {
+            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
+            return wait.Until(d =>
+            {
+                var text = GetTextByValue(_elements[fieldName]);
+                return !string.IsNullOrEmpty(text) ? text : null;
+            });
+        }
+
+        // To handle form wait
+        public void WaitFor_PDFormLoaderDisappear()
+        {
+            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
+            wait.Until(d =>
+            {
+                try
+                {
+                    var formLoader = d.FindElement(By.CssSelector(".oxd-form-loader"));
+                    return !formLoader.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true;
+                }
+            });
+
+        }
     }
 }
