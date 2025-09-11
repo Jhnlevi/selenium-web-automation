@@ -18,20 +18,24 @@ namespace OrangeHRMTests.Utils
             login.ClickLoginButton();
         }
 
-        public static void Login_MyInfo_Flow(IWebDriver driver, string url)
+        public static void Navigate_MyInfoPage(IWebDriver driver)
         {
             var menu = new NavigationMenuPage(driver);
-            Login_Admin(driver, url);
             menu.ClickElement(Fields_Menu.MyInfo);
         }
 
-        public static void Navigate_To_PersonalDetails(IWebDriver driver)
+        public static void Navigate_MyInfo_PersonalDetailsTab(IWebDriver driver)
         {
-            var menu = new NavigationMenuPage(driver);
             var profile = new ProfilePage(driver);
 
-            menu.ClickElement(Fields_Menu.MyInfo);
             profile.ClickElement(Fields_Profile.PersonalDetails);
+        }
+
+        public static void Navigate_MyInfo_ContactDetailsTab(IWebDriver driver)
+        {
+            var profile = new ProfilePage(driver);
+
+            profile.ClickElement(Fields_Profile.ContactDetails);
         }
     }
 }
