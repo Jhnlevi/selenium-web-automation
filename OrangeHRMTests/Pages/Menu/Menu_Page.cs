@@ -3,19 +3,19 @@ using OrangeHRMTests.Constants;
 
 namespace OrangeHRMTests.Pages.Menu
 {
-    internal class NavigationMenuPage : BasePage
+    internal class Menu_Page : BasePage
     {
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
-        public NavigationMenuPage(IWebDriver driver) : base(driver)
+        public Menu_Page(IWebDriver driver) : base(driver)
         {
             _elements = new Dictionary<string, By>
             {
-                { MenuFields.Admin, AdminMenuItem },
-                { MenuFields.PIM, PIMMenuItem },
-                { MenuFields.Leave, LeaveMenuItem },
-                { MenuFields.MyInfo, MyInfoMenuItem },
-                { MenuFields.Dashboard, DashboardMenuItem }
+                { Fields_Menu.Admin, AdminMenuItem },
+                { Fields_Menu.PIM, PIMMenuItem },
+                { Fields_Menu.Leave, LeaveMenuItem },
+                { Fields_Menu.MyInfo, MyInfoMenuItem },
+                { Fields_Menu.Dashboard, DashboardMenuItem }
             };
         }
 

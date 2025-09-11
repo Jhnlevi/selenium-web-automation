@@ -18,11 +18,17 @@ namespace OrangeHRMTests.Pages
 
         public void EnterText(By locator, string text)
         {
-            _driver.WaitForElementToBeVisible(locator).Clear();
+            // For OrangeHRM only, otherwise .Clear() works.
+            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Control + "a");
+            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Backspace);
+            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Control + "a");
+            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Delete);
             _driver.WaitForElementToBeVisible(locator).SendKeys(text);
+            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Tab);
         }
 
         public string GetText(By locator) => _driver.WaitForElementToBeVisible(locator).Text;
+        public string GetTextByValue(By locator) => _driver.WaitForElementToBeVisible(locator).GetAttribute("value")!;
 
         // Checking actions; Returns boolean.
         public bool IsElementDisplayed(By locator) => _driver.WaitForElementToBeVisible(locator).Displayed;
@@ -30,6 +36,15 @@ namespace OrangeHRMTests.Pages
         public bool IsElementEnabled(By locator) => _driver.WaitForElementToBeVisible(locator).Enabled;
 
         public bool IsElementSelected(By locator) => _driver.WaitForElementToBeVisible(locator).Selected;
+
+        // Date Actions
+        public void EnterDate(By locator, string text)
+        {
+            var element = _driver.WaitForElementToBeVisible(locator);
+            element.SendKeys(Keys.Control + "a");
+            element.SendKeys(Keys.Delete);
+            element.SendKeys(text);
+        }
 
         // Dropdown Actions
         public void SelectByText(By locator, string text)
@@ -55,6 +70,8 @@ namespace OrangeHRMTests.Pages
 
         // Navigation/Page actions.
         public void NavigateToUrl(string url) => _driver.Navigate().GoToUrl(url);
+
+        public void RefreshCurrentPage() => _driver.Navigate().Refresh();
 
         public string GetPageTitle() => _driver.Title;
 

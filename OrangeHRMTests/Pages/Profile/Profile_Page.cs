@@ -1,20 +1,25 @@
 ﻿using OpenQA.Selenium;
 using OrangeHRMTests.Constants;
+using OrangeHRMTests.Pages.Menu;
 
 namespace OrangeHRMTests.Pages.Profile
 {
-    internal class ProfileTabsPage : BasePage
+    internal class Profile_Page : BasePage
     {
+        public Menu_Page _menu { get; }
+
         // Dictionary for all elements.
         private readonly Dictionary<string, By> _elements;
 
-        public ProfileTabsPage(IWebDriver driver) : base(driver)
+        public Profile_Page(IWebDriver driver) : base(driver)
         {
+            _menu = new Menu_Page(driver);
+
             _elements = new Dictionary<string, By>
             {
-                { ProfileTabs.PersonalDetails, PersonalDetailsTab },
-                { ProfileTabs.ContactDetails, ContactDetailsTab },
-                { ProfileTabs.EmergencyContacts, EmergencyContactsTab }
+                { Fields_Profile.PersonalDetails, PersonalDetailsTab },
+                { Fields_Profile.ContactDetails, ContactDetailsTab },
+                { Fields_Profile.EmergencyContacts, EmergencyContactsTab }
             };
         }
 
