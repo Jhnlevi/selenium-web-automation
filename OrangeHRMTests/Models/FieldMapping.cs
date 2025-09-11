@@ -1,11 +1,11 @@
 ﻿using OrangeHRMTests.Enums;
 
-namespace OrangeHRMTests.Models.Profile
+namespace OrangeHRMTests.Models
 {
-    internal class Field_PD_Model
+    internal class FieldMapping
     {
         public string Locator { get; set; } = null!;
         public string Value { get; set; } = null!;
-        public FieldType Type { get; set; }
+        public FieldType? Type { get; set; }
     }
 }
