@@ -26,7 +26,7 @@ namespace OrangeHRMTests.Tests.UI.Profile
             ReportManager.LogInfo("Navigating to 'Personal Details' tab.");
             TestFlow.Navigate_MyInfo_PersonalDetailsTab(_driver!);
             // To wait for form loader to disappear.
-            _profilePD.WaitFor_PDFormLoaderDisappear();
+            _profilePD.PD_WaitForFormLoaderDisappear();
         }
 
         [Test]
@@ -158,9 +158,11 @@ namespace OrangeHRMTests.Tests.UI.Profile
             _profilePD.PD_Click(Fields_Profile_PD.SaveButton);
             ReportManager.LogInfo("Refreshing the page.");
             _profilePD.RefreshCurrentPage();
-            ReportManager.LogInfo("Verify that data entered in 'Personal Details' is saved successfully and persists after refreshing the page.");
-            Assert.That(_profilePD.PD_GetFieldValue(Fields_Profile_PD.DriverLicenseNumber), Is.EqualTo(testCase.PDData!.DriverLicense));
 
+            ReportManager.LogInfo("Verify that data entered in 'Personal Details' is saved successfully and persists after refreshing the page.");
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.EmployeeId), Is.EqualTo(testCase.PDData!.EmployeeId));
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.OtherId), Is.EqualTo(testCase.PDData!.OtherId));
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.DriverLicenseNumber), Is.EqualTo(testCase.PDData!.DriverLicense));
         }
     }
 }
