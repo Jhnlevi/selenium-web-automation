@@ -7,16 +7,18 @@ namespace OrangeHRMTests.Pages.Profile
 {
     internal class Profile_PD_Page : BasePage
     {
+        // Dictionary for all elements.
+        private readonly Dictionary<string, By> _elements;
+        private readonly WebDriverWait _wait;
         public Menu_Page _menu { get; }
         public Profile_Page _profileTab { get; }
 
-        // Dictionary for all elements.
-        private readonly Dictionary<string, By> _elements;
 
         public Profile_PD_Page(IWebDriver driver) : base(driver)
         {
             _menu = new Menu_Page(driver);
             _profileTab = new Profile_Page(driver);
+            _wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
 
             _elements = new Dictionary<string, By>
             {
@@ -36,6 +38,7 @@ namespace OrangeHRMTests.Pages.Profile
             };
         }
 
+        private By PageFormLoader = By.CssSelector(".oxd-form-loader");
         private By FldFirstName = By.Name("firstName");
         private By FldMiddleName = By.Name("middleName");
         private By FldLastName = By.Name("lastName");
@@ -49,6 +52,14 @@ namespace OrangeHRMTests.Pages.Profile
         private By RadioMale = By.XPath("//label[normalize-space()='Male']");
         private By RadioFemale = By.XPath("//label[normalize-space()='Female']");
         private By BtnSave = By.XPath("//button[normalize-space()='Save']");
+        private By FldErrFirstName = By.CssSelector("div.oxd-input-group:has(input[name='firstName']) span.oxd-input-field-error-message");
+        private By FldErrMiddleName = By.CssSelector("div.oxd-input-group:has(input[name='middleName']) span.oxd-input-field-error-message");
+        private By FldErrLastName = By.CssSelector("div.oxd-input-group:has(input[name='lastName']) span.oxd-input-field-error-message");
+        private By FldErrEmployeeId = By.XPath("//label[normalize-space()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrOtherId = By.XPath("//label[normalize-space()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDriversNumber = By.XPath("//label[normalize-space()=\"Driver's License Number\"]/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDateLED = By.XPath("//label[normalize-space()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDateBOD = By.XPath("//label[normalize-space()='Date of Birth']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
 
         // Checking if element is displayed
         public bool IsDisplayed(string fieldName)
@@ -71,34 +82,46 @@ namespace OrangeHRMTests.Pages.Profile
         // Click elements.
         public void PD_Click(string fieldName) => Click(_elements[fieldName]);
 
-        // Get current input text
-        public string PD_GetFieldValue(string fieldName)
+        // Get current input text.
+        public string PD_WaitForFieldvalue(string fieldName)
         {
-            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
-            return wait.Until(d =>
+            return _wait.Until(d =>
             {
-                var text = GetTextByValue(_elements[fieldName]);
+                var text = GetFieldValue(_elements[fieldName]);
                 return !string.IsNullOrEmpty(text) ? text : null;
             });
         }
 
-        // To handle form wait
-        public void WaitFor_PDFormLoaderDisappear()
+        // To handle form wait.
+        public void PD_WaitForFormLoaderDisappear()
         {
-            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
-            wait.Until(d =>
+            _wait.Until(d =>
             {
                 try
                 {
-                    var formLoader = d.FindElement(By.CssSelector(".oxd-form-loader"));
-                    return !formLoader.Displayed;
+                    var loader = _driver!.FindElement(PageFormLoader);
+                    return !loader.Displayed;
                 }
-                catch (NoSuchElementException)
-                {
-                    return true;
-                }
+                catch (NoSuchElementException) { return true; }
+                catch (StaleElementReferenceException) { return true; }
             });
+        }
 
+        // Checking if field errors are displayed.
+        public bool PD_IsFieldErrorDisplayed(string fieldName)
+        {
+            return fieldName switch
+            {
+                "firstName" => IsElementDisplayed(FldErrFirstName),
+                "middleName" => IsElementDisplayed(FldErrMiddleName),
+                "lastName" => IsElementDisplayed(FldErrLastName),
+                "employeeId" => IsElementDisplayed(FldErrEmployeeId),
+                "otherId" => IsElementDisplayed(FldErrOtherId),
+                "driverLicense" => IsElementDisplayed(FldDriversNumber),
+                "licenseExpiry" => IsElementDisplayed(FldErrDateLED),
+                "dateOfBirth" => IsElementDisplayed(FldErrDateBOD),
+                _ => throw new ArgumentException($"Unknown field: {fieldName}")
+            };
         }
     }
 }

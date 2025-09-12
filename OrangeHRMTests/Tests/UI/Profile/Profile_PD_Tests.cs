@@ -26,7 +26,31 @@ namespace OrangeHRMTests.Tests.UI.Profile
             ReportManager.LogInfo("Navigating to 'Personal Details' tab.");
             TestFlow.Navigate_MyInfo_PersonalDetailsTab(_driver!);
             // To wait for form loader to disappear.
-            _profilePD.WaitFor_PDFormLoaderDisappear();
+            _profilePD.PD_WaitForFormLoaderDisappear();
+        }
+
+        // Method for mapping fields, field types, and test case data.
+        private void ProcessMappings(IEnumerable<FieldMapping> mappings)
+        {
+            foreach (var mapping in mappings)
+            {
+                ReportManager.LogInfo($"Entering '{mapping.Locator}'.");
+
+                switch (mapping.Type)
+                {
+                    case FieldType.Text:
+                        _profilePD.PD_EnterText(mapping.Locator, mapping.Value!);
+                        break;
+                    case FieldType.Dropdown:
+                        _profilePD.PD_SelectDropdownByText(mapping.Locator, mapping.Value!);
+                        break;
+                    case FieldType.Date:
+                        _profilePD.PD_EnterDate(mapping.Locator, mapping.Value!);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         [Test]
@@ -121,27 +145,7 @@ namespace OrangeHRMTests.Tests.UI.Profile
                 new FieldMapping { Locator = Fields_Profile_PD.DateOfBirth, Value = testCase.PDData!.DateOfBirth, Type = FieldType.Date  },
             };
 
-            foreach (var mapping in mappings)
-            {
-                ReportManager.LogInfo($"Entering '{mapping.Locator}'.");
-
-                switch (mapping.Type)
-                {
-                    case FieldType.Text:
-                        _profilePD.PD_EnterText(mapping.Locator, mapping.Value!);
-                        break;
-                    case FieldType.Dropdown:
-                        _profilePD.PD_SelectDropdownByText(mapping.Locator, mapping.Value!);
-                        break;
-                    case FieldType.Date:
-                        _profilePD.PD_EnterDate(mapping.Locator, mapping.Value!);
-                        break;
-                    case FieldType.Radio:
-                        break;
-                    default:
-                        break;
-                }
-            }
+            ProcessMappings(mappings);
 
             if (testCase.PDData!.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase) == true)
             {
@@ -158,9 +162,56 @@ namespace OrangeHRMTests.Tests.UI.Profile
             _profilePD.PD_Click(Fields_Profile_PD.SaveButton);
             ReportManager.LogInfo("Refreshing the page.");
             _profilePD.RefreshCurrentPage();
-            ReportManager.LogInfo("Verify that data entered in 'Personal Details' is saved successfully and persists after refreshing the page.");
-            Assert.That(_profilePD.PD_GetFieldValue(Fields_Profile_PD.DriverLicenseNumber), Is.EqualTo(testCase.PDData!.DriverLicense));
 
+            ReportManager.LogInfo("Verify that data entered in 'Personal Details' is saved successfully and persists after refreshing the page.");
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.EmployeeId), Is.EqualTo(testCase.PDData!.EmployeeId));
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.OtherId), Is.EqualTo(testCase.PDData!.OtherId));
+            Assert.That(_profilePD.PD_WaitForFieldvalue(Fields_Profile_PD.DriverLicenseNumber), Is.EqualTo(testCase.PDData!.DriverLicense));
+        }
+
+        [TestCaseSource(typeof(Profile_Provider), nameof(Profile_Provider.GetInvalidPDCaseRecords))]
+        [TestCaseSource(typeof(Profile_Provider), nameof(Profile_Provider.GetMissingPDCaseRecords))]
+        public void Profile_PersonalDetails_WithInvalidAndMissingData(PDCase testCase)
+        {
+            var mappings = new List<FieldMapping>
+            {
+                new FieldMapping { Locator = Fields_Profile_PD.FirstName, Value = testCase.PDData!.FirstName, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.MiddleName, Value = testCase.PDData!.MiddleName, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.LastName, Value = testCase.PDData!.LastName, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.EmployeeId, Value = testCase.PDData!.EmployeeId, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.OtherId, Value = testCase.PDData!.OtherId, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.DriverLicenseNumber, Value = testCase.PDData!.DriverLicense, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.LicenseExpiryDate, Value = testCase.PDData!.LicenseExpiry, Type = FieldType.Date  },
+                new FieldMapping { Locator = Fields_Profile_PD.Nationality, Value = testCase.PDData!.Nationality, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.MaritalStatus, Value = testCase.PDData!.MaritalStatus, Type = FieldType.Text  },
+                new FieldMapping { Locator = Fields_Profile_PD.DateOfBirth, Value = testCase.PDData!.DateOfBirth, Type = FieldType.Date  },
+            };
+
+            ProcessMappings(mappings);
+
+            if (testCase.PDData!.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                ReportManager.LogInfo("Clicking 'Male' button.");
+                _profilePD.PD_Click(Fields_Profile_PD.MaleRadio);
+            }
+            else if (testCase.PDData!.Gender.Equals("Female", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                ReportManager.LogInfo("Clicking 'Female' button.");
+                _profilePD.PD_Click(Fields_Profile_PD.MaleRadio);
+            }
+
+            ReportManager.LogInfo("Clicking 'Save' button.");
+            _profilePD.PD_Click(Fields_Profile_PD.SaveButton);
+
+            if (testCase.ExpectedResult!.FieldErrors != null && testCase.ExpectedResult.FieldErrors.Any())
+            {
+                foreach (var expected in testCase.ExpectedResult.FieldErrors)
+                {
+                    //var actualMessage = _profilePD.PD_GetFieldError(expected.Field);
+                    ReportManager.LogInfo($"Invalid input on {expected.Field} field.");
+                    Assert.That(_profilePD.PD_IsFieldErrorDisplayed(expected.Field), Is.True);
+                }
+            }
         }
     }
 }
