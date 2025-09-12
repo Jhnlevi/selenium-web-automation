@@ -1,4 +1,6 @@
-﻿using OrangeHRMTests.Models.Login;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using OrangeHRMTests.Models.Login;
 using OrangeHRMTests.Pages.Login;
 using OrangeHRMTests.Utils.Providers;
 using TestUtilities;
@@ -8,12 +10,16 @@ namespace OrangeHRMTests.Tests.UI.Login
     internal class Login_Tests : BaseTest
     {
         private Login_Page _login;
+        private WebDriverWait? _wait;
 
         [SetUp]
         public override void Setup()
         {
             base.Setup();
             _login = new Login_Page(_driver!);
+
+            _wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
+
             ReportManager.LogInfo("Navigating to OrangeHRM demo website.");
             _login.NavigateToUrl(_config.BaseUrl);
         }
@@ -38,7 +44,10 @@ namespace OrangeHRMTests.Tests.UI.Login
             ReportManager.LogInfo("Clicking login button.");
             _login.ClickLoginButton();
             ReportManager.LogInfo("Verifying that user is redirected to dashboard.");
-            Assert.That(_login.GetCurrentUrl().Contains("dashboard"), Is.True);
+
+            _wait!.Until(d => d.WaitForElementToBeVisible(By.CssSelector("div.oxd-layout-context")));
+
+            Assert.That(_login.GetCurrentUrl().EndsWith("/dashboard/index"), Is.True);
 
         }
 
