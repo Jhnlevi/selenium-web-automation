@@ -52,6 +52,14 @@ namespace OrangeHRMTests.Pages.Profile
         private By RadioMale = By.XPath("//label[normalize-space()='Male']");
         private By RadioFemale = By.XPath("//label[normalize-space()='Female']");
         private By BtnSave = By.XPath("//button[normalize-space()='Save']");
+        private By FldErrFirstName = By.CssSelector("div.oxd-input-group:has(input[name='firstName']) span.oxd-input-field-error-message");
+        private By FldErrMiddleName = By.CssSelector("div.oxd-input-group:has(input[name='middleName']) span.oxd-input-field-error-message");
+        private By FldErrLastName = By.CssSelector("div.oxd-input-group:has(input[name='lastName']) span.oxd-input-field-error-message");
+        private By FldErrEmployeeId = By.XPath("//label[normalize-space()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrOtherId = By.XPath("//label[normalize-space()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDriversNumber = By.XPath("//label[normalize-space()=\"Driver's License Number\"]/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDateLED = By.XPath("//label[normalize-space()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+        private By FldErrDateBOD = By.XPath("//label[normalize-space()='Date of Birth']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
 
         // Checking if element is displayed
         public bool IsDisplayed(string fieldName)
@@ -74,7 +82,7 @@ namespace OrangeHRMTests.Pages.Profile
         // Click elements.
         public void PD_Click(string fieldName) => Click(_elements[fieldName]);
 
-        // Get current input text
+        // Get current input text.
         public string PD_WaitForFieldvalue(string fieldName)
         {
             return _wait.Until(d =>
@@ -84,7 +92,7 @@ namespace OrangeHRMTests.Pages.Profile
             });
         }
 
-        // To handle form wait
+        // To handle form wait.
         public void PD_WaitForFormLoaderDisappear()
         {
             _wait.Until(d =>
@@ -97,6 +105,23 @@ namespace OrangeHRMTests.Pages.Profile
                 catch (NoSuchElementException) { return true; }
                 catch (StaleElementReferenceException) { return true; }
             });
+        }
+
+        // Checking if field errors are displayed.
+        public bool PD_IsFieldErrorDisplayed(string fieldName)
+        {
+            return fieldName switch
+            {
+                "firstName" => IsElementDisplayed(FldErrFirstName),
+                "middleName" => IsElementDisplayed(FldErrMiddleName),
+                "lastName" => IsElementDisplayed(FldErrLastName),
+                "employeeId" => IsElementDisplayed(FldErrEmployeeId),
+                "otherId" => IsElementDisplayed(FldErrOtherId),
+                "driverLicense" => IsElementDisplayed(FldDriversNumber),
+                "licenseExpiry" => IsElementDisplayed(FldErrDateLED),
+                "dateOfBirth" => IsElementDisplayed(FldErrDateBOD),
+                _ => throw new ArgumentException($"Unknown field: {fieldName}")
+            };
         }
     }
 }
