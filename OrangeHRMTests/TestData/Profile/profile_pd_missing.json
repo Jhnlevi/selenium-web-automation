@@ -4,34 +4,6 @@
     "testCases": [
         {
             "testCaseId": "TC_Profile_0014_4",
-            "testCaseDescription": "Verify that data saving fails in the ‘Personal Details’ tab with missing first name.",
-            "testType": "Negative",
-            "testData": {
-                "firstName": "",
-                "middleName": "Apple",
-                "lastName": "Seed",
-                "employeeId": "123456",
-                "otherId": "789012",
-                "driverLicense": "DRV1122333",
-                "nationality": "American",
-                "maritalStatus": "Single",
-                "licenseExpiry": "LicenseDate",
-                "dateOfBirth": "1995-01-08",
-                "gender": "Male"
-            },
-            "expectedResult": {
-                "result": "The system prevents saving invalid data and an error message is displayed.",
-                "message": "Missing first name.",
-                "fieldErrors": [
-                    {
-                        "field": "firstName",
-                        "message": "Required"
-                    }
-                ]
-            }
-        },
-        {
-            "testCaseId": "TC_Profile_0014_5",
             "testCaseDescription": "Verify that data saving fails in the ‘Personal Details’ tab with missing last name.",
             "testType": "Negative",
             "testData": {
@@ -59,7 +31,7 @@
             }
         },
         {
-            "testCaseId": "TC_Profile_0014_6",
+            "testCaseId": "TC_Profile_0014_5",
             "testCaseDescription": "Verify that data saving fails in the ‘Personal Details’ tab with missing first and last name.",
             "testType": "Negative",
             "testData": {
@@ -89,6 +61,6 @@
                     }
                 ]
             }
-        },
+        }
     ]
 }
