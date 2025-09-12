@@ -7,16 +7,18 @@ namespace OrangeHRMTests.Pages.Profile
 {
     internal class Profile_PD_Page : BasePage
     {
+        // Dictionary for all elements.
+        private readonly Dictionary<string, By> _elements;
+        private readonly WebDriverWait _wait;
         public Menu_Page _menu { get; }
         public Profile_Page _profileTab { get; }
 
-        // Dictionary for all elements.
-        private readonly Dictionary<string, By> _elements;
 
         public Profile_PD_Page(IWebDriver driver) : base(driver)
         {
             _menu = new Menu_Page(driver);
             _profileTab = new Profile_Page(driver);
+            _wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
 
             _elements = new Dictionary<string, By>
             {
@@ -36,6 +38,7 @@ namespace OrangeHRMTests.Pages.Profile
             };
         }
 
+        private By PageFormLoader = By.CssSelector(".oxd-form-loader");
         private By FldFirstName = By.Name("firstName");
         private By FldMiddleName = By.Name("middleName");
         private By FldLastName = By.Name("lastName");
@@ -72,33 +75,28 @@ namespace OrangeHRMTests.Pages.Profile
         public void PD_Click(string fieldName) => Click(_elements[fieldName]);
 
         // Get current input text
-        public string PD_GetFieldValue(string fieldName)
+        public string PD_WaitForFieldvalue(string fieldName)
         {
-            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
-            return wait.Until(d =>
+            return _wait.Until(d =>
             {
-                var text = GetTextByValue(_elements[fieldName]);
+                var text = GetFieldValue(_elements[fieldName]);
                 return !string.IsNullOrEmpty(text) ? text : null;
             });
         }
 
         // To handle form wait
-        public void WaitFor_PDFormLoaderDisappear()
+        public void PD_WaitForFormLoaderDisappear()
         {
-            var wait = new WebDriverWait(_driver!, TimeSpan.FromSeconds(15));
-            wait.Until(d =>
+            _wait.Until(d =>
             {
                 try
                 {
-                    var formLoader = d.FindElement(By.CssSelector(".oxd-form-loader"));
-                    return !formLoader.Displayed;
+                    var loader = _driver!.FindElement(PageFormLoader);
+                    return !loader.Displayed;
                 }
-                catch (NoSuchElementException)
-                {
-                    return true;
-                }
+                catch (NoSuchElementException) { return true; }
+                catch (StaleElementReferenceException) { return true; }
             });
-
         }
     }
 }

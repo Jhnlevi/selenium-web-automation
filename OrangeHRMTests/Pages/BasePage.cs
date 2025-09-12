@@ -20,15 +20,13 @@ namespace OrangeHRMTests.Pages
         {
             // For OrangeHRM only, otherwise .Clear() works.
             _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Control + "a");
-            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Backspace);
-            _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Control + "a");
             _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Delete);
             _driver.WaitForElementToBeVisible(locator).SendKeys(text);
             _driver.WaitForElementToBeVisible(locator).SendKeys(Keys.Tab);
         }
 
         public string GetText(By locator) => _driver.WaitForElementToBeVisible(locator).Text;
-        public string GetTextByValue(By locator) => _driver.WaitForElementToBeVisible(locator).GetAttribute("value")!;
+        public string GetFieldValue(By locator) => _driver.WaitForElementToBeVisible(locator).GetAttribute("value")!;
 
         // Checking actions; Returns boolean.
         public bool IsElementDisplayed(By locator) => _driver.WaitForElementToBeVisible(locator).Displayed;
