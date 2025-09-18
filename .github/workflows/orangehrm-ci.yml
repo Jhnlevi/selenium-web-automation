@@ -35,7 +35,7 @@ jobs:
       env:
         AppSettings__BaseUrl: ${{ secrets.ORANGEHRM__BASE_URL }}
         AppSettings__Browser: ${{ secrets.ORANGEHRM__BROWSER }}
-      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=OrangeHRMTests/Reports/orangehrm_test_results.trx"
+      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=orangehrm_test_results.trx"
           
     - name: Step 7 - Upload test report
       if: always()
