@@ -10,7 +10,6 @@ jobs:
   build-and-test:
     runs-on: windows-latest
     env: 
-      REPORTS_PATH: OrangeHRMTests/bin/Release/net8.0/OrangeHRMTests/Reports
       NUGET_TOKEN: ${{ secrets.PACKAGE_AUTH_TOKEN }}
 
     steps:
@@ -36,11 +35,11 @@ jobs:
       env:
         AppSettings__BaseUrl: ${{ secrets.ORANGEHRM__BASE_URL }}
         AppSettings__Browser: ${{ secrets.ORANGEHRM__BROWSER }}
-      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=${{ env.REPORTS_PATH }}/orangehrm_test_results.trx"
+      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=OrangeHRMTests/Reports/orangehrm_test_results.trx"
           
     - name: Step 7 - Upload test report
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: orangehrm-test-report
-        path: OrangeHRMTests/bin/Release/net8.0/Reports/
+        path: OrangeHRMTests/Reports/
