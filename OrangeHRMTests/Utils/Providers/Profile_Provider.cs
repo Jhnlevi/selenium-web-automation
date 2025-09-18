@@ -1,12 +1,11 @@
 ﻿using OrangeHRMTests.Models.Profile;
-using TestUtilities;
+using SeleniumToolkit.Data;
 
 namespace OrangeHRMTests.Utils.Providers
 {
     internal class Profile_Provider
     {
         // Always return the case level.
-        private const string folderName = "TestData";
         private const string moduleName = "Profile";
         private const string PDValid = "profile_pd_valid.json";
         private const string PDInvalid = "profile_pd_invalid.json";
@@ -16,14 +15,14 @@ namespace OrangeHRMTests.Utils.Providers
         // PD model:
         public static PDCase GetRecordById(string id, string fileName)
         {
-            var data = TestDataLoader.Load<Profile_PD_Model>(folderName, moduleName, fileName);
+            var data = JsonLoader.LoadJson<Profile_PD_Model>(moduleName, fileName);
             var record = data?.PDCases?.FirstOrDefault(tc => tc.TestCaseId == id);
             return record!;
         }
 
         public static IEnumerable<PDCase> GetRecords(string fileName)
         {
-            var data = TestDataLoader.Load<Profile_PD_Model>(folderName, moduleName, fileName);
+            var data = JsonLoader.LoadJson<Profile_PD_Model>(moduleName, fileName);
             return data?.PDCases ?? Enumerable.Empty<PDCase>();
         }
 

@@ -2,8 +2,9 @@
 using OpenQA.Selenium.Support.UI;
 using OrangeHRMTests.Models.Login;
 using OrangeHRMTests.Pages.Login;
+using OrangeHRMTests.Utils;
 using OrangeHRMTests.Utils.Providers;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace OrangeHRMTests.Tests.UI.Login
 {
@@ -45,7 +46,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             _login.ClickLoginButton();
             ReportManager.LogInfo("Verifying that user is redirected to dashboard.");
 
-            _wait!.Until(d => d.WaitForElementToBeVisible(By.CssSelector("div.oxd-layout-context")));
+            _wait!.Until(d => d.WaitElementVisible(By.CssSelector("div.oxd-layout-context")));
 
             Assert.That(_login.GetCurrentUrl().EndsWith("/dashboard/index"), Is.True);
 

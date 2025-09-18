@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OrangeHRMTests.Models;
-using TestUtilities;
+using OrangeHRMTests.Utils;
+using SeleniumToolkit.Data;
+using SeleniumToolkit.Driver;
+using SeleniumToolkit.Helpers;
 
 namespace OrangeHRMTests.Tests
 {
@@ -10,7 +13,7 @@ namespace OrangeHRMTests.Tests
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Structure",
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
-            Justification = "Dispose and Quit are handled by CloseDriver method.")]
+            Justification = "Dispose and Quit are handled by DriverFactory.QuitDriver() method.")]
         protected IWebDriver? _driver;
 
         [OneTimeSetUp]
@@ -19,8 +22,8 @@ namespace OrangeHRMTests.Tests
         [SetUp]
         public virtual void Setup()
         {
-            _config = TestConfigReader.GetAppSettings<AppConfig>();
-            _driver = WebDriverFactory.GetDriver("chrome");
+            _config = ConfigLoader.Get<AppConfig>("appsettings.json", "AppSettings");
+            _driver = DriverFactory.GetDriver("chrome");
             ReportManager.CreateExtentTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -28,26 +31,18 @@ namespace OrangeHRMTests.Tests
         public void Teardown()
         {
             var _context = TestContext.CurrentContext;
-            var testStatus = _context.Result.Outcome.Status;
-            var testMessage = _context.Result.Message;
-            var stackTrace = _context.Result.StackTrace;
-            var testMethodName = _context.Test.MethodName;
+            var status = _context.Result.Outcome.Status.ToString();
+            var message = _context.Result.Message;
+            var trace = _context.Result.StackTrace;
+            var methodName = _context.Test.MethodName;
 
-            TestResultHelper.LogTestResults(
-                testStatus,
-                _driver!,
-                testMessage,
-                stackTrace!,
-                testMethodName!);
+            // Helper class to log results in report.
+            ResultHelpers.LogResults(_driver!, status, message, trace!, methodName!);
 
-            if (_driver != null)
-            {
-                WebDriverFactory.CloseDriver();
-                _driver = null;
-            }
+            DriverFactory.QuitDriver();
         }
 
         [OneTimeTearDown]
-        public void ReportClose() => ReportManager.CloseExtentReport();
+        public void ReportClose() => ReportManager.QuitExtentReport();
     }
 }

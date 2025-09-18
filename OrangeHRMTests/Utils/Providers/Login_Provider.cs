@@ -1,12 +1,12 @@
 ﻿using OrangeHRMTests.Models.Login;
-using TestUtilities;
+using SeleniumToolkit.Data;
 
 namespace OrangeHRMTests.Utils.Providers
 {
     internal class Login_Provider
     {
         // Always return the case level.
-        private const string folderName = "TestData";
+        // private const string folderName = "TestData";
         private const string moduleName = "Login";
         private const string validFile = "login_valid.json";
         private const string invalidFile = "login_invalid.json";
@@ -14,14 +14,14 @@ namespace OrangeHRMTests.Utils.Providers
 
         public static LoginCase GetRecordById(string id, string fileName)
         {
-            var data = TestDataLoader.Load<Login_Model>(folderName, moduleName, fileName);
+            var data = JsonLoader.LoadJson<Login_Model>(moduleName, fileName);
             var record = data?.TestCases?.FirstOrDefault(tc => tc.TestCaseId == id);
             return record!;
         }
 
         public static IEnumerable<LoginCase> GetRecords(string fileName)
         {
-            var data = TestDataLoader.Load<Login_Model>(folderName, moduleName, fileName);
+            var data = JsonLoader.LoadJson<Login_Model>(moduleName, fileName);
             return data?.TestCases ?? Enumerable.Empty<LoginCase>();
         }
 
