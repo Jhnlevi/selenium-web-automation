@@ -23,7 +23,8 @@ jobs:
         dotnet-version: 7.0.x
 
     - name: Step 3 - Add GitHub Packages NuGet source
-      run: dotnet nuget add source "https://nuget.pkg.github.com/${{ github.actor }}/index.json" -n "GitHub" -u ${{ github.actor }} -p $NUGET_TOKEN
+      if: github.repository == 'Jhnlevi/selenium-web-automation'
+      run: dotnet nuget add source "https://nuget.pkg.github.com/${{ github.actor }}/index.json" -n "GitHub" -u ${{ github.actor }} -p $env:NUGET_TOKEN
 
     - name: Step 4 - Restore OrangeHRMTests project
       run: dotnet restore OrangeHRMTests/OrangeHRMTests.csproj
