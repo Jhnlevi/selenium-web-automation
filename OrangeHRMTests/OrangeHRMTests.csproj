@@ -11,32 +11,32 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="TestData\Login\login_valid.json" />
-    <None Remove="TestData\Profile\profile_pd_invalid.json" />
-    <None Remove="TestData\Profile\profile_pd_missing.json" />
-    <None Remove="TestData\Profile\profile_pd_valid.json" />
+    <None Remove="Data\TestData\Login\login_valid.json" />
+    <None Remove="Data\TestData\Profile\profile_pd_invalid.json" />
+    <None Remove="Data\TestData\Profile\profile_pd_missing.json" />
+    <None Remove="Data\TestData\Profile\profile_pd_valid.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Login\login_invalid.json">
+    <Content Include="Data\TestData\Login\login_invalid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Login\login_missing.json">
+    <Content Include="Data\TestData\Login\login_missing.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Login\login_valid.json">
+    <Content Include="Data\TestData\Login\login_valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Profile\profile_pd_invalid.json">
+    <Content Include="Data\TestData\Profile\profile_pd_invalid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Profile\profile_pd_missing.json">
+    <Content Include="Data\TestData\Profile\profile_pd_missing.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\Profile\profile_pd_valid.json">
+    <Content Include="Data\TestData\Profile\profile_pd_valid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
