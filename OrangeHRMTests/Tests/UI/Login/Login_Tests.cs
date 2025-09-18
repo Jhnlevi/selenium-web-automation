@@ -45,7 +45,7 @@ namespace OrangeHRMTests.Tests.UI.Login
             _login.ClickLoginButton();
             ReportManager.LogInfo("Verifying that user is redirected to dashboard.");
 
-            _wait!.Until(d => d.WaitForElementToBeVisible(By.CssSelector("div.oxd-layout-context")));
+            _wait!.Until(d => d.WaitElementVisible(By.CssSelector("div.oxd-layout-context")));
 
             Assert.That(_login.GetCurrentUrl().EndsWith("/dashboard/index"), Is.True);
 
