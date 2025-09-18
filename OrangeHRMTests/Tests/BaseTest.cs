@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OrangeHRMTests.Models;
-using TestUtilities;
+using SeleniumToolkit.Data;
+using SeleniumToolkit.Driver;
+using SeleniumToolkit.Helpers;
 
 namespace OrangeHRMTests.Tests
 {
@@ -10,7 +12,7 @@ namespace OrangeHRMTests.Tests
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Structure",
             "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method",
-            Justification = "Dispose and Quit are handled by CloseDriver method.")]
+            Justification = "Dispose and Quit are handled by DriverFactory.QuitDriver() method.")]
         protected IWebDriver? _driver;
 
         [OneTimeSetUp]
@@ -19,8 +21,8 @@ namespace OrangeHRMTests.Tests
         [SetUp]
         public virtual void Setup()
         {
-            _config = TestConfigReader.GetAppSettings<AppConfig>();
-            _driver = WebDriverFactory.GetDriver("chrome");
+            _config = ConfigLoader.Get<AppConfig>("appsettings.json", "AppSettings");
+            _driver = DriverFactory.GetDriver("chrome");
             ReportManager.CreateExtentTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -33,21 +35,17 @@ namespace OrangeHRMTests.Tests
             var stackTrace = _context.Result.StackTrace;
             var testMethodName = _context.Test.MethodName;
 
-            TestResultHelper.LogTestResults(
-                testStatus,
-                _driver!,
-                testMessage,
-                stackTrace!,
-                testMethodName!);
+            //TestResultHelper.LogTestResults(
+            //    testStatus,
+            //    _driver!,
+            //    testMessage,
+            //    stackTrace!,
+            //    testMethodName!);
 
-            if (_driver != null)
-            {
-                WebDriverFactory.CloseDriver();
-                _driver = null;
-            }
+            DriverFactory.QuitDriver();
         }
 
         [OneTimeTearDown]
-        public void ReportClose() => ReportManager.CloseExtentReport();
+        public void ReportClose() => ReportManager.QuitExtentReport();
     }
 }
