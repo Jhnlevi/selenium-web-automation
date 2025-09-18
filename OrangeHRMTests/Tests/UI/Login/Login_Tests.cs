@@ -2,8 +2,9 @@
 using OpenQA.Selenium.Support.UI;
 using OrangeHRMTests.Models.Login;
 using OrangeHRMTests.Pages.Login;
+using OrangeHRMTests.Utils;
 using OrangeHRMTests.Utils.Providers;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace OrangeHRMTests.Tests.UI.Login
 {
