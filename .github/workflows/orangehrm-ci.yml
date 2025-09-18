@@ -10,7 +10,7 @@ jobs:
   build-and-test:
     runs-on: windows-latest
     env: 
-      REPORTS_PATH: OrangeHRMTests/Reports/
+      REPORTS_PATH: Reports
       NUGET_TOKEN: ${{ secrets.PACKAGE_AUTH_TOKEN }}
 
     steps:
