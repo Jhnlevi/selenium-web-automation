@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OrangeHRMTests.Models;
+using OrangeHRMTests.Utils;
 using SeleniumToolkit.Data;
 using SeleniumToolkit.Driver;
 using SeleniumToolkit.Helpers;
@@ -30,17 +31,13 @@ namespace OrangeHRMTests.Tests
         public void Teardown()
         {
             var _context = TestContext.CurrentContext;
-            var testStatus = _context.Result.Outcome.Status;
-            var testMessage = _context.Result.Message;
-            var stackTrace = _context.Result.StackTrace;
-            var testMethodName = _context.Test.MethodName;
+            var status = _context.Result.Outcome.Status.ToString();
+            var message = _context.Result.Message;
+            var trace = _context.Result.StackTrace;
+            var methodName = _context.Test.MethodName;
 
-            //TestResultHelper.LogTestResults(
-            //    testStatus,
-            //    _driver!,
-            //    testMessage,
-            //    stackTrace!,
-            //    testMethodName!);
+            // Helper class to log results in report.
+            ResultHelpers.LogResults(_driver!, status, message, trace!, methodName!);
 
             DriverFactory.QuitDriver();
         }
