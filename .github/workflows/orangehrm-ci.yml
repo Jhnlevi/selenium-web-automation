@@ -9,31 +9,37 @@ on:
 jobs:
   build-and-test:
     runs-on: windows-latest
+    env: 
+      REPORTS_PATH: OrangeHRMTests/Reports/
+      NUGET_TOKEN: ${{ secrets.PACKAGE_AUTH_TOKEN }}
 
     steps:
-    - name: Checkout repository
+    - name: Step 1 - Check out repository
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: Step 2 - Set up .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore SeleniumWebAutomation.sln
+    - name: Step 3 - Add GitHub Packages NuGet source
+      run: dotnet nuget add source "https://nuget.pkg.github.com/${{ github.actor }}/index.json" -n "GitHub" -u ${{ github.actor }} -p $NUGET_TOKEN
 
-    - name: Build solution
-      run: dotnet build SeleniumWebAutomation.sln --configuration Release
+    - name: Step 4 - Restore OrangeHRMTests project
+      run: dotnet restore OrangeHRMTests/OrangeHRMTests.csproj
 
-    - name: Run OrangeHRMTests
+    - name: Step 5 - Build OrangeHRMTests project
+      run: dotnet build OrangeHRMTests/OrangeHRMTests.csproj --configuration Release
+
+    - name: Step 6 - Run OrangeHRMTests
       env:
         AppSettings__BaseUrl: ${{ secrets.ORANGEHRM__BASE_URL }}
         AppSettings__Browser: ${{ secrets.ORANGEHRM__BROWSER }}
-      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=orangehrm_test_results.trx"
+      run: dotnet test OrangeHRMTests/OrangeHRMTests.csproj --configuration Release --logger "trx;LogFileName=${{ env.REPORTS_PATH }}/orangehrm_test_results.trx"
           
-    - name: Upload test report
+    - name: Step 7 - Upload test report
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: orangehrm-test-report
-        path: OrangeHRMTests/Reports/
+        path: ${{ env.REPORTS_PATH }}
