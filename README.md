@@ -27,18 +27,20 @@ Highlights:
 - Data driven tests with JSON.
 - Detailed HTML reporting and screenshots.
 
-### [Test Utilities - Class library project](TestUtilities/README.md):
+### Selenium Automation Toolkit - NuGet Package:
 
-A beginner library project of reusable helpers for Selenium automation, including WebDriver management, custom waits, JSON data handling, screenshots, and test reporting.
+A personal C# Selenium automation toolkit for web testing and browser automation, built on .NET.
+
+*Note: This is a private NuGet package.*
 
 Includes:
 
-- WebDriverFactory: Easily create, get, and close WebDriver instances.
-- Custom Waits: Centralized wait methods for stable tests.
-- ScreenshotHelper: Capture screenshots automatically during tests.
-- ReportManager: Generate simple HTML reports with test results.
-- TestDataLoader / Reader: Load and read JSON test data for multiple scenarios.
-- TestConfigReader: Manage environment URLs, credentials, and settings via appsettings.json
+- 'DriverFactory' - Create, get, and close WebDriver instance easily
+- 'ScreenshotManager' - Capture screenshots for reports
+- 'ReportManager' - Generate, and log test reports
+- 'JsonLoader' - Load test data from JSON files for data-driven testing
+- 'JsonReader' - Read and parse JSON files into usable test data objects
+- 'ConfigLoader' – Load configuration settings from appsettings.json
 
 *(Future projects will be added here as I expand my portfolio)*
 
