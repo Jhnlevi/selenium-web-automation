@@ -5,7 +5,7 @@ using OrangeHRMTests.Models.Profile;
 using OrangeHRMTests.Pages.Profile;
 using OrangeHRMTests.Utils;
 using OrangeHRMTests.Utils.Providers;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace OrangeHRMTests.Tests.UI.Profile
 {
