@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Utils;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Tests.UI.MenuBar
 {

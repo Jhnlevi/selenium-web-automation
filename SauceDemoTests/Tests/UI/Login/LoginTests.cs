@@ -2,7 +2,7 @@
 using SauceDemoTests.Models.Login;
 using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Utils;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Tests.UI.Login
 {

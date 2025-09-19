@@ -2,7 +2,7 @@
 using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.Checkout;
 using SauceDemoTests.Utils;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Tests.UI.Checkout
 {
