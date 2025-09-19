@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using TestUtilities;
+using SauceDemoTests.Utils;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Pages.Product
 {
@@ -27,55 +28,55 @@ namespace SauceDemoTests.Pages.Product
         }
 
         // Actions
-        public void ShouldDisplayProductList() => _driver.WaitForElementToBeVisible(ListProducts);
-        public void ShouldDisplayProductImage() => _driver.WaitForElementToBeVisible(ProdImg);
-        public void ShouldDisplayProductName() => _driver.WaitForElementToBeVisible(ProdName);
-        public void ShouldDisplayProductDescription() => _driver.WaitForElementToBeVisible(ProdDesc);
-        public void ShouldDisplayProductPrice() => _driver.WaitForElementToBeVisible(ProdPrice);
-        public void ShouldDisplayProductSorter() => _driver.WaitForElementToBeVisible(ProdSort);
-        public void ShouldDisplayProductAddToCart() => _driver.WaitForElementToBeVisible(BtnAddToCart);
+        public void ShouldDisplayProductList() => _driver.WaitElementVisible(ListProducts);
+        public void ShouldDisplayProductImage() => _driver.WaitElementVisible(ProdImg);
+        public void ShouldDisplayProductName() => _driver.WaitElementVisible(ProdName);
+        public void ShouldDisplayProductDescription() => _driver.WaitElementVisible(ProdDesc);
+        public void ShouldDisplayProductPrice() => _driver.WaitElementVisible(ProdPrice);
+        public void ShouldDisplayProductSorter() => _driver.WaitElementVisible(ProdSort);
+        public void ShouldDisplayProductAddToCart() => _driver.WaitElementVisible(BtnAddToCart);
         public void ClickProduct()
         {
-            var element = _driver.WaitForElementToBeVisible(ProdName);
+            var element = _driver.WaitElementVisible(ProdName);
             element.Click();
         }
         // Select an item from the dropdown
         public void SelectFromDropdown(string itemName)
         {
-            var element = _driver.WaitForElementToBeVisible(ProdSort);
+            var element = _driver.WaitElementVisible(ProdSort);
             var select = new SelectElement(element);
             select.SelectByText(itemName);
         }
         // Get the current item from the dropdown
         public string GetSelectedItem()
         {
-            var element = _driver.WaitForElementToBeVisible(ProdSort);
+            var element = _driver.WaitElementVisible(ProdSort);
             var select = new SelectElement(element);
             return select.SelectedOption.Text;
         }
         public void ClickAddToCart()
         {
-            var element = _driver.WaitForElementToBeVisible(BtnAddToCart);
+            var element = _driver.WaitElementVisible(BtnAddToCart);
             element.Click();
         }
         public void ClickRemoveToCart()
         {
-            var element = _driver.WaitForElementToBeVisible(BtnRmvToCart);
+            var element = _driver.WaitElementVisible(BtnRmvToCart);
             element.Click();
         }
         public string GetAddToCartBtnText()
         {
-            var element = _driver.WaitForElementToBeVisible(BtnAddToCart);
+            var element = _driver.WaitElementVisible(BtnAddToCart);
             return element.Text;
         }
         public string GetRemoveFromCartBtnText()
         {
-            var element = _driver.WaitForElementToBeVisible(BtnRmvToCart);
+            var element = _driver.WaitElementVisible(BtnRmvToCart);
             return element.Text;
         }
         public void AddItemsToCart(int numberOfItems)
         {
-            var elements = _driver.WaitForElementsToBeVisible(BtnAddToCart);
+            var elements = _driver.WaitElementsVisible(BtnAddToCart);
 
             for (int i = 0; i < numberOfItems; i++)
             {
@@ -85,7 +86,7 @@ namespace SauceDemoTests.Pages.Product
         }
         public void RemoveItemsToCart(int currentItemCount, int numberOfItems)
         {
-            var elements = _driver.WaitForElementsToBeVisible(BtnRmvToCart);
+            var elements = _driver.WaitElementsVisible(BtnRmvToCart);
             for (int i = currentItemCount - 1; i > numberOfItems; i--)
             {
                 ReportManager.LogInfo("Clicking 'Remove' button.");
@@ -94,7 +95,7 @@ namespace SauceDemoTests.Pages.Product
         }
         public bool VerifyAllImagesAreLoaded()
         {
-            var element = _driver.WaitForElementsToBeVisible(ProdImg);
+            var element = _driver.WaitElementsVisible(ProdImg);
 
             foreach (var image in element)
             {

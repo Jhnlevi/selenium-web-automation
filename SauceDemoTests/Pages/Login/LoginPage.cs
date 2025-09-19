@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using TestUtilities;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Pages.Login
 {
@@ -23,24 +23,24 @@ namespace SauceDemoTests.Pages.Login
         // Actions
         public void EnterUserName(string username)
         {
-            var element = _driver.WaitForElementToBeVisible(InputUserName);
+            var element = _driver.WaitElementVisible(InputUserName);
             element.Clear();
             element.SendKeys(username);
         }
         public void EnterPassword(string password)
         {
-            var element = _driver.WaitForElementToBeVisible(InputPassword);
+            var element = _driver.WaitElementVisible(InputPassword);
             element.Clear();
             element.SendKeys(password);
         }
         public void ClickLoginBtn()
         {
-            var element = _driver.WaitForElementToBeVisible(BtnLogin);
+            var element = _driver.WaitElementVisible(BtnLogin);
             element.Click();
         }
         public string GetErrorMessage()
         {
-            var element = _driver.WaitForElementToBeVisible(ErrMessage);
+            var element = _driver.WaitElementVisible(ErrMessage);
             return element.Text;
         }
         public bool IsErrorMessageDisplayed()

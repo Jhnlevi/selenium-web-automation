@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SauceDemoTests.Pages.MenuBar;
-using TestUtilities;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Pages.Checkout
 {
@@ -26,43 +26,43 @@ namespace SauceDemoTests.Pages.Checkout
         private By ChkErrMessage = By.CssSelector("h3[data-test='error']");
 
         // Actions
-        public void ShouldDisplayFirstName() => _driver.WaitForElementToBeVisible(ChkoutInfoFirstName);
-        public void ShouldDisplayLastName() => _driver.WaitForElementToBeVisible(ChkoutInfoLastName);
-        public void ShouldDisplayPostalCode() => _driver.WaitForElementToBeVisible(ChkoutInfoPostalCode);
-        public void ShouldDisplayCancelButton() => _driver.WaitForElementToBeVisible(ChkoutBtnCancel);
-        public void ShouldDisplayContinueButton() => _driver.WaitForElementToBeVisible(ChkoutBtnContinue);
-        public void ShouldDisplayErrorMessage() => _driver.WaitForElementToBeVisible(ChkErrMessage);
+        public void ShouldDisplayFirstName() => _driver.WaitElementVisible(ChkoutInfoFirstName);
+        public void ShouldDisplayLastName() => _driver.WaitElementVisible(ChkoutInfoLastName);
+        public void ShouldDisplayPostalCode() => _driver.WaitElementVisible(ChkoutInfoPostalCode);
+        public void ShouldDisplayCancelButton() => _driver.WaitElementVisible(ChkoutBtnCancel);
+        public void ShouldDisplayContinueButton() => _driver.WaitElementVisible(ChkoutBtnContinue);
+        public void ShouldDisplayErrorMessage() => _driver.WaitElementVisible(ChkErrMessage);
         public void ChkoutEnterFirstName(string firstName)
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutInfoFirstName);
+            var element = _driver.WaitElementVisible(ChkoutInfoFirstName);
             element.Clear();
             element.SendKeys(firstName);
         }
         public void ChkoutEnterLastName(string lastName)
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutInfoLastName);
+            var element = _driver.WaitElementVisible(ChkoutInfoLastName);
             element.Clear();
             element.SendKeys(lastName);
         }
         public void ChkoutPostalCode(string postalCode)
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutInfoPostalCode);
+            var element = _driver.WaitElementVisible(ChkoutInfoPostalCode);
             element.Clear();
             element.SendKeys(postalCode);
         }
         public void ClickCancelButton()
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutBtnCancel);
+            var element = _driver.WaitElementVisible(ChkoutBtnCancel);
             element.Click();
         }
         public void ClickContinueButton()
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutBtnContinue);
+            var element = _driver.WaitElementVisible(ChkoutBtnContinue);
             element.Click();
         }
         public string GetErrorMessage()
         {
-            var element = _driver.WaitForElementToBeVisible(ChkErrMessage);
+            var element = _driver.WaitElementVisible(ChkErrMessage);
             return element.Text;
         }
         public bool IsErrorMessageDisplayed()
