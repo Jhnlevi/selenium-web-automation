@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using SauceDemoTests.Models;
-using TestUtilities;
+using SauceDemoTests.Utils;
+using SeleniumToolkit.Data;
+using SeleniumToolkit.Driver;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Tests
 {
@@ -24,10 +27,10 @@ namespace SauceDemoTests.Tests
         public virtual void SetUp()
         {
             // Config set up.
-            _config = TestConfigReader.GetAppSettings<AppConfig>();
+            _config = ConfigLoader.Get<AppConfig>("appsettings.json", "AppSettings");
 
             // Driver set up.
-            _driver = WebDriverFactory.GetDriver(_config.Browser);
+            _driver = DriverFactory.GetDriver(_config.Browser);
 
             // Report test set up.
             ReportManager.CreateExtentTest(TestContext.CurrentContext.Test.Name);
@@ -36,36 +39,24 @@ namespace SauceDemoTests.Tests
         [TearDown]
         public void TearDown()
         {
-            // Get current context.
             var _context = TestContext.CurrentContext;
+            var status = _context.Result.Outcome.Status.ToString();
+            var message = _context.Result.Message;
+            var trace = _context.Result.StackTrace;
+            var methodName = _context.Test.MethodName;
 
-            // Get test results, message, method name, and stack trace.
-            var testStatus = _context.Result.Outcome.Status;
-            var testMessage = _context.Result.Message;
-            var stackTrace = _context.Result.StackTrace;
-            var testMethodName = _context.Test.MethodName;
-
-            // Needed for logging test results in report.
-            TestResultHelper.LogTestResults(
-                testStatus,
-                _driver!,
-                testMessage,
-                stackTrace!,
-                testMethodName!);
+            // Helper class to log results in report.
+            ResultHelpers.LogResults(_driver!, status, message, trace!, methodName!);
 
             // Close driver.
-            if (_driver != null)
-            {
-                WebDriverFactory.CloseDriver();
-                _driver = null;
-            }
+            DriverFactory.QuitDriver();
         }
 
         [OneTimeTearDown]
         public void CloseReport()
         {
             // Close report.
-            ReportManager.CloseExtentReport();
+            ReportManager.QuitExtentReport();
         }
     }
 }
