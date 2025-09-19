@@ -3,7 +3,7 @@ using SauceDemoTests.Pages.Checkout;
 using SauceDemoTests.Pages.Login;
 using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Pages.Product;
-using TestUtilities;
+using SeleniumToolkit.Helpers;
 
 namespace SauceDemoTests.Tests.E2E
 {

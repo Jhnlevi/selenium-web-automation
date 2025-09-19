@@ -1,5 +1,6 @@
 ﻿using SauceDemoTests.Models.Checkout;
 using SauceDemoTests.Models.Login;
+using SeleniumToolkit.Data;
 
 namespace SauceDemoTests.Utils
 {
@@ -23,7 +24,7 @@ namespace SauceDemoTests.Utils
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Login", "loginTestData.json");
 
             // Call JsonDataReader util.
-            var data = TestUtilities.TestDataReader.ReadJson<LoginTestRoot>(path);
+            var data = JsonLoader.LoadJson<LoginTestRoot>("Login", "loginTestData.json");
 
             // Filter test case.
             var filteredTestCase = data.testCases!
@@ -39,11 +40,8 @@ namespace SauceDemoTests.Utils
 
         public static IEnumerable<TestCaseData> GetCheckoutTestData(string testType)
         {
-            // Path for the checkout test data.
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "Checkout", "checkoutTestData.json");
-
             // Call JsonDataReader util.
-            var data = TestUtilities.TestDataReader.ReadJson<CheckoutTestRoot>(path);
+            var data = JsonLoader.LoadJson<CheckoutTestRoot>("Checkout", "checkoutTestData.json");
 
             // Filter test case.
             var filteredTestCase = data.testCases!

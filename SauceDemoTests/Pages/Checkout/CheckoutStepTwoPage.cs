@@ -2,7 +2,7 @@
 using SauceDemoTests.Pages.Cart;
 using SauceDemoTests.Pages.MenuBar;
 using SauceDemoTests.Pages.Product;
-using TestUtilities;
+using SauceDemoTests.Utils;
 
 namespace SauceDemoTests.Pages.Checkout
 {
@@ -36,22 +36,22 @@ namespace SauceDemoTests.Pages.Checkout
         private By ChkoutBtnCancel = By.LinkText("CANCEL");
 
         // Actions
-        public void ShouldDisplayFinishButton() => _driver.WaitForElementToBeVisible(ChkoutBtnFinish);
-        public void ShouldDisplayCancelButton() => _driver.WaitForElementToBeVisible(ChkoutBtnCancel);
-        public void ShouldDisplayCartItem() => _driver.WaitForElementToBeVisible(ChkoutCartItem);
-        public void ShouldDisplayPaymentInfo() => _driver.WaitForElementToBeVisible(ChkoutPaymentInfo);
-        public void ShouldDisplayShippingInfo() => _driver.WaitForElementToBeVisible(ChkoutShippingInfo);
-        public void ShouldDisplayItemSubTotal() => _driver.WaitForElementToBeVisible(ChckoutItemSubTotal);
-        public void ShouldDisplayItemTax() => _driver.WaitForElementToBeVisible(ChkoutItemTax);
-        public void ShouldDisplayItemTotal() => _driver.WaitForElementToBeVisible(ChkoutItemTotal);
+        public void ShouldDisplayFinishButton() => _driver.WaitElementVisible(ChkoutBtnFinish);
+        public void ShouldDisplayCancelButton() => _driver.WaitElementVisible(ChkoutBtnCancel);
+        public void ShouldDisplayCartItem() => _driver.WaitElementVisible(ChkoutCartItem);
+        public void ShouldDisplayPaymentInfo() => _driver.WaitElementVisible(ChkoutPaymentInfo);
+        public void ShouldDisplayShippingInfo() => _driver.WaitElementVisible(ChkoutShippingInfo);
+        public void ShouldDisplayItemSubTotal() => _driver.WaitElementVisible(ChckoutItemSubTotal);
+        public void ShouldDisplayItemTax() => _driver.WaitElementVisible(ChkoutItemTax);
+        public void ShouldDisplayItemTotal() => _driver.WaitElementVisible(ChkoutItemTotal);
         public void ClickFinishButton()
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutBtnFinish);
+            var element = _driver.WaitElementVisible(ChkoutBtnFinish);
             element.Click();
         }
         public void ClickCancelButton()
         {
-            var element = _driver.WaitForElementToBeVisible(ChkoutBtnCancel);
+            var element = _driver.WaitElementVisible(ChkoutBtnCancel);
             element.Click();
         }
     }
